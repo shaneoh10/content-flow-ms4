@@ -48,3 +48,32 @@ User Story No. | As a User | I want to be able to | So that I can | Complete
 22|Logged In User|reset password|access my account if I forget my password|
 23|Logged In User|delete my account|delete my account if I no longer wish to use the website|
 24|Administrator|edit/delete any posts|moderate the website / remove inappropriate content|
+
+### Scope
+
+After analysing the user stories, I have decided on the following features as my intitial minimum scope.
+- Responsive design
+- Landing page with information about the website
+- User account registration & login/logout functionality
+- All users able to view posts with ability to view by category and filter by date/popularity
+- Registered users able to create, edit and delete posts of their own
+- Registered users able to like and comment on posts an follow specific users/categories
+- Registered users able to purchase tokens to reward other users for their posts
+- Search functionality to search for posts, categories and users
+- Administrators will have full CRUD control to moderate the entire website
+
+### Structure
+
+I did some research on various blogs, social media sites and content sharing sites to get an idea of what kind of designs users are familiar with. Most of these websites shared a similar pattern of a navbar containing a user icon and a search bar at the top of the page and a content feed below it. Some sites also have a text field above the content feed to allow users to create a post instantly and some had some extra content or links to the side of the content feed. On most of the sites that I visited, the purpose of the website is immediately evident, so I decided to base my design around these websites so that users will have a sense of familiarity when visiting. This familiarity will also prevent any steep learning curve that may throw users off using the website.
+
+Another thing I noticed while doing research is that there are a lot of advertisements and promoted content on most of the websites I visited, which I found quite annoying and distracting. I feel the exclusion of this content in my own website will provide users with a friendlier and more enjoyable experience for them while they are browsing through the website content.
+
+The entire website is designed to be easy to navigate with all information presented in a clean manner so that users will have a familiar and enjoyable experience.
+
+I have structured the website with:
+- A navbar at the top of the page with a brand logo on the left and nav-items to the right which is common to most websites. The navbar will contain a searchbar for users to search the website
+- A collapsible navbar for smaller screens
+- Navbar common to all pages - items displayed in navbar depending on user status (log in will not be available for a user already logged in etc.)
+- Main content will have a simple layout written with Bootstrap for structure and responsive design
+- Landing page, register, login and content pages accessible by all users of the website
+- User account settings, user profile, create post, purchase token pages only accessible to logged in users. Unauthorized users trying to access will be prompted to log in.
