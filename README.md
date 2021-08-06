@@ -77,3 +77,7 @@ I have structured the website with:
 - Main content will have a simple layout written with Bootstrap for structure and responsive design
 - Landing page, register, login and content pages accessible by all users of the website
 - User account settings, user profile, create post, purchase token pages only accessible to logged in users. Unauthorized users trying to access will be prompted to log in.
+
+### Skeleton 
+
+I designed wireframes for desktop, tablet and mobile using Balsamiq. These wireframes can be viewed [here.](https://github.com/shaneoh10/content-flow-ms4/tree/main/assets/wireframes)
