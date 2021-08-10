@@ -25,22 +25,24 @@
     </section>
 
     <section id="about">
-        <div class="container">
-            <h2 class="text-center mt-3">About</h2>
+        <div class="container pt-5 pb-5">
             <div class="row">
                 <div class="col-12 col-md-4 text-center">
+                    <i class="fas fa-user-plus p-4"></i>
                     <h4>Follow</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum beatae quibusdam repellendus illo
                         ad natus, facilis velit odio ut perspiciatis recusandae non. Qui a autem reprehenderit quidem
                         praesentium cupiditate vero.</p>
                 </div>
                 <div class="col-12 col-md-4 text-center">
+                    <i class="fas fa-upload p-4"></i>
                     <h4>Create</h4>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem dicta animi velit, asperiores
                         atque deleniti dolores et consectetur provident, minus quam deserunt error! Fugit, culpa porro!
                         Explicabo error corporis optio?</p>
                 </div>
                 <div class="col-12 col-md-4 text-center">
+                    <i class="fas fa-medal p-4"></i>
                     <h4>Reward</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, recusandae mollitia? Cupiditate
                         totam molestiae alias odit officia sequi velit ad, illum, voluptatem corrupti consectetur harum
@@ -57,5 +59,19 @@
             </div>
         </div>
     </section>
+
+    <footer class="container p-3">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <a>Posts</a> |
+                <a href="{% url 'account_signup' %}">Sign Up</a> |
+                <a href="{% url 'account_login' %}">Log In</a> |
+                <a href="#nav">Back to top</a>
+            </div>
+            <div class="col-12 col-md-6">
+                <p>Copyright &copy; 2021 Content Flow</p>
+            </div>
+        </div>
+    </footer>
 
 {% endblock %}
