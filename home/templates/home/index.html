@@ -17,7 +17,7 @@
                     <h1>Right Now</h1>
                     <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-1 mt-4">Sign Up</a>
                     <a href="#about" class="btn btn-lg btn-outline-primary mx-1 mt-4">Learn More</a>
-                    <p class="text-muted mt-3">Already have an account?<a href="{% url 'account_login' %}">Log In.</a>
+                    <p class="text-muted mt-3">Already have an account?<a href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">Log In.</a>
                     </p>
                 </div>
             </div>
@@ -62,16 +62,17 @@
 
     <footer class="container p-3">
         <div class="row">
-            <div class="col-12 col-md-6">
-                <a>Posts</a> |
-                <a href="{% url 'account_signup' %}">Sign Up</a> |
-                <a href="{% url 'account_login' %}">Log In</a> |
-                <a href="#nav">Back to top</a>
+            <div class="col-12 text-center mb-3">
+                <a href="#" class="mx-2">Posts</a> |
+                <a href="{% url 'account_signup' %}" class="mx-2">Sign Up</a> |
+                <a href="#" data-bs-toggle="modal" data-bs-target="#LoginModal" class="mx-2">Log In</a> |
+                <a href="#nav" class="mx-2">Back to top</a>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 text-center">
                 <p>Copyright &copy; 2021 Content Flow</p>
             </div>
         </div>
     </footer>
+    
 
 {% endblock %}
