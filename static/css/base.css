@@ -1,0 +1,15 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+nav {
+    background-color: #eeeeee;
+}
