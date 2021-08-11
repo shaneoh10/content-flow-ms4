@@ -64,8 +64,12 @@
         <div class="row">
             <div class="col-12 text-center mb-3">
                 <a href="#" class="mx-2">Posts</a> |
-                <a href="{% url 'account_signup' %}" class="mx-2">Sign Up</a> |
-                <a href="#" data-bs-toggle="modal" data-bs-target="#LoginModal" class="mx-2">Log In</a> |
+                {% if user.is_authenticated %}
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#LogoutModal" class="mx-2">Log Out</a> |
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="mx-2">Sign Up</a> |
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#LoginModal" class="mx-2">Log In</a> |
+                {% endif %}
                 <a href="#nav" class="mx-2">Back to top</a>
             </div>
             <div class="col-12 text-center">

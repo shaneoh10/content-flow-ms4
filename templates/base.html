@@ -76,8 +76,18 @@
                         <a class="nav-link active" href="#">Posts</a>
                     </li>
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-user" style="font-size: 1rem;"></i> Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profile123</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li class="dropdown-item">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#LogoutModal">Log Out</a>
+                                </li>
+                            </ul>
                         </li>
                     {% else %}
                         <li class="nav-item">
@@ -118,6 +128,25 @@
                         <button type="submit" class="btn btn-primary mx-auto">Log In</button>
                     </form>
                     <a href="/accounts/password/reset/" class="form-text">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Logout Modal -->
+    <div class="modal fade" id="LogoutModal" tabindex="-1" aria-labelledby="LogoutModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LogoutModal">Are you sure you want to log out?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/accounts/logout/">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary mx-auto">Log Out</button>
+                    </form>
                 </div>
             </div>
         </div>
