@@ -1,13 +1,7 @@
 #main {
     min-height: 95vh;
-    display: flex;
-    align-items: center;
     background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat top fixed;
     background-size: cover;
-}
-
-#about {
-    background-color: #e0e0e0;
 }
 
 #main-header {
@@ -16,6 +10,30 @@
     color: #fafafa;
 }
 
+footer {
+    background-color: #969595;
+}
+
+.opaque-cover {
+    display: flex;
+    align-items: center;
+    min-height: 95vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 i.fas {
     font-size: 8rem;
+}
+
+i.fa-user-plus {
+    color: rgb(4, 162, 224);
+}
+
+i.fa-upload {
+    color: rgb(5, 184, 5);
+}
+
+i.fa-medal {
+    color: rgb(228, 175, 41);
 }
