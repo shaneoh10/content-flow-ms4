@@ -2,10 +2,18 @@
     min-height: 95vh;
     display: flex;
     align-items: center;
+    background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat top fixed;
+    background-size: cover;
 }
 
 #about {
     background-color: #e0e0e0;
+}
+
+#main-header {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    color: #fafafa;
 }
 
 i.fas {
