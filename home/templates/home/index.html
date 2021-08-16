@@ -16,11 +16,15 @@
                     </div>
                     <div class="col-12 col-md-6 mx-auto my-auto">
                         <h1 class="text-light">The Latest Content <br> Right Now</h1>
-                        <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-1 mt-4">Sign Up</a>
+                        {% if not user.is_authenticated %}
+                            <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-1 mt-4">Sign Up</a>
+                        {% endif %}
                         <a href="#about" class="btn btn-lg btn-outline-primary mx-1 mt-4">Learn More</a>
-                        <p class="text-light mt-3">Already have an account?<a href="#" data-bs-toggle="modal"
-                                data-bs-target="#LoginModal">Log In.</a>
-                        </p>
+                        {% if not user.is_authenticated %}
+                            <p class="text-light mt-3">Already have an account?<a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#LoginModal">Log In.</a>
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -28,45 +32,36 @@
     </section>
 
     <section id="about">
-        <div class="container pt-5 pb-5 text-center text-md-start">
-                <div class="row m-4">
-                    <div class="col-12 col-md-4 mx-auto my-auto">
-                        <h4>Follow</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum beatae quibusdam repellendus illo
-                            ad natus, facilis velit odio ut perspiciatis recusandae non. Qui a autem reprehenderit quidem
-                            praesentium cupiditate vero.</p>
-                    </div>
-                    <div class="col-12 col-md-4 mx-auto my-auto">
-                        <i class="fas fa-user-plus p-4"></i>
-                    </div>
+        <h2 class="text-center my-4">About</h2>
+        <hr class="w-25 mx-auto">
+        <div class="container pt-5 pb-5">
+            <div class="row">
+                <div class="col-12 col-md-4 text-center p-4">
+                    <i class="fas fa-user-plus p-4"></i>
+                    <h4>Follow</h4>
+                    <p>Follow your favourite users and categories to customise your experience while using the website.
+                        Content of your choice will appear in your content feed so you don't have to troll through the
+                        boring stuff to find what you're looking for.</p>
                 </div>
-                <div class="row m-4">
-                    <div class="col-12 col-md-4 mx-auto my-auto">
-                        <i class="fas fa-upload p-4"></i>
-                    </div>
-                    <div class="col-12 col-md-4 mx-auto my-auto">
-                        <h4>Create</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem dicta animi velit, asperiores
-                            atque deleniti dolores et consectetur provident, minus quam deserunt error! Fugit, culpa porro!
-                            Explicabo error corporis optio?</p>
-                    </div>
+                <div class="col-12 col-md-4 text-center p-4">
+                    <i class="fas fa-upload p-4"></i>
+                    <h4>Create</h4>
+                    <p>Create and share your own content to the entire userbase of Content Flow. Anyone that creates
+                        their own posts are eligible for rewards so do your best to impress.</p>
                 </div>
-                <div class="row m-4">
-                    <div class="col-12 col-md-4 mx-auto my-auto">
-                        <h4>Reward</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum beatae quibusdam repellendus illo
-                            ad natus, facilis velit odio ut perspiciatis recusandae non. Qui a autem reprehenderit quidem
-                            praesentium cupiditate vero.</p>
-                    </div>
-                    <div class="col-12 col-md-4 mx-auto my-auto">
-                        <i class="fas fa-medal p-4"></i>
-                    </div>
+                <div class="col-12 col-md-4 text-center p-4">
+                    <i class="fas fa-medal p-4"></i>
+                    <h4>Reward</h4>
+                    <p>Purchase tokens on the website to reward users for posting quality content. Tokens can be
+                        withdrawn as cash so you can make a bit of cash on the side by keeping people entertained.</p>
                 </div>
             </div>
-        </div>
-        <div class="mx-auto text-center">
-            <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-2 my-4">Sign Up</a>
-            <a href="#" class="btn btn-lg btn-outline-primary mx-2 my-4">View Content</a>
+            <div class="mx-auto text-center mt-4">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-2 my-4">Sign Up</a>
+                {% endif %}
+                <a href="#" class="btn btn-lg btn-outline-primary mx-2 my-4">View Content</a>
+            </div>
         </div>
     </section>
 
