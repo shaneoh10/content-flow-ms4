@@ -19,3 +19,7 @@ nav {
 a.navbar-brand {
     font-family: 'Pacifico', cursive;
 }
+
+.btn {
+    width: 10rem;
+}

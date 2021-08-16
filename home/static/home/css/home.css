@@ -22,18 +22,24 @@ footer {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-i.fas {
-    font-size: 8rem;
+#main-btn-more {
+    border-color: #fafafa;
+    color: #fafafa;
 }
 
-i.fa-user-plus {
-    color: rgb(4, 162, 224);
+#main-btn-more:hover,
+#main-btn-more:active {
+    border-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-i.fa-upload {
-    color: rgb(5, 184, 5);
+footer a {
+    text-decoration: none;
+    color: #000;
+    transition: 0.2s;
 }
 
-i.fa-medal {
-    color: rgb(228, 175, 41);
+footer a:hover,
+footer a:active {
+    color: #bdbbbb;
 }
