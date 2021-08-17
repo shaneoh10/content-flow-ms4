@@ -1,13 +1,13 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-def posts(request):
-    """ View to return the posts page """
-    all_posts = Post.objects.all()
+class PostView(ListView):
+    model = Post
+    template_name = 'posts/posts.html'
 
-    context = {
-        'all_posts': all_posts
-    }
 
-    return render(request, 'posts/posts.html', context)
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'posts/post_detail.html'
