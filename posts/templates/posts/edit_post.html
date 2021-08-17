@@ -6,24 +6,25 @@
 {% endblock %}
 
 {% block extratitle %}
-| {{ post.title }}
+| Edit Post
 {% endblock %}
 
 {% block content %}
     <section id="post-content">
         <div class="container">
-            <h1 class="mt-4">{{ post.title }}</h1>
+            <h1 class="mt-4">Edit Post</h1>
             <hr>
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="card mb-3">
-                        <img src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ post.author }}</h5>
-                            <p class="card-text">{{ post.body }}</p>
-                            <p class="card-text"><small class="text-muted">{{ post.date }}</small></p>
-                            <a href="{% url 'edit_post' post.pk %}">Edit</a>
-                            <a href="{% url 'delete_post' post.id %}">Delete</a>
+                            <div class="form-group">
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn btn-primary">Update!</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
