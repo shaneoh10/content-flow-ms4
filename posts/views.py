@@ -1,7 +1,13 @@
 from django.shortcuts import render
+from .models import Post
 
 
 def posts(request):
     """ View to return the posts page """
+    all_posts = Post.objects.all()
 
-    return render(request, 'posts/posts.html', {'list': range(10)})
+    context = {
+        'all_posts': all_posts
+    }
+
+    return render(request, 'posts/posts.html', context)
