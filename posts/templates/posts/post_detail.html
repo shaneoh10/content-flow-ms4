@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
 {% endblock %}
 
+{% block extratitle %}
+| {{ post.title }}
+{% endblock %}
+
 {% block content %}
     <section id="post-content">
         <div class="container">
