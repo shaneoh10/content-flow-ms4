@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
+{% endblock %}
+
+{% block extratitle %}
+| All Posts
+{% endblock %}
+
+{% block content %}
+    <section id="main-content">
+        <div class="container">
+            {% if posts_in_category %}
+                <h1 class="mt-4">{{ cat }}</h1>
+                <hr>
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        {% for post in posts_in_category %}
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid p-3"/>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><small> - {{ post.author }}</small></h5>
+                                            <p class="card-text">{{ post.body }}</p>
+                                            <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                    of the card's content.</p>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-header">
+                            Categories
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Category 1</li>
+                            <li class="list-group-item">Category 2</li>
+                            <li class="list-group-item">Category 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-12 col-md-8 mt-4">
+                        <h2 class="mt-3">Sorry, we can't find the catergory you're looking for.</h2>
+                        <p>Add a new category <a href="#">here.</a></p>
+                    </div>
+                    <div class="col-12 col-md-4 mt-4">
+                        <div class="card mt-3">
+                            <div class="card-header">
+                            Categories
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Category 1</li>
+                            <li class="list-group-item">Category 2</li>
+                            <li class="list-group-item">Category 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

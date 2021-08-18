@@ -28,6 +28,11 @@ class EditPostView(UpdateView):
     template_name = 'posts/edit_post.html'
 
 
+def category_view(request, cat):
+    posts_in_category = Post.objects.filter(category__category_name=cat)
+    return render(request, 'posts/categories.html',
+                  {'posts_in_category': posts_in_category, 'cat': cat})
+
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.delete()

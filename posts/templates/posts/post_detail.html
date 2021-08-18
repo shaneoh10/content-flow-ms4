@@ -21,6 +21,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ post.author }}</h5>
                             <p class="card-text">{{ post.body }}</p>
+                            <a href="{% url 'category' post.category %}">{{ post.category }}</a>
                             <p class="card-text"><small class="text-muted">{{ post.date }}</small></p>
                             <a href="{% url 'edit_post' post.pk %}">Edit</a>
                             <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
