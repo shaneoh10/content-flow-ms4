@@ -1,0 +1,13 @@
+<!-- bootstrap category menu  -->
+<div class="card mt-3">
+    <div class="card-header">
+        Categories
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for category in categories %}
+        <li class="list-group-item"><a class="dropdown-item"
+                href="{% url 'category' category.category_name %}">{{ category.category_name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

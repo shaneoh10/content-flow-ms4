@@ -61,13 +61,10 @@
                             Categories
                         </a>
                         <ul class="dropdown-menu" style="max-height: 200px; overflow-y: scroll;">
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="{% url 'posts' %}">All Posts</a></li>
+                            {% for category in categories %}
+                                <li><a class="dropdown-item" href="{% url 'category' category.category_name %}">{{ category.category_name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>
@@ -107,8 +104,8 @@
         </div>
     </nav>
 
-    {% include 'includes/login-modal.html' %}
-    {% include 'includes/logout-modal.html' %}
+    {% include 'includes/modals/login-modal.html' %}
+    {% include 'includes/modals/logout-modal.html' %}
     
     {% if messages %}
         <div class="message-container"></div>
