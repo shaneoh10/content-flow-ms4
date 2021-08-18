@@ -23,7 +23,7 @@
                             <p class="card-text">{{ post.body }}</p>
                             <p class="card-text"><small class="text-muted">{{ post.date }}</small></p>
                             <a href="{% url 'edit_post' post.pk %}">Edit</a>
-                            <a href="{% url 'delete_post' post.id %}">Delete</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -49,4 +49,7 @@
             </div>
         </div>
     </section>
+
+    {% include 'includes/delete-modal.html' %}
+
 {% endblock %}

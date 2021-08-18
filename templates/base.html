@@ -107,56 +107,8 @@
         </div>
     </nav>
 
-    <!-- Bootstrap Login Modal -->
-    <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="LoginModal">Log In</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="/accounts/login/">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="id_login" class="form-label">Username or Email</label>
-                            <input type="text" name="login" class="form-control" id="id_login" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_password" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="id_password" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <label class="form-check-label" for="id_remember">Remember Me</label>
-                            <input type="checkbox" name="remember" class="form-check-input" id="id_remember">
-                        </div>
-                        <button type="submit" class="btn btn-primary mx-auto">Log In</button>
-                    </form>
-                    <a href="/accounts/password/reset/" class="form-text">Forgot Password?</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap Logout Modal -->
-    <div class="modal fade" id="LogoutModal" tabindex="-1" aria-labelledby="LogoutModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="LogoutModal">Are you sure you want to log out?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="/accounts/logout/">
-                        {% csrf_token %}
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary mx-auto">Log Out</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% include 'includes/login-modal.html' %}
+    {% include 'includes/logout-modal.html' %}
     
     {% if messages %}
         <div class="message-container"></div>
