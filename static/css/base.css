@@ -23,3 +23,7 @@ a.navbar-brand {
 .btn {
     width: 10rem;
 }
+
+.form-container {
+    max-width: 30rem !important;
+}

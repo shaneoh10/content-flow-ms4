@@ -5,17 +5,62 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<div class="container">
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+    <h1 class="m-3 text-center">{% trans "Sign Up" %}</h1>
+    <hr class="mb-5">
+
+    <!-- https://stackoverflow.com/questions/39183479/django-all-auth-form-errors-not-displaying -->
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-error">
+                    <p class="text-danger text-center">{{ error|escape }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-error">
+                <p class="text-danger text-center">{{ error|escape }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="form-container mx-auto">
+        <form class="signup px-3" id="signup_form" method="post" action="/accounts/signup/">
+            {% csrf_token %}
+            <div class="mb-4 form-floating">
+                <input type="text" name="username" class="form-control" autofocus="autofocus" minlength="6"
+                    maxlength="150" required id="id_username" placeholder="Username">
+                <label for="id_username">Username</label>
+            </div>
+            <div class="mb-4 form-floating">
+                <input type="email" name="email" class="form-control" required id="id_email" placeholder="Email">
+                <label for="id_email">Email</label>
+            </div>
+            <div class="mb-4 form-floating">
+                <input type="password" name="password1" class="form-control" required id="id_password1" placeholder="Password">
+                <label for="id_password1">Password</label>
+            </div>
+            <div class="mb-4 form-floating">
+                <input type="password" name="password2" class="form-control" required id="id_password2" placeholder="Repeat Password">
+                <label for="id_password2">Repeat Password</label>
+            </div>
+            <div class="m-3 text-center">
+                <button type="submit" class="btn btn-primary">Sign Up!</button>
+            </div>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+        </form>
+    </div>
+
+    <p class="mt-4 text-center">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign
+            in</a>.{% endblocktrans %}
+    </p>
+
+</div>
+
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.generic import (
-    ListView, DetailView, CreateView, UpdateView, DeleteView)
+    ListView, DetailView, CreateView, UpdateView)
 from .models import Post
 from .forms import AddPostForm, EditPostForm
 
@@ -32,6 +32,7 @@ def category_view(request, cat):
     posts_in_category = Post.objects.filter(category__category_name=cat)
     return render(request, 'posts/categories.html',
                   {'posts_in_category': posts_in_category, 'cat': cat})
+
 
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
