@@ -7,40 +7,54 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+    <div class="container">
 
-{% get_providers as socialaccount_providers %}
+        <h1 class="m-3 text-center">{% trans "Sign In" %}</h1>
+        <hr class="mb-5">
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+        <!-- Display form errors - https://stackoverflow.com/questions/39183479/django-all-auth-form-errors-not-displaying -->
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-error">
+                        <p class="text-danger text-center">{{ error|escape }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-error">
+                    <p class="text-danger text-center">{{ error|escape }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-<div class="socialaccount_ballot">
+        <div class="form-container mx-auto">
+            <form class="signup px-3" id="signup_form" method="post" action="/accounts/login/">
+                {% csrf_token %}
+                <div class="mb-3 form-floating">
+                    <input type="text" name="login" class="form-control" id="id_login" placeholder="Userame or Email"
+                        required>
+                    <label for="id_login">Username or Email</label>
+                </div>
+                <div class="mb-3 form-floating">
+                    <input type="password" name="password" class="form-control" id="id_password" placeholder="Password"
+                        required>
+                    <label for="id_password">Password</label>
+                </div>
+                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="m-3 text-center">
+                    <button type="submit" class="btn btn-primary">Log In!</button>
+                </div>
+            </form>
+        </div>
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+        <p class="mt-4 text-center">{% blocktrans %}New here?<a href="{{ signup_url }}">Sign
+                up.</a>{% endblocktrans %}
+        </p>
 
-  <div class="login-or">{% trans 'or' %}</div>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
+    </div>
 
 {% endblock %}
