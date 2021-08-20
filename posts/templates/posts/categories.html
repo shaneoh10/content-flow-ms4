@@ -41,7 +41,9 @@
                                 <h4>{{ cat }}</h4>
                                 <p>xxxx followers</p>
                                 <p class="card-text">Category description goes here.</p>
-                                <button class="btn btn-primary">Follow!</button>
+                                {% if user.is_authenticated %}
+                                    <button class="btn btn-primary">Follow!</button>
+                                {% endif %}
                             </div>
                         </div>
                         {% include 'includes/divs/category-menu.html' %}
