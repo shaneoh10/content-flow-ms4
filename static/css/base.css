@@ -20,6 +20,10 @@ a.navbar-brand {
     font-family: 'Pacifico', cursive;
 }
 
+.head-margin {
+    margin-top: 5rem !important;
+}
+
 .btn {
     width: 10rem;
 }

@@ -15,7 +15,7 @@
                         Content Flow
                     </div>
                     <div class="col-12 col-md-6 mx-auto my-auto">
-                        <h1 class="text-light">The Latest Content <br> Right Now</h1>
+                        <h1 class="text-light mt-0">The Latest Content <br> Right Now</h1>
                         {% if not user.is_authenticated %}
                             <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mx-1 mt-4">Sign Up</a>
                         {% endif %}
@@ -75,7 +75,7 @@
                     <a href="{% url 'account_signup' %}" class="mx-2">Sign Up</a> |
                     <a href="#" data-bs-toggle="modal" data-bs-target="#LoginModal" class="mx-2">Log In</a> |
                 {% endif %}
-                <a href="#nav" class="mx-2">Back to top</a>
+                <a href="#main" class="mx-2">Back to top</a>
             </div>
             <div class="col-12 text-center">
                 <p>Copyright &copy; 2021 Content Flow</p>
