@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import AddPostForm, EditPostForm
 
@@ -33,7 +34,7 @@ def category_view(request, cat):
     return render(request, 'posts/categories.html',
                   {'posts_in_category': posts_in_category, 'cat': cat})
 
-
+@login_required
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
