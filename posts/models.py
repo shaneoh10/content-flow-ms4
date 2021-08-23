@@ -20,6 +20,10 @@ class Post(models.Model):
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     post_date = models.DateTimeField(default=datetime.now)
+    likes = models.ManyToManyField(User, related_name="post_likes")
+
+    def like_count(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.title
