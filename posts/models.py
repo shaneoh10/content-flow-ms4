@@ -20,7 +20,7 @@ class Post(models.Model):
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     post_date = models.DateTimeField(default=datetime.now)
-    likes = models.ManyToManyField(User, related_name="post_likes")
+    likes = models.ManyToManyField(User, related_name="post_likes", blank=True)
 
     def like_count(self):
         return self.likes.count()
@@ -30,3 +30,15 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('posts')
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField(null=False)
+    comment_date = models.DateTimeField(default=datetime.now)
+    likes = models.ManyToManyField(User, related_name="comment_likes",
+                                   blank=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.post.title, self.author)
