@@ -36,6 +36,25 @@
                             <p>{{ total_likes }} - Likes</p>
                         </div>
                     </div>
+                    <div class="card mb-3">
+                        <h4 class="m-4">Comments</h4>
+                        {% if post.comments.all %}
+                            <div class="list-group">
+                                {% for comment in post.comments.all %}
+                                    <div href="#" class="list-group-item">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <p class="mb-1">{{ comment.author }} - <button class="btn-primary btn-sm">Like</button></p>
+                                            <small class="text-muted">{{ comment.comment_date }}</small>
+                                        </div>
+                                        <p class="mb-1">{{ comment.body }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <hr>
+                            <h5 class="m-4">No comments yet....</h5>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="card">
