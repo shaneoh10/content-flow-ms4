@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
 from django.contrib.auth.decorators import login_required
-from .models import Post
-from django.urls import reverse
+from .models import Post, Comment
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
-from .forms import AddPostForm, EditPostForm
+from .forms import AddPostForm, EditPostForm, AddCommentForm
 
 
 class PostView(ListView):
@@ -38,6 +38,18 @@ class EditPostView(UpdateView):
     model = Post
     form_class = EditPostForm
     template_name = 'posts/edit_post.html'
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = AddCommentForm
+    template_name = 'posts/add_comment.html'
+
+    # def set_post_id(self, form):
+    #     form.instance.post_id = self.kwargs['pk']
+    #     return super().set_post_id(form)
+
+    success_url = reverse_lazy('posts')
 
 
 def category_view(request, cat):
