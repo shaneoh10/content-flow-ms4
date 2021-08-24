@@ -3,6 +3,7 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
+from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from .forms import AddPostForm, EditPostForm, AddCommentForm
@@ -12,6 +13,22 @@ class PostView(ListView):
     model = Post
     template_name = 'posts/posts.html'
     ordering = ['-post_date']
+
+    def get_queryset(self):
+        object_list = self.model.objects.all()
+        if self.request.GET:
+            if 'q' in self.request.GET:
+                query = self.request.GET['q']
+                queries = (
+                           Q(title__icontains=query) |
+                           Q(body__icontains=query) |
+                           Q(category__category_name__icontains=query) |
+                           Q(author__username__icontains=query)
+                           )
+                object_list = object_list.filter(queries)
+            return object_list.order_by('-post_date')
+        else:
+            return object_list.order_by('-post_date')
 
 
 class PostDetailView(DetailView):

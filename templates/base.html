@@ -68,8 +68,8 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex mx-auto">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex mx-auto" method="GET" action="{% url 'posts' %}">
+                    <input class="form-control me-2" type="text" name="q" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
