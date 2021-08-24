@@ -80,3 +80,15 @@ def like_post_view(request, pk):
         post.likes.add(request.user)
 
     return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
+
+
+@login_required
+def like_comment_view(request, pk):
+    comment = get_object_or_404(Comment, id=request.POST.get('comment_id'))
+    if comment.likes.filter(id=request.user.id).exists():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+
+    post_id = comment.post.pk
+    return HttpResponseRedirect(reverse('post_detail', args=[str(post_id)]))
