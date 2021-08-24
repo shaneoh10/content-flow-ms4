@@ -39,17 +39,23 @@ class EditPostView(UpdateView):
     form_class = EditPostForm
     template_name = 'posts/edit_post.html'
 
+    def get_success_url(self):
+        post_id = self.kwargs['pk']
+        return reverse_lazy('post_detail', kwargs={'pk': post_id})
+
 
 class AddCommentView(CreateView):
     model = Comment
     form_class = AddCommentForm
     template_name = 'posts/add_comment.html'
 
-    # def set_post_id(self, form):
-    #     form.instance.post_id = self.kwargs['pk']
-    #     return super().set_post_id(form)
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
 
-    success_url = reverse_lazy('posts')
+    def get_success_url(self):
+        post_id = self.kwargs['pk']
+        return reverse_lazy('post_detail', kwargs={'pk': post_id})
 
 
 def category_view(request, cat):
