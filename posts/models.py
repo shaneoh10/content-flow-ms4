@@ -41,5 +41,8 @@ class Comment(models.Model):
     likes = models.ManyToManyField(User, related_name="comment_likes",
                                    blank=True)
 
+    def like_count(self):
+        return self.likes.count()
+
     def __str__(self):
         return '%s - %s' % (self.post.title, self.author)
