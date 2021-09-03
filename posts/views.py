@@ -61,6 +61,10 @@ class AddPostView(LoginRequiredMixin, CreateView):
     form_class = AddPostForm
     template_name = 'posts/add_post.html'
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class EditPostView(LoginRequiredMixin, UpdateView):
     model = Post
@@ -79,6 +83,7 @@ class AddCommentView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
