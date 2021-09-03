@@ -12,7 +12,12 @@
 {% block content %}
     <section id="main-content">
         <div class="container">
-            <h1 class="head-margin">All Posts</h1>
+            {% if query %}
+                <h1 class="head-margin">Search results for <em>"{{ query }}"</em></h1>
+                <a href="{% url 'posts' %}">Clear search</a>
+            {% else %}
+                <h1 class="head-margin">All Posts</h1>
+            {% endif %}
             <hr>
             <div class="row">
                 <div class="col-12 col-md-8">

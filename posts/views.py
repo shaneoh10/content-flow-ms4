@@ -14,6 +14,16 @@ class PostView(ListView):
     template_name = 'posts/posts.html'
     ordering = ['-post_date']
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostView, self).get_context_data(*args, **kwargs)
+
+        if self.request.GET:
+            if 'q' in self.request.GET:
+                query = self.request.GET['q']
+                context['query'] = query
+
+        return context
+
     def get_queryset(self):
         object_list = self.model.objects.all()
         if self.request.GET:
