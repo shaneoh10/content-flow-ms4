@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Comment
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
@@ -55,13 +56,13 @@ class PostDetailView(DetailView):
         return context
 
 
-class AddPostView(CreateView):
+class AddPostView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = AddPostForm
     template_name = 'posts/add_post.html'
 
 
-class EditPostView(UpdateView):
+class EditPostView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = EditPostForm
     template_name = 'posts/edit_post.html'
@@ -71,7 +72,7 @@ class EditPostView(UpdateView):
         return reverse_lazy('post_detail', kwargs={'pk': post_id})
 
 
-class AddCommentView(CreateView):
+class AddCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = AddCommentForm
     template_name = 'posts/add_comment.html'
