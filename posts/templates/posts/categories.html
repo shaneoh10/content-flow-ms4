@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block extratitle %}
-| All Posts
+| {{ cat }}
 {% endblock %}
 
 {% block content %}
@@ -51,10 +51,17 @@
                 </div>
             {% else %}
                 <div class="row head-margin">
-                    <div class="col-12 col-md-8 mt-4">
-                        <h2 class="mt-3">Sorry, we can't find the catergory you're looking for.</h2>
-                        <p>Add a new category <a href="#">here.</a></p>
-                    </div>
+                    {% if cat in categories %}
+                        <div class="col-12 col-md-8 mt-4">
+                            <h2 class="mt-3">Sorry, we can't find any posts in this catergory.</h2>
+                            <p>Add a new post <a href="{% url 'add_post' %}">here.</a></p>
+                        </div>
+                    {% else %}
+                        <div class="col-12 col-md-8 mt-4">
+                            <h2 class="mt-3">Sorry, we can't find the catergory you're looking for.</h2>
+                            <p>Add a new category <a href="{% url 'add_category' %}">here.</a></p>
+                        </div>
+                    {% endif %}
                     <div class="col-12 col-md-4 mt-4">
                         {% include 'includes/divs/category-menu.html' %}
                     </div>
