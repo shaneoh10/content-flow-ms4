@@ -102,8 +102,10 @@ class AddCommentView(LoginRequiredMixin, CreateView):
 
 def category_view(request, cat):
     posts_in_category = Post.objects.filter(category__category_name=cat)
+    category = get_object_or_404(Category, category_name=cat)
     return render(request, 'posts/categories.html',
-                  {'posts_in_category': posts_in_category, 'cat': cat})
+                  {'posts_in_category': posts_in_category, 'cat': cat,
+                   'category': category})
 
 
 @login_required
