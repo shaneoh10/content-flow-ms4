@@ -65,7 +65,21 @@
                             <p>Add a new category <a href="{% url 'add_category' %}">here.</a></p>
                         </div>
                     {% endif %}
-                    <div class="col-12 col-md-4 mt-4">
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
+                            <div class="card-body">
+                                <h4>{{ category }}</h4>
+                                <p>{{ category.follower_count }} followers</p>
+                                <p class="card-text">Category description goes here.</p>
+                                {% if user.is_authenticated %}
+                                    <form action="{% url 'follow_category' cat %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow</button>
+                                    </form>                                    
+                                {% endif %}
+                            </div>
+                        </div>
                         {% include 'includes/divs/category-menu.html' %}
                     </div>
                 </div>
