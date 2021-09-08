@@ -134,3 +134,15 @@ def like_comment_view(request, pk):
 
     post_id = comment.post.pk
     return HttpResponseRedirect(reverse('post_detail', args=[str(post_id)]))
+
+
+@login_required
+def follow_category(request, cat):
+    category = get_object_or_404(Category, category_name=request.POST.get(
+                                 'category_name'))
+    if category.followers.filter(id=request.user.id).exists():
+        category.followers.remove(request.user)
+    else:
+        category.followers.add(request.user)
+
+    return HttpResponseRedirect(reverse('category', args=[str(cat)]))

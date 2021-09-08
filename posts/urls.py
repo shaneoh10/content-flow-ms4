@@ -15,4 +15,6 @@ urlpatterns = [
          name='like_comment'),
     path('<int:pk>/add_comment', views.AddCommentView.as_view(),
          name='add_comment'),
+    path('follow_category/<str:cat>', views.follow_category,
+         name='follow_category'),
 ]

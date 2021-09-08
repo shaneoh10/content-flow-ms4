@@ -6,6 +6,11 @@ from datetime import datetime
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50)
+    followers = models.ManyToManyField(User, related_name="category_followers", 
+                                       blank=True)
+
+    def follower_count(self):
+        return self.followers.count()
 
     class Meta:
         verbose_name_plural = 'Categories'
