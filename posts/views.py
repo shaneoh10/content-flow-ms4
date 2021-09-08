@@ -3,11 +3,11 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
-from .forms import AddPostForm, EditPostForm, AddCommentForm
+from .forms import AddPostForm, EditPostForm, AddCommentForm, AddCategoryForm
 
 
 class PostView(ListView):
@@ -64,6 +64,15 @@ class AddPostView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class AddCategoryView(LoginRequiredMixin, CreateView):
+    model = Category
+    form_class = AddCategoryForm
+    template_name = 'posts/add_category.html'
+
+    def get_success_url(self):
+        return reverse_lazy('posts')
 
 
 class EditPostView(LoginRequiredMixin, UpdateView):
