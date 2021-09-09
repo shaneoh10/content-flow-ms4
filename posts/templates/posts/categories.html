@@ -40,11 +40,11 @@
                             <div class="card-body">
                                 <h4>{{ category }}</h4>
                                 <p>{{ category.follower_count }} followers</p>
-                                <p class="card-text">Category description goes here.</p>
+                                <p class="card-text">{{ category.description }}</p>
                                 {% if user.is_authenticated %}
                                     <form action="{% url 'follow_category' cat %}" method="POST">
                                         {% csrf_token %}
-                                        <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow</button>
+                                        <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
                                     </form>                                    
                                 {% endif %}
                             </div>
@@ -71,11 +71,11 @@
                             <div class="card-body">
                                 <h4>{{ category }}</h4>
                                 <p>{{ category.follower_count }} followers</p>
-                                <p class="card-text">Category description goes here.</p>
+                                <p class="card-text">{{ category.description }}</p>
                                 {% if user.is_authenticated %}
                                     <form action="{% url 'follow_category' cat %}" method="POST">
                                         {% csrf_token %}
-                                        <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow</button>
+                                        <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
                                     </form>                                    
                                 {% endif %}
                             </div>
