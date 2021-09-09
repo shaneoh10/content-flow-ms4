@@ -17,6 +17,13 @@
             {% if posts_in_category %}
                 <div class="row">
                     <div class="col-12 col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-body mx-auto">
+                                <a href="{% url 'category' category %}" class="btn btn-light">New</a>
+                                <a href="{% url 'category' category %}?sort=likes" class="btn btn-light">Top</a>
+                                <a href="{% url 'add_post' %}" class="btn btn-primary">Add Post</a>
+                            </div>
+                        </div>
                         {% for post in posts_in_category %}
                             <div class="card mb-3">
                                 <div class="row g-0">
@@ -26,6 +33,7 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><small> - {{ post.author }}</small></h5>
+                                            <p class="card-text">{{ post.like_count }} - Likes</p>
                                             <p class="card-text">{{ post.body }}</p>
                                             <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
                                         </div>

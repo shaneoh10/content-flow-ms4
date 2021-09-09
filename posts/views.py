@@ -103,6 +103,14 @@ class AddCommentView(LoginRequiredMixin, CreateView):
 def category_view(request, cat):
     posts_in_category = Post.objects.filter(category__category_name=cat)
     category = get_object_or_404(Category, category_name=cat)
+    posts_in_category = posts_in_category.order_by('-post_date')
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sortkey = f'-{sortkey}'
+        posts_in_category = posts_in_category.order_by(sortkey)
+
     return render(request, 'posts/categories.html',
                   {'posts_in_category': posts_in_category, 'cat': cat,
                    'category': category})
