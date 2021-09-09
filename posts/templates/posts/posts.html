@@ -23,8 +23,13 @@
                 <div class="col-12 col-md-8">
                     <div class="card mb-3">
                         <div class="card-body mx-auto">
-                            <a href="" class="btn btn-light">New</a>
-                            <a href="" class="btn btn-light">Top</a>
+                            {% if query %}
+                                <a href="{% url 'posts' %}?q={{ query }}" class="btn btn-light">New</a>
+                                <a href="{% url 'posts' %}?sort=likes&q={{ query }}" class="btn btn-light">Top</a>
+                            {% else %}
+                                <a href="{% url 'posts' %}" class="btn btn-light">New</a>
+                                <a href="{% url 'posts' %}?sort=likes" class="btn btn-light">Top</a>
+                            {% endif %}
                             <a href="{% url 'add_post' %}" class="btn btn-primary">Add Post</a>
                         </div>
                     </div>

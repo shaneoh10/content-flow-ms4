@@ -37,7 +37,13 @@ class PostView(ListView):
                            Q(author__username__icontains=query)
                            )
                 object_list = object_list.filter(queries)
-            return object_list.order_by('-post_date')
+
+            if 'sort' in self.request.GET:
+                sortkey = self.request.GET['sort']
+                sortkey = f'-{sortkey}'
+                object_list = object_list.order_by(sortkey)
+
+            return object_list
         else:
             return object_list.order_by('-post_date')
 
