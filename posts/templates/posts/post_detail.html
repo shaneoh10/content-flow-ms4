@@ -19,7 +19,7 @@
                     <div class="card mb-3">
                         <img src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ post.author }}</h5>
+                            <h5 class="card-title"><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></h5>
                             <p class="card-text">{{ post.body }}</p>
                             <a href="{% url 'category' post.category %}">{{ post.category }}</a>
                             <p class="card-text"><small class="text-muted">{{ post.date }}</small></p>

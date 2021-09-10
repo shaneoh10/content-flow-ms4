@@ -6,18 +6,13 @@
 {% endblock %}
 
 {% block extratitle %}
-| All Posts
+| {{ user.username }}
 {% endblock %}
 
 {% block content %}
     <section id="main-content">
         <div class="container">
-            {% if query %}
-                <h1 class="head-margin">Search results for <em>"{{ query }}"</em></h1>
-                <a href="{% url 'posts' %}">Clear search</a>
-            {% else %}
-                <h1 class="head-margin">All Posts</h1>
-            {% endif %}
+            <h1 class="head-margin">Posts by {{ user.username }}</h1>
             <hr>
             <div class="row">
                 <div class="col-12 col-md-8">
@@ -33,7 +28,7 @@
                             <a href="{% url 'add_post' %}" class="btn btn-primary">Add Post</a>
                         </div>
                     </div>
-                    {% for post in object_list %}
+                    {% for post in user_posts %}
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -41,7 +36,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></h5>
+                                        <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><small> - {{ post.author }}</small></h5>
                                         <a href="{% url 'category' post.category %}" class="card-text">{{ post.category }}</a>
                                         <p class="card-text">{{ post.like_count }} - Likes</p>
                                         <p class="card-text">{{ post.body }}</p>
