@@ -7,4 +7,9 @@ def user_profile(request, user):
     user = get_object_or_404(User, username=user)
     user_posts = Post.objects.filter(author=user)
 
-    return render(request, 'profiles/user_profile.html', {'user': user, 'user_posts': user_posts})
+    context = {
+        'user': user,
+        'user_posts': user_posts
+    }
+
+    return render(request, 'profiles/user_profile.html', context)

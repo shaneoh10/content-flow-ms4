@@ -68,7 +68,7 @@
                     <div class="card">
                         <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
                         <div class="card-body">
-                            <p class="card-text">{{ post.author }}</p>
+                            <p class="card-text"><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></p>
                             {% if user.is_authenticated %}
                                 {% if user.id == post.author.id %}
                                     <button class="btn btn-primary">Settings</button>

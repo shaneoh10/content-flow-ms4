@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></h5>
+                                        <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> - <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></h5>
                                         <a href="{% url 'category' post.category %}" class="card-text">{{ post.category }}</a>
                                         <p class="card-text">{{ post.like_count }} - Likes</p>
                                         <p class="card-text">{{ post.body }}</p>
