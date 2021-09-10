@@ -29,13 +29,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card">
-                        <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
-                        <div class="card-body">
-                            <p class="card-text"><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a></p>
-                            <a href="#" class="card-text">Settings</a>
-                        </div>
-                    </div>
+                    {% include 'includes/divs/current-user-card.html' %}
                     {% include 'includes/divs/category-menu.html' %}
                 </div>
             </div>
