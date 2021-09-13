@@ -8,10 +8,14 @@
             <div class="card-body">
                 <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> - 
                     <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a>
-                    <span class="float-end">{{ post.like_count }} - Likes</span>
+                    <span class="float-end">{{ post.like_count }} Likes</span>
                 </h5>
                 <a href="{% url 'category' post.category %}" class="card-text">{{ post.category }}</a>
-                <p class="card-text mt-4">{{ post.body }}</p>
+                {% if post.body|length < 150 %}
+                    <p class="card-text mt-4">{{ post.body }}</p>
+                {% else %}
+                    <p class="card-text mt-4">{{ post.body|slice:"150" }}....</p>
+                {% endif %}
                 <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
             </div>
         </div>
