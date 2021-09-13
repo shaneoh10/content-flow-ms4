@@ -16,6 +16,26 @@
             <hr>
             {% if posts_in_category %}
                 <div class="row">
+                    <div class="d-block d-md-none col-12">
+                        <div class="card mb-3">
+                            <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
+                            <div class="card-body">
+                                <h4>{{ category }}</h4>
+                                <p>{{ category.follower_count }} followers</p>
+                                <p class="card-text">{{ category.description }}</p>
+                                {% if user.is_authenticated %}
+                                    <form action="{% url 'follow_category' cat %}" method="POST">
+                                        {% csrf_token %}
+                                        {% if category_followed %}
+                                            <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-outline-primary btn-sm">Unfollow</button>
+                                        {% else %}
+                                            <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
+                                        {% endif %}
+                                    </form>                                    
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-md-8">
                         <div class="card mb-3">
                             <div class="card-body mx-auto">
@@ -28,7 +48,7 @@
                             {% include 'includes/divs/post-card.html' %}
                         {% endfor %}
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="d-none d-md-block col-12 col-md-4">
                         <div class="card">
                             <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
                             <div class="card-body">
