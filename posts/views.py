@@ -37,6 +37,7 @@ class PostView(ListView):
                            Q(author__username__icontains=query)
                            )
                 object_list = object_list.filter(queries)
+                object_list = object_list.order_by('-post_date')
                 if len(query) < 1:
                     object_list = {}
 

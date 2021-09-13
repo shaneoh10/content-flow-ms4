@@ -6,6 +6,7 @@ from posts.models import Post
 def user_profile(request, user):
     user = get_object_or_404(User, username=user)
     user_posts = Post.objects.filter(author=user)
+    user_posts = user_posts.order_by('-post_date')
 
     context = {
         'user': user,
