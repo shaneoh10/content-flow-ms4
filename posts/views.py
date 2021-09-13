@@ -37,6 +37,8 @@ class PostView(ListView):
                            Q(author__username__icontains=query)
                            )
                 object_list = object_list.filter(queries)
+                if len(query) < 1:
+                    object_list = {}
 
             if 'sort' in self.request.GET:
                 sortkey = self.request.GET['sort']
