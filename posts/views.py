@@ -124,9 +124,18 @@ def category_view(request, cat):
             sortkey = f'-{sortkey}'
         posts_in_category = posts_in_category.order_by(sortkey)
 
-    return render(request, 'posts/categories.html',
-                  {'posts_in_category': posts_in_category, 'cat': cat,
-                   'category': category})
+    category_followed = False
+    if category.followers.filter(id=request.user.id).exists():
+        category_followed = True
+
+    context = {
+        'category_followed': category_followed,
+        'posts_in_category': posts_in_category,
+        'cat': cat,
+        'category': category
+        }
+
+    return render(request, 'posts/categories.html', context)
 
 
 @login_required
@@ -167,9 +176,12 @@ def like_comment_view(request, pk):
 def follow_category(request, cat):
     category = get_object_or_404(Category, category_name=request.POST.get(
                                  'category_name'))
+    category_followed = False
     if category.followers.filter(id=request.user.id).exists():
         category.followers.remove(request.user)
+        category_followed = False
     else:
         category.followers.add(request.user)
+        category_followed = True
 
     return HttpResponseRedirect(reverse('category', args=[str(cat)]))

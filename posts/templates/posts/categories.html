@@ -38,7 +38,11 @@
                                 {% if user.is_authenticated %}
                                     <form action="{% url 'follow_category' cat %}" method="POST">
                                         {% csrf_token %}
-                                        <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
+                                        {% if category_followed %}
+                                            <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-outline-primary btn-sm">Unfollow</button>
+                                        {% else %}
+                                            <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
+                                        {% endif %}
                                     </form>                                    
                                 {% endif %}
                             </div>
