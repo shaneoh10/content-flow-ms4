@@ -25,21 +25,7 @@
                             </div>
                         </div>
                         {% for post in posts_in_category %}
-                            <div class="card mb-3">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid p-3"/>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></h5>
-                                            <p class="card-text">{{ post.like_count }} - Likes</p>
-                                            <p class="card-text">{{ post.body }}</p>
-                                            <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% include 'includes/divs/post-card.html' %}
                         {% endfor %}
                     </div>
                     <div class="col-12 col-md-4">
