@@ -142,8 +142,11 @@ def category_view(request, cat):
 @login_required
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    post.delete()
-    return redirect(reverse('posts'))
+    if request.user.id == post.author.id or request.user.is_superuser:
+        post.delete()
+        return redirect(reverse('posts'))
+    else:
+        return redirect(reverse('posts'))
 
 
 @login_required
