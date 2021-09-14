@@ -17,7 +17,9 @@
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="card mb-3">
-                        <img src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="card-img-top" alt="...">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                        {% endif %}
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a> |
