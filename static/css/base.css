@@ -33,7 +33,7 @@ a.navbar-brand {
     max-width: 30rem !important;
 }
 
-.message-container {
+.toast-container {
     position: fixed;
     top: 2rem;
     z-index: 9999999999;

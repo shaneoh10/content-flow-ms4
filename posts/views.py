@@ -77,6 +77,8 @@ class AddPostView(LoginRequiredMixin, CreateView):
     template_name = 'posts/add_post.html'
 
     def form_valid(self, form):
+        messages.success(self.request,
+                         f'New post added: "{form.instance.title}"')
         form.instance.author = self.request.user
         return super().form_valid(form)
 
@@ -86,6 +88,12 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
     form_class = AddCategoryForm
     template_name = 'posts/add_category.html'
 
+    def form_valid(self, form):
+        messages.success(self.request,
+                         f'New category added: "{form.instance.title}"')
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('posts')
 
@@ -94,6 +102,11 @@ class EditPostView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = EditPostForm
     template_name = 'posts/edit_post.html'
+
+    def form_valid(self, form):
+        messages.success(self.request,
+                         f'Successfully edited post: "{form.instance.title}"')
+        return super().form_valid(form)
 
     def get_success_url(self):
         post_id = self.kwargs['pk']
@@ -108,6 +121,7 @@ class AddCommentView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         form.instance.author = self.request.user
+        messages.success(self.request, 'Successfully added comment')
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -145,6 +159,7 @@ def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if request.user.id == post.author.id or request.user.is_superuser:
         post.delete()
+        messages.success(request, f'Successfully deleted post: "{post.title}"')
         return redirect(reverse('posts'))
     else:
         return redirect(reverse('posts'))
@@ -188,6 +203,6 @@ def follow_category(request, cat):
     else:
         category.followers.add(request.user)
         category_followed = True
-        messages.success(request, "You liked this post")
+        messages.success(request, f'You are now following "{cat}"')
 
     return HttpResponseRedirect(reverse('category', args=[str(cat)]))
