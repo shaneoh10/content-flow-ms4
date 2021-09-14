@@ -3,6 +3,7 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from .models import Post, Comment, Category
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
@@ -187,5 +188,6 @@ def follow_category(request, cat):
     else:
         category.followers.add(request.user)
         category_followed = True
+        messages.success(request, "You liked this post")
 
     return HttpResponseRedirect(reverse('category', args=[str(cat)]))

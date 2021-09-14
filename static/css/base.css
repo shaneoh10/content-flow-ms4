@@ -32,3 +32,9 @@ a.navbar-brand {
 .form-container {
     max-width: 30rem !important;
 }
+
+.message-container {
+    position: fixed;
+    top: 2rem;
+    z-index: 9999999999;
+}
