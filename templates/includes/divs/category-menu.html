@@ -1,12 +1,12 @@
 <!-- bootstrap category menu  -->
 <div class="card mt-3">
-    <div class="card-header">
-        Categories
+    <div class="card-header p-2 pl-1">
+        <h5>Categories</h5>
     </div>
     <ul class="list-group list-group-flush">
         {% for category in categories %}
-            <li class="list-group-item">
-                <a class="dropdown-item" href="{% url 'category' category.category_name %}">
+            <li class="list-group-item p-0">
+                <a class="dropdown-item p-2" href="{% url 'category' category.category_name %}">
                     {{ category.category_name }}
                 </a>
             </li>
