@@ -1,0 +1,21 @@
+{% if category.image %}
+    <img src="{{ category.image.url }}" class="card-img-top" />
+{% endif %}
+<div class="card-body">
+    <h4 class="mb-3">{{ category }}
+        <span class="small float-end">{{ category.follower_count }} followers</span>
+    </h4>
+    <p class="card-text">{{ category.description }}</p>
+    {% if user.is_authenticated %}
+        <div class="text-center">
+            <form action="{% url 'follow_category' cat %}" method="POST">
+                {% csrf_token %}
+                {% if category_followed %}
+                    <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-outline-primary btn-sm">Unfollow</button>
+                {% else %}
+                    <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
+                {% endif %}
+            </form>
+        </div>                                    
+    {% endif %}
+</div>
