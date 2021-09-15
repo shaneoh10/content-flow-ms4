@@ -1,21 +1,22 @@
 <div class="card mb-3">
     <div class="row g-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none">{{ post.title }}</a> 
+                <span class="float-end">{{ post.like_count }} Likes</span>
+            </h5>
+        </div>
         {% if post.image %}
-            <div class="col-md-4">
+            <div class="col-12">
                 <a href="{% url 'post_detail' post.pk %}">
                     <img src="{{ post.image.url }}" class="img-fluid p-3" />
                 </a>
             </div>
-            <div class="col-md-8">
-        {% else %}
-            <div class="col-12">
         {% endif %}
+        <div class="col-12">
             <div class="card-body">
-                <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> - 
-                    <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a>
-                    <span class="float-end">{{ post.like_count }} Likes</span>
-                </h5>
-                <a href="{% url 'category' post.category %}" class="card-text">{{ post.category }}</a>
+                <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a> |
+                <a href="{% url 'category' post.category %}">{{ post.category }}</a>
                 {% if post.body|length < 150 %}
                     <p class="card-text mt-4">{{ post.body }}</p>
                 {% else %}
