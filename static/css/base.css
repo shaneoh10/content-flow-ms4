@@ -16,7 +16,8 @@ nav {
     background-color: #eeeeee;
 }
 
-a.navbar-brand {
+a.navbar-brand,
+.content-flow-card h3 {
     font-family: 'Pacifico', cursive;
 }
 
