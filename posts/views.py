@@ -90,7 +90,8 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         messages.success(self.request,
-                         f'New category added: "{form.instance.title}"')
+                         f'New category added: "{form.instance.category_name}"'
+                         )
         form.instance.author = self.request.user
         return super().form_valid(form)
 
