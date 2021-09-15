@@ -1,13 +1,13 @@
-{% if user.userprofile.image %}
+{% if author.userprofile.image %}
     <img src="{{ user.userprofile.image.url }}" class="card-img-top" />
 {% else %}
     <img src="https://img.icons8.com/office/200/000000/test-account.png" class="card-img-top" />
 {% endif %}
 <div class="card-body">
-    <p class="card-text">{{ user.username }}</p>
-    <p class="card-text">{{ user.userprofile.bio }}</p>
+    <p class="card-text">{{ author.username }}</p>
+    <p class="card-text">{{ author.userprofile.bio }}</p>
     {% if user.is_authenticated %}
-        {% if user.id == user_posts.author.id %}
+        {% if user.id == author.id %}
             <button class="btn btn-primary">Settings</button>
         {% else %}
             <button class="btn btn-primary">Follow!</button>
