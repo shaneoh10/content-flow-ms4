@@ -17,18 +17,7 @@
             <div class="row">
                 <div class="d-md-none col-12">
                     <div class="card mb-3">
-                        <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
-                        <div class="card-body">
-                            <p class="card-text">{{ user.username }}</p>
-                            <p class="card-text">{{ user.userprofile.bio }}</p>
-                            {% if user.is_authenticated %}
-                                {% if user.id == user_posts.author.id %}
-                                    <button class="btn btn-primary">Settings</button>
-                                {% else %}
-                                    <button class="btn btn-primary">Follow!</button>
-                                {% endif %}
-                            {% endif %}
-                        </div>
+                        {% include 'includes/divs/user-profile-card.html' %}
                     </div>
                 </div>
                 <div class="col-12 col-md-8">
@@ -38,18 +27,7 @@
                 </div>
                 <div class="d-none d-md-block col-12 col-md-4">
                     <div class="card">
-                        <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
-                        <div class="card-body">
-                            <p class="card-text">{{ user.username }}</p>
-                            <p class="card-text">{{ user.userprofile.bio }}</p>
-                            {% if user.is_authenticated %}
-                                {% if user.id == user_posts.author.id %}
-                                    <button class="btn btn-primary">Settings</button>
-                                {% else %}
-                                    <button class="btn btn-primary">Follow!</button>
-                                {% endif %}
-                            {% endif %}
-                        </div>
+                        {% include 'includes/divs/user-profile-card.html' %}
                     </div>
                     {% include 'includes/divs/category-menu.html' %}
                 </div>

@@ -82,9 +82,16 @@
                 </div>
                 <div class="d-none d-md-block col-12 col-md-4">
                     <div class="card">
-                        <img src="https://img.icons8.com/color/48/000000/user.png" class="card-img-top" />
+                        {% if post.author.userprofile.image %}
+                            <img src="{{ post.author.userprofile.image.url }}" class="card-img-top" />
+                        {% else %}
+                            <img src="https://img.icons8.com/office/200/000000/test-account.png" class="card-img-top" />
+                        {% endif %}
                         <div class="card-body">
                             <p class="card-text"><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></p>
+                            {% if post.author.userprofile.bio %}
+                                <p class="card-text">{{ post.author.userprofile.bio }}</p>
+                            {% endif %}
                             {% if user.is_authenticated %}
                                 {% if user.id == post.author.id %}
                                     <button class="btn btn-primary">Settings</button>
