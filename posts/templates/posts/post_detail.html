@@ -93,20 +93,22 @@
                                 <p class="card-text">{{ post.author.userprofile.bio }}</p>
                             {% endif %}
                             {% if user.is_authenticated %}
-                                {% if user.id == author.id %}
-                                    <button class="btn btn-primary">Settings</button>
-                                {% else %}
-                                    <form action="{% url 'follow_user' post.author.username %}?next={{ post.id }}" method="POST">
-                                        {% csrf_token %}
-                                        {% if user_followed %}
-                                            <button type="submit" name="username" value="{{ post.author.username }}"
-                                                class="btn btn-outline-primary btn-sm">Unfollow</button>
-                                        {% else %}
-                                            <button type="submit" name="username" value="{{ post.author.username }}"
-                                                class="btn btn-primary btn-sm">Follow!</button>
-                                        {% endif %}
-                                    </form>
-                                {% endif %}
+                                <div class="text-center">
+                                    {% if user.id == post.author.id %}
+                                        <button class="btn btn-primary">Settings</button>
+                                    {% else %}
+                                        <form action="{% url 'follow_user' post.author.username %}?next={{ request.path }}" method="POST">
+                                            {% csrf_token %}
+                                            {% if user_followed %}
+                                                <button type="submit" name="username" value="{{ post.author.username }}"
+                                                    class="btn btn-outline-primary btn-sm">Unfollow</button>
+                                            {% else %}
+                                                <button type="submit" name="username" value="{{ post.author.username }}"
+                                                    class="btn btn-primary btn-sm">Follow!</button>
+                                            {% endif %}
+                                        </form>
+                                    {% endif %}
+                                </div>
                             {% endif %}
                         </div>
                     </div>

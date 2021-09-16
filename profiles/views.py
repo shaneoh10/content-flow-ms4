@@ -31,7 +31,8 @@ def follow_user(request, username):
     user_followed = False
 
     if request.user.username != username:
-        if check_user.userprofile.followers.filter(id=request.user.id).exists():
+        if check_user.userprofile.followers.filter(
+                                id=request.user.id).exists():
             check_user.userprofile.followers.remove(request.user)
             user_followed = False
         else:
@@ -40,5 +41,9 @@ def follow_user(request, username):
             messages.success(request, f'You are now following "{username}"')
     else:
         messages.success(request, 'You can not follow your own profile.')
+
+    if request.GET:
+        if 'next' in request.GET:
+            return HttpResponseRedirect(request.GET['next'])
 
     return HttpResponseRedirect(reverse('user_profile', args=[str(username)]))
