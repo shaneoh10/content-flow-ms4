@@ -5,12 +5,20 @@
 {% endif %}
 <div class="card-body">
     <p class="card-text">{{ author.username }}</p>
+    <p class="card-text">{{ author.id }}</p>
     <p class="card-text">{{ author.userprofile.bio }}</p>
     {% if user.is_authenticated %}
         {% if user.id == author.id %}
             <button class="btn btn-primary">Settings</button>
         {% else %}
-            <button class="btn btn-primary">Follow!</button>
+            <form action="{% url 'follow_user' author.username %}" method="POST">
+                {% csrf_token %}
+                {% if user_followed %}
+                    <button type="submit" name="username" value="{{ author.username }}" class="btn btn-outline-primary btn-sm">Unfollow</button>
+                {% else %}
+                    <button type="submit" name="username" value="{{ author.username }}" class="btn btn-primary btn-sm">Follow!</button>
+                {% endif %}
+            </form>
         {% endif %}
     {% endif %}
 </div>
