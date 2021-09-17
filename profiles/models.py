@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from annoying.fields import AutoOneToOneField
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = AutoOneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(default="default bio")
     image = models.ImageField(null=True, blank=True,
                               upload_to="profile_images/")
