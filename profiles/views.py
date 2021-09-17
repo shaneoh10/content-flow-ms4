@@ -11,6 +11,7 @@ def user_profile(request, user):
     author = get_object_or_404(User, username=user)
     user_posts = Post.objects.filter(author=author)
     user_posts = user_posts.order_by('-post_date')
+    user_followers = author.userprofile.followers.count
 
     user_followed = False
     if author.userprofile.followers.filter(id=request.user.id).exists():
@@ -20,6 +21,7 @@ def user_profile(request, user):
         'author': author,
         'user_posts': user_posts,
         'user_followed': user_followed,
+        'user_followers': user_followers,
     }
 
     return render(request, 'profiles/user_profile.html', context)

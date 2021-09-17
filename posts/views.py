@@ -61,6 +61,7 @@ class PostDetailView(DetailView):
 
         current_post = get_object_or_404(Post, id=self.kwargs['pk'])
         total_likes = current_post.like_count
+        user_followers = current_post.author.userprofile.followers.count
 
         post_liked = False
         if current_post.likes.filter(id=self.request.user.id).exists():
@@ -71,6 +72,7 @@ class PostDetailView(DetailView):
                             id=self.request.user.id).exists():
             user_followed = True
 
+        context['user_followers'] = user_followers
         context['user_followed'] = user_followed
         context['post_liked'] = post_liked
         context['total_likes'] = total_likes
