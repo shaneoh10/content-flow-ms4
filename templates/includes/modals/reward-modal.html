@@ -1,0 +1,31 @@
+<div class="modal fade" id="RewardModal" tabindex="-1" aria-labelledby="RewardModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="RewardModal">Send reward to <em>"{{ post.author }}"</em>?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {% if user.userprofile.tokens_balance > 0 %}
+                <div class="modal-body">
+                    <p>Your balance: {{ user.userprofile.tokens_balance }} tokens</p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3 form-floating">
+                            <input type="number" name="reward" class="form-control" id="reward"
+                                placeholder="Reward amount" required>
+                            <label for="reward">Reward amount</label>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Send reward!</button>
+                        </div>
+                    </form>
+                </div>
+            {% else %}
+                <div class="modal-body">
+                    <p>Your token balance is 0. To send a reward purchase some tokens <a href="{% url 'tokens' %}">here.</a></p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
