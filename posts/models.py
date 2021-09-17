@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=50)
+    category_name = models.SlugField(max_length=50, unique=True)
     description = models.CharField(max_length=255)
     image = models.ImageField(null=True, blank=True, upload_to="cat_images/")
     followers = models.ManyToManyField(User, related_name="category_followers",
