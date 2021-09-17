@@ -89,7 +89,10 @@
                         {% endif %}
                         <div class="card-body">
                             <p class="card-text"><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></p>
-                            <p class="card-text">{{ user_followers }} Followers</a></p>
+                            <p class="card-text">
+                                {{ user_followers }} Followers
+                                <span class="float-end">Score : {{ post.author.userprofile.tokens_score }}</span>
+                            </p>
                             {% if post.author.userprofile.bio %}
                                 <p class="card-text">{{ post.author.userprofile.bio }}</p>
                             {% endif %}

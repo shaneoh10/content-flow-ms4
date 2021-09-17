@@ -5,7 +5,10 @@
 {% endif %}
 <div class="card-body">
     <p class="card-text">{{ author.username }}</p>
-    <p class="card-text">{{ user_followers }} Followers</p>
+    <p class="card-text">
+        {{ user_followers }} Followers
+        <span class="float-end">Score : {{ author.userprofile.tokens_score }}</span>
+    </p>
     <p class="card-text">{{ author.userprofile.bio }}</p>
     {% if user.is_authenticated %}
         <div class="text-center">

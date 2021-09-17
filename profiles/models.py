@@ -9,6 +9,8 @@ class UserProfile(models.Model):
                               upload_to="profile_images/")
     followers = models.ManyToManyField(User, related_name="user_followers",
                                        blank=True)
+    tokens_score = models.IntegerField(null=False, blank=False, default=0)
+    tokens_balance = models.IntegerField(null=False, blank=False, default=0)
 
     def __str__(self):
         return self.user.username
