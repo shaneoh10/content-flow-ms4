@@ -8,11 +8,11 @@
             {% if user.userprofile.tokens_balance > 0 %}
                 <div class="modal-body">
                     <p>Your balance: {{ user.userprofile.tokens_balance }} tokens</p>
-                    <form method="POST">
+                    <form method="POST" action="{% url 'send_reward' post.author %}">
                         {% csrf_token %}
                         <div class="mb-3 form-floating">
-                            <input type="number" name="reward" class="form-control" id="reward"
-                                placeholder="Reward amount" required>
+                            <input type="number" name="reward" class="form-control" id="reward" min="1"
+                                max="{{ user.userprofile.tokens_balance }}" placeholder="Reward amount" required>
                             <label for="reward">Reward amount</label>
                         </div>
                         <div class="mb-3 text-center">
