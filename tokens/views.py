@@ -1,9 +1,52 @@
-from django.shortcuts import render, get_object_or_404
+import stripe
+from django.conf import settings
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.views import View
 from .models import Product
 from django.contrib import messages
 from annoying.utils import HttpResponseReload
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+class CreateCheckoutSession(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        product_id = self.kwargs['pk']
+        product = Product.objects.get(id=product_id)
+        YOUR_DOMAIN = "https://8000-purple-porcupine-wogwv1tz.ws-eu16.gitpod.io"
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'eur',
+                        'unit_amount': product.price,
+                        'product_data': {
+                            'name': product.name,
+                            'images': [product.icon_url]
+                        },
+                    },
+                    'quantity': 1,
+                },
+            ],
+            payment_method_types=[
+              'card',
+            ],
+            mode='payment',
+            success_url=YOUR_DOMAIN + '/tokens/success',
+            cancel_url=YOUR_DOMAIN + '/tokens/cancel',
+        )
+        return redirect(checkout_session.url, code=303)
+
+
+def order_success(request):
+    return render(request, 'tokens/success.html')
+
+
+def order_cancel(request):
+    return render(request, 'tokens/cancel.html')
 
 
 @login_required
