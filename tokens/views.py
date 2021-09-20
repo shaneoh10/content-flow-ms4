@@ -16,7 +16,11 @@ def tokens(request):
 def token_checkout(request):
     """ View to return the token checkout page """
 
-    return render(request, 'tokens/token_checkout.html')
+    context = {
+        'stripe_public_key': 'pk_test_51JBGU9I5Jb6HSSk6B8EgzY9SVw1Ne9GCeHEzWgkG7riLah0QQ9pRV02hX0UAeB8Rx7oxknslUip8iXY5t4SVrCqG00pnJraVuQ',
+        'client_secret': 'testing client secret',
+    }
+    return render(request, 'tokens/checkout.html', context)
 
 
 @login_required
