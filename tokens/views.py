@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import Product
 from django.contrib import messages
 from annoying.utils import HttpResponseReload
 
@@ -8,8 +9,12 @@ from annoying.utils import HttpResponseReload
 @login_required
 def tokens(request):
     """ View to return the buy tokens page """
+    products = Product.objects.all()
 
-    return render(request, 'tokens/tokens.html')
+    context = {
+        'products': products
+    }
+    return render(request, 'tokens/tokens.html', context)
 
 
 @login_required
