@@ -24,11 +24,11 @@
                     <div class="card mb-3 bg-light">
                         <div class="card-body mx-auto">
                             {% if query %}
-                                <a href="{% url 'posts' %}?q={{ query }}" class="btn btn-light">New</a>
-                                <a href="{% url 'posts' %}?sort=likes&q={{ query }}" class="btn btn-light">Top</a>
+                                <a href="{% url 'posts' %}?q={{ query }}" class="btn btn-light new-btn">New</a>
+                                <a href="{% url 'posts' %}?sort=likes&q={{ query }}" class="btn btn-light top-btn">Top</a>
                             {% else %}
-                                <a href="{% url 'posts' %}" class="btn btn-light">New</a>
-                                <a href="{% url 'posts' %}?sort=likes" class="btn btn-light">Top</a>
+                                <a href="{% url 'posts' %}" class="btn btn-light new-btn">New</a>
+                                <a href="{% url 'posts' %}?sort=likes" class="btn btn-light top-btn">Top</a>
                             {% endif %}
                             <a href="{% url 'add_post' %}" class="btn btn-primary">Add Post</a>
                         </div>
@@ -59,4 +59,8 @@
         </div>
     </section>
 
+{% endblock %}
+
+{% block postload_js %}
+    <script src="{% static 'posts/js/posts.js' %}"></script>
 {% endblock %}
