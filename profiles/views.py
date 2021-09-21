@@ -61,6 +61,19 @@ def user_settings(request, username):
 
 
 @login_required
+def delete_account(request, username):
+    account = get_object_or_404(User, id=request.user.id)
+
+    if account.username == username:
+        account.delete()
+        messages.success(request, 'Account deleted')
+        return HttpResponseReload(request)
+    else:
+        messages.error(request, 'Error: You can only delete your own account')
+        return HttpResponseReload(request)
+
+
+@login_required
 def follow_user(request, username):
     check_user = get_object_or_404(User, username=request.POST.get('username'))
     user_followed = False

@@ -1,0 +1,20 @@
+<div class="modal fade" id="DeleteAccount" tabindex="-1" aria-labelledby="DeleteAccount" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DeleteAccount">Delete your account?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete your account? This action is permanent and cannot be reversed.</p>
+                <form method="POST" action="{% url 'delete_account' user.username %}">
+                    {% csrf_token %}
+                    <div class="mb-3 text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete Account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
