@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <form method="POST" action="{% url 'user_settings' user.username %}">
+                                <form method="POST" action="{% url 'user_settings' user.username %}" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     {{ form.as_p }}
                                     <div class="text-center">

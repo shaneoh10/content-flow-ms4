@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
@@ -42,6 +43,9 @@ def user_settings(request, username):
         if request.method == 'POST':
             form = EditProfileForm(request.POST, instance=profile)
             if form.is_valid():
+                if request.FILES.get('image'):
+                    os.remove(profile.image.path)
+                    profile.image = request.FILES['image']
                 form.save()
                 messages.success(request, 'Profile updated successfully')
             else:
@@ -51,7 +55,7 @@ def user_settings(request, username):
             form = EditProfileForm(instance=profile)
     else:
         messages.error(request,
-                       'Prohibited. You can only edit your own profile')
+                       'Error: You can only edit your own profile')
         return redirect(reverse('posts'))
 
     context = {
