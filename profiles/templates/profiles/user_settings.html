@@ -18,8 +18,11 @@
                 <div class="col-12">
                     <div class="card mb-3">
                         <div class="card-body">
+                            <p>Profile picture: <img src=" {{ user.userprofile.image.url }}"></p>
+                        </div>
+                        <div class="card-body">
                             <div class="form-group">
-                                <form method="POST" action="">
+                                <form method="POST" action="{% url 'user_settings' user.username %}">
                                     {% csrf_token %}
                                     {{ form.as_p }}
                                     <button type="submit" class="btn btn-primary">Update account!</button>

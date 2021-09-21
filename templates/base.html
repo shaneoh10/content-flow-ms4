@@ -89,7 +89,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'user_profile' user.username %}">{{ user.username }}</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="{% url 'user_settings' user.username %}">Settings</a></li>
                                 <li><a class="dropdown-item" href="{% url 'add_post' %}">Add Post</a></li>
                                 <li class="dropdown-item">
                                 <li><a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a></li>

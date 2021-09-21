@@ -1,10 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
+from annoying.utils import HttpResponseReload
 from django.http import HttpResponseRedirect
 from posts.models import Post
+from .models import UserProfile
+from .forms import EditProfileForm
 
 
 def user_profile(request, user):
@@ -25,6 +30,34 @@ def user_profile(request, user):
     }
 
     return render(request, 'profiles/user_profile.html', context)
+
+
+@login_required
+def user_settings(request, username):
+    """ Display the user's profile. """
+    profile = get_object_or_404(UserProfile, user__username=username)
+
+    if request.user.username != username:
+        messages.error(request, 'Prohibited. You can only edit your own profile')
+        return redirect(reverse('posts'))
+
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+        else:
+            messages.error(request,
+                           'Update failed. Please ensure the form is valid.')
+    else:
+        form = EditProfileForm(instance=profile)
+
+    template = 'profiles/user_settings.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
 
 @login_required

@@ -5,7 +5,7 @@ from annoying.fields import AutoOneToOneField
 
 class UserProfile(models.Model):
     user = AutoOneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(default="default bio")
+    bio = models.TextField(blank=True, default="")
     image = models.ImageField(null=True, blank=True,
                               upload_to="profile_images/")
     followers = models.ManyToManyField(User, related_name="user_followers",
