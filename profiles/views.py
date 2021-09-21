@@ -37,27 +37,27 @@ def user_settings(request, username):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user__username=username)
 
-    if request.user.username != username:
-        messages.error(request, 'Prohibited. You can only edit your own profile')
+    if request.user.username == username:
+        if request.method == 'POST':
+            form = EditProfileForm(request.POST, instance=profile)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Profile updated successfully')
+            else:
+                messages.error(request, 'Update failed. Please ensure the \
+                               form is valid.')
+        else:
+            form = EditProfileForm(instance=profile)
+    else:
+        messages.error(request,
+                       'Prohibited. You can only edit your own profile')
         return redirect(reverse('posts'))
 
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully')
-        else:
-            messages.error(request,
-                           'Update failed. Please ensure the form is valid.')
-    else:
-        form = EditProfileForm(instance=profile)
-
-    template = 'profiles/user_settings.html'
     context = {
         'form': form,
     }
 
-    return render(request, template, context)
+    return render(request, 'profiles/user_settings.html', context)
 
 
 @login_required

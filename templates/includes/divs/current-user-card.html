@@ -2,7 +2,7 @@
     {% if user.userprofile.image %}
         <img src="{{ user.userprofile.image.url }}" class="card-img-top" />
     {% else %}
-        <img src="https://img.icons8.com/office/200/000000/test-account.png" class="card-img-top" />
+        <img src="https://img.icons8.com/pastel-glyph/300/000000/person-male--v1.png" class="card-img-top" />
     {% endif %}
     <div class="card-body">
         <p class="card-text"><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a></p>

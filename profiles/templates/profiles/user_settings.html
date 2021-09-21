@@ -18,15 +18,35 @@
                 <div class="col-12">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <p>Profile picture: <img src=" {{ user.userprofile.image.url }}"></p>
+                            <div class="text-center">
+                                <h3><em>{{ user.username }}</em></h3>
+                                <hr>
+                                <p>
+                                    {% if user.userprofile.image %}
+                                        <img class="img-fluid" src=" {{ user.userprofile.image.url }}">
+                                    {% else %}
+                                        <img class="img-fluid" src="https://img.icons8.com/pastel-glyph/300/000000/person-male--v1.png">
+                                    {% endif %}
+                                </p>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <form method="POST" action="{% url 'user_settings' user.username %}">
                                     {% csrf_token %}
                                     {{ form.as_p }}
-                                    <button type="submit" class="btn btn-primary">Update account!</button>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Update account!</button>
+                                    </div>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <a class="btn btn-outline-primary m-2" href="/accounts/password/reset/">Reset Password</a>
+                                <a class="btn btn-outline-danger m-2 " href="/accounts/password/reset/">Delete Account</a>
                             </div>
                         </div>
                     </div>
