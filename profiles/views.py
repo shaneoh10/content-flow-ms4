@@ -13,6 +13,7 @@ from .forms import EditProfileForm
 
 
 def user_profile(request, user):
+    """ Display user profile pages """
     author = get_object_or_404(User, username=user)
     user_posts = Post.objects.filter(author=author)
     user_posts = user_posts.order_by('-post_date')
@@ -34,7 +35,7 @@ def user_profile(request, user):
 
 @login_required
 def user_settings(request, username):
-    """ Display the user's profile. """
+    """ Display the user's account settings page. """
     profile = get_object_or_404(UserProfile, user__username=username)
 
     if request.user.username == username:
@@ -67,7 +68,7 @@ def delete_account(request, username):
     if account.username == username:
         account.delete()
         messages.success(request, 'Account deleted')
-        return HttpResponseReload(request)
+        return redirect(reverse('home'))
     else:
         messages.error(request, 'Error: You can only delete your own account')
         return HttpResponseReload(request)
