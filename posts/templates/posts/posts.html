@@ -39,11 +39,9 @@
                         {% endfor %}
                     {% else %}
                         {% if query %}
-                            {% if query|length > 0 %}
-                                <h4 class="mt-4">No results found for <em>"{{ query }}"</em>.</h5>
-                            {% endif %}
+                            <h4 class="mt-4">No results found for <em>"{{ query }}"</em>.</h4>
                         {% else %}
-                            <h4 class="mt-4">Please enter search criteria.</h5>
+                            <h4 class="mt-4" id="no-posts">No posts found.</h4>
                         {% endif %}
                     {% endif %}
                 </div>
