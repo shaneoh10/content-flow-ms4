@@ -51,7 +51,7 @@ def order_cancel(request):
 
 @login_required
 def tokens(request):
-    """ View to return the buy tokens page """
+    """ Displays the buy tokens page """
     products = Product.objects.all()
 
     context = {
@@ -61,18 +61,11 @@ def tokens(request):
 
 
 @login_required
-def token_checkout(request):
-    """ View to return the token checkout page """
-
-    context = {
-        'stripe_public_key': 'pk_test_51JBGU9I5Jb6HSSk6B8EgzY9SVw1Ne9GCeHEzWgkG7riLah0QQ9pRV02hX0UAeB8Rx7oxknslUip8iXY5t4SVrCqG00pnJraVuQ',
-        'client_secret': 'testing client secret',
-    }
-    return render(request, 'tokens/checkout.html', context)
-
-
-@login_required
 def send_reward(request, receiver):
+    """
+    Allows users to reward other users with tokens if
+    they have a sufficient balance to do so
+    """
     sender = get_object_or_404(User, id=request.user.id)
     receiver = get_object_or_404(User, username=receiver)
     tokens = int(request.POST.get('reward'))

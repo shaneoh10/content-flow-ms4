@@ -149,6 +149,10 @@ class AddCommentView(LoginRequiredMixin, CreateView):
 
 
 def category_view(request, cat):
+    """
+    Displays all posts in a chosen category,
+    posts can be sorted by date or likes
+    """
     posts_in_category = Post.objects.filter(category__category_name=cat)
     category = get_object_or_404(Category, category_name=cat)
     posts_in_category = posts_in_category.order_by('-post_date')
@@ -175,6 +179,10 @@ def category_view(request, cat):
 
 @login_required
 def delete_post(request, post_id):
+    """
+    View to delete posts, post can be deleted by the
+    user who created it or a superuser
+    """
     post = get_object_or_404(Post, pk=post_id)
     if request.user.id == post.author.id or request.user.is_superuser:
         if post.image:
@@ -189,6 +197,7 @@ def delete_post(request, post_id):
 
 @login_required
 def like_post_view(request, pk):
+    """ Allows users to like and unlike a post """
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     post_liked = False
 
@@ -204,6 +213,7 @@ def like_post_view(request, pk):
 
 @login_required
 def like_comment_view(request, pk):
+    """ Allows users to like and unlike a comment """
     comment = get_object_or_404(Comment, id=request.POST.get('comment_id'))
     if comment.likes.filter(id=request.user.id).exists():
         comment.likes.remove(request.user)
@@ -216,6 +226,7 @@ def like_comment_view(request, pk):
 
 @login_required
 def follow_category(request, cat):
+    """ Allows users to follow a category """
     category = get_object_or_404(Category, category_name=request.POST.get(
                                  'category_name'))
     category_followed = False

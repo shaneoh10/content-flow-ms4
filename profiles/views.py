@@ -67,6 +67,7 @@ def user_settings(request, username):
 
 @login_required
 def delete_account(request, username):
+    """ Allows a user to delete their own account """
     account = get_object_or_404(User, id=request.user.id)
 
     if account.username == username:
@@ -80,6 +81,7 @@ def delete_account(request, username):
 
 @login_required
 def follow_user(request, username):
+    """ Allows a user to follow another user """
     check_user = get_object_or_404(User, username=request.POST.get('username'))
     user_followed = False
 
