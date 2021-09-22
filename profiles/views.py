@@ -44,7 +44,10 @@ def user_settings(request, username):
             form = EditProfileForm(request.POST, instance=profile)
             if form.is_valid():
                 if request.FILES.get('image'):
-                    os.remove(profile.image.path)
+                    if 'USE_AWS' in os.environ:
+                        profile.image.delete(save=False)
+                    else:
+                        os.remove(profile.image.path)
                     profile.image = request.FILES['image']
                 form.save()
                 messages.success(request, 'Profile updated successfully')
