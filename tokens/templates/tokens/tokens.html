@@ -27,7 +27,6 @@
                             <div class="card-body">
                                 <img src="{{ product.icon_url }}" alt="{{ product.name }}"/>
                                 <h5 class="card-title mb-4">{{ product.name }}</h5>
-                                <a href="{% url 'token_checkout' %}" ></a>
                                 <form action="create_checkout_session/{{ product.id }}" method="POST">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-primary mb-3" id="checkout-button">&euro;{{ product.display_price }}</button>
