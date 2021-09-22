@@ -186,7 +186,10 @@ def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if request.user.id == post.author.id or request.user.is_superuser:
         if post.image:
-            os.remove(post.image.path)
+            if 'USE_AWS' in os.environ:
+                post.image.delete(save=False)
+            else:
+                os.remove(post.image.path)
         post.delete()
         messages.success(request, f'Successfully deleted post: "{post.title}"')
         return redirect(reverse('posts'))
