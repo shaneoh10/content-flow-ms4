@@ -10,6 +10,7 @@ class AddPostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
@@ -43,5 +44,6 @@ class AddCategoryForm(forms.ModelForm):
 
         widgets = {
             'category_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
         }

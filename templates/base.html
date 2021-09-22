@@ -91,11 +91,8 @@
                                 <li><a class="dropdown-item" href="{% url 'user_profile' user.username %}">{{ user.username }}</a></li>
                                 <li><a class="dropdown-item" href="{% url 'user_settings' user.username %}">Settings</a></li>
                                 <li><a class="dropdown-item" href="{% url 'add_post' %}">Add Post</a></li>
-                                <li class="dropdown-item">
                                 <li><a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a></li>
-                                    <li class="dropdown-item">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#LogoutModal">Log Out</a>
-                                </li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#LogoutModal">Log Out</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

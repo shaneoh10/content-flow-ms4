@@ -51,7 +51,7 @@
                             <p class="card-text my-4">{{ post.body }}</p>
                             <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
                             {% if user.is_authenticated %}
-                                {% if user.id == post.author.id %}
+                                {% if user.is_superuser or user.id == post.author.id %}
                                     <a href="{% url 'edit_post' post.pk %}">Edit</a>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
                                 {% endif %}

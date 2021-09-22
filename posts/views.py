@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView)
@@ -12,6 +13,10 @@ from .forms import AddPostForm, EditPostForm, AddCommentForm, AddCategoryForm
 
 
 class PostView(ListView):
+    """ 
+    View to display all available posts, users have the
+    ability to query the database and sort posts
+    """
     model = Post
     template_name = 'posts/posts.html'
     ordering = ['-post_date']
@@ -53,6 +58,7 @@ class PostView(ListView):
 
 
 class PostDetailView(DetailView):
+    """ View to display individual posts """
     model = Post
     template_name = 'posts/post_detail.html'
 
@@ -80,6 +86,7 @@ class PostDetailView(DetailView):
 
 
 class AddPostView(LoginRequiredMixin, CreateView):
+    """ Add a new post to the database """
     model = Post
     form_class = AddPostForm
     template_name = 'posts/add_post.html'
@@ -92,6 +99,7 @@ class AddPostView(LoginRequiredMixin, CreateView):
 
 
 class AddCategoryView(LoginRequiredMixin, CreateView):
+    """ Allows users to add a new category to the database """
     model = Category
     form_class = AddCategoryForm
     template_name = 'posts/add_category.html'
@@ -108,6 +116,7 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
 
 
 class EditPostView(LoginRequiredMixin, UpdateView):
+    """ Allows users to edit their posts """
     model = Post
     form_class = EditPostForm
     template_name = 'posts/edit_post.html'
@@ -123,6 +132,7 @@ class EditPostView(LoginRequiredMixin, UpdateView):
 
 
 class AddCommentView(LoginRequiredMixin, CreateView):
+    """ Allows users to add a comment to an individual post """
     model = Comment
     form_class = AddCommentForm
     template_name = 'posts/add_comment.html'
@@ -167,10 +177,13 @@ def category_view(request, cat):
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if request.user.id == post.author.id or request.user.is_superuser:
+        if post.image:
+            os.remove(post.image.path)
         post.delete()
         messages.success(request, f'Successfully deleted post: "{post.title}"')
         return redirect(reverse('posts'))
     else:
+        messages.error(request, 'Error: You can only delete your own posts')
         return redirect(reverse('posts'))
 
 
