@@ -1,6 +1,9 @@
-.top-btn:hover,
-.new-btn:hover {
-    background-color: #e6e6e6;
+.card-header {
+    background-color: #ececec;
+}
+
+.hover:hover {
+    background-color: #e6e6e6 !important;
 }
 
 @media screen and (max-width: 992px) {

@@ -18,43 +18,47 @@
                 <div class="col-12 col-md-8">
                     <div class="card mb-3">
                         {% if post.image %}
-                            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                            <a href="{{ post.image.url }}" target="_blank">
+                                <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                            </a>
                         {% endif %}
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a> |
-                                <span class="small"><a href="{% url 'category' post.category %}">{{ post.category }}</a></span>
-                                <span class="float-end mx-2">{{ total_likes }} Likes</span>
-                                {% if user.is_authenticated %}
-                                    {% if user.id != post.author.id %}
-                                        <span class="float-middle small">
-                                            <button class="btn-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#RewardModal">
-                                                <img src="https://img.icons8.com/emoji/24/000000/coin-emoji.png"/>Reward
-                                            </button>
-                                        </span>
-                                    {% endif %}
-                                    <span class="small float-end ml-4">
-                                        <form action="{% url 'like_post' post.pk %}" method="POST">
-                                            {% csrf_token %}
-                                            {% if post_liked %}
-                                                <button type="submit" name="post_id" value="{{ post.id }}"
-                                                    class="btn-outline-primary rounded-pill small">Unlike</button>
-                                            {% else %}
-                                                <button type="submit" name="post_id" value="{{ post.id }}"
-                                                    class="btn-primary rounded-pill small">Like</button>
-                                            {% endif %}
-                                        </form>
-                                    </span>
-                                {% endif %}
+                                <a href="{% url 'user_profile' post.author %}"
+                                    class="text-decoration-none p-1 hover">{{ post.author }}</a> |
+                                <span class="small"><a href="{% url 'category' post.category %}"
+                                        class="text-decoration-none p-1 hover">{{ post.category }}</a>
                                 </span>
                             </h4>
                             <p class="card-text my-4">{{ post.body }}</p>
                             <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
                             {% if user.is_authenticated %}
                                 {% if user.is_superuser or user.id == post.author.id %}
-                                    <a href="{% url 'edit_post' post.pk %}">Edit</a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
+                                    <a href="{% url 'edit_post' post.pk %}" class="p-1 hover">Edit</a> |
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal" class="text-danger p-1 hover">Delete</a>
                                 {% endif %}
+                            {% endif %}
+                            <span class="float-end mx-2 p-1 border-primary">{{ total_likes }} Likes</span>
+                            {% if user.is_authenticated %}
+                                {% if user.id != post.author.id %}
+                                    <span class="float-middle">
+                                        <button class="btn-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#RewardModal">
+                                            Reward
+                                        </button>
+                                    </span>
+                                {% endif %}
+                                <span class="float-end ml-4">
+                                    <form action="{% url 'like_post' post.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        {% if post_liked %}
+                                            <button type="submit" name="post_id" value="{{ post.id }}"
+                                                class="btn-outline-primary rounded-pill">Unlike</button>
+                                        {% else %}
+                                            <button type="submit" name="post_id" value="{{ post.id }}"
+                                                class="btn-primary rounded-pill">Like</button>
+                                        {% endif %}
+                                    </form>
+                                </span>
                             {% endif %}
                         </div>
                     </div>

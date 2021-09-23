@@ -15,10 +15,12 @@
         {% endif %}
         <div class="col-12">
             <div class="card-body">
-                <a href="{% url 'user_profile' post.author %}">{{ post.author }}</a> |
-                <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+                <a href="{% url 'user_profile' post.author %}"
+                    class="text-decoration-none hover p-1">{{ post.author }}</a> |
+                <a href="{% url 'category' post.category %}"
+                    class="text-decoration-none hover p-1">{{ post.category }}</a>
                 {% if post.body|length < 150 %}
-                    <p class="card-text mt-4">{{ post.body }}</p>
+                    <p class="card-text mt-4 px-2">{{ post.body }}</p>
                 {% else %}
                     <p class="card-text mt-4">{{ post.body|slice:"150" }}....</p>
                 {% endif %}
