@@ -60,7 +60,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown nav-hover">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Categories
@@ -68,7 +68,9 @@
                         <ul class="dropdown-menu" style="max-height: 200px; overflow-y: scroll;">
                             <li><a class="dropdown-item" href="{% url 'posts' %}">All Posts</a></li>
                             {% for category in categories %}
-                                <li><a class="dropdown-item" href="{% url 'category' category.category_name %}">{{ category.category_name }}</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{% url 'category' category.category_name %}">{{ category.category_name }}</a>
+                            </li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -78,34 +80,47 @@
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'posts' %}">All Posts</a>
+                    <li class="nav-item nav-hover">
+                        <a class="nav-link" href="{% url 'posts' %}">All Posts</a>
                     </li>
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown nav-hover">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="fas fa-user" style="font-size: 1rem;"></i> Profile
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'user_profile' user.username %}">{{ user.username }}</a></li>
-                                <li><a class="dropdown-item" href="{% url 'user_settings' user.username %}">Settings</a></li>
-                                <li><a class="dropdown-item" href="{% url 'add_post' %}">Add Post</a></li>
-                                <li><a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a></li>
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#LogoutModal">Log Out</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'user_profile' user.username %}">
+                                        {{ user.username }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'user_settings' user.username %}">Settings</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'add_post' %}">Add Post</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#LogoutModal">Log Out</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'tokens' %}" class="btn btn-outline-warning">
-                            <img src="https://img.icons8.com/emoji/24/000000/coin-emoji.png"/>
-                                Buy Tokens
+                            <a href="{% url 'tokens' %}" class="btn btn-outline-warning text-dark">
+                                <img src="https://img.icons8.com/emoji/24/000000/coin-emoji.png"/>
+                                    Buy Tokens
                             </a>
                         </li>
                     {% else %}
-                        <li class="nav-item">
+                        <li class="nav-item nav-hover">
                             <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item nav-hover">
                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">Log In</a>
                         </li>
                     {% endif %}

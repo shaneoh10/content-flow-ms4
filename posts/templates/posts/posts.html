@@ -21,7 +21,7 @@
             <hr>
             <div class="row">
                 <div class="col-12 col-md-8">
-                    <div class="card mb-3 bg-light">
+                    <div class="card mb-3 sort-btn-card">
                         <div class="card-body mx-auto">
                             {% if query %}
                                 <a href="{% url 'posts' %}?q={{ query }}" class="btn btn-light new-btn sort-btn hover">New</a>
@@ -46,7 +46,7 @@
                     {% endif %}
                 </div>
                 <div class="d-none d-md-block col-12 col-md-4">
-                    <div class="card content-flow-card bg-light">
+                    <div class="card content-flow-card">
                         <div class="card-body">
                             <h3 class="card-text">Content Flow</h3>
                         </div>

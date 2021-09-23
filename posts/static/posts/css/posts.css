@@ -1,5 +1,7 @@
-.card-header {
-    background-color: #ececec;
+.card-header,
+.content-flow-card,
+.sort-btn-card {
+    background-color: #E6F2FF;
 }
 
 .hover:hover {

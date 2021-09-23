@@ -11,7 +11,7 @@
 }
 
 footer {
-    background-color: #969595;
+    background-color: #DBDFF0;
 }
 
 .opaque-cover {
@@ -23,8 +23,8 @@ footer {
 }
 
 #main-btn-more {
-    border-color: #fafafa;
-    color: #fafafa;
+    border-color: #FAFAFA;
+    color: #FAFAFA;
 }
 
 #main-btn-more:hover,
@@ -36,11 +36,10 @@ footer {
 footer a {
     text-decoration: none;
     color: #000;
-    transition: 0.2s;
 }
 
 footer a:hover,
 footer a:active {
-    color: #bdbbbb;
+    color: #999;
 }
 
