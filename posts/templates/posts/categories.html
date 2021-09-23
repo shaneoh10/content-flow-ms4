@@ -24,9 +24,9 @@
                     <div class="col-12 col-md-8">
                         <div class="card mb-3 bg-light">
                             <div class="card-body mx-auto">
-                                <a href="{% url 'category' category %}" class="btn btn-light new-btn">New</a>
-                                <a href="{% url 'category' category %}?sort=likes" class="btn btn-light top-btn">Top</a>
-                                <a href="{% url 'add_post' %}" class="btn btn-primary">Add Post</a>
+                                <a href="{% url 'category' category %}" class="btn btn-light new-btn sort-btn">New</a>
+                                <a href="{% url 'category' category %}?sort=likes" class="btn btn-light top-btn sort-btn">Top</a>
+                                <a href="{% url 'add_post' %}" class="btn btn-primary sort-btn">Add Post</a>
                             </div>
                         </div>
                         {% for post in posts_in_category %}

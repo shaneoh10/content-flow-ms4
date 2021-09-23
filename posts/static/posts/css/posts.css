@@ -1,0 +1,10 @@
+.top-btn:hover,
+.new-btn:hover {
+    background-color: #e6e6e6;
+}
+
+@media screen and (max-width: 992px) {
+    .sort-btn {
+        width: 6rem !important;
+    }
+  }
