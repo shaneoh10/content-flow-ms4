@@ -13,7 +13,7 @@ from .forms import AddPostForm, EditPostForm, AddCommentForm, AddCategoryForm
 
 
 class PostView(ListView):
-    """ 
+    """
     View to display all available posts, users have the
     ability to query the database and sort posts
     """
@@ -116,15 +116,25 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
 
 
 class EditPostView(LoginRequiredMixin, UpdateView):
-    """ Allows users to edit their posts """
+    """
+    Allows users to edit their own posts or superuser
+    to edit any post
+    """
     model = Post
     form_class = EditPostForm
     template_name = 'posts/edit_post.html'
 
     def form_valid(self, form):
-        messages.success(self.request,
-                         f'Successfully edited post: "{form.instance.title}"')
-        return super().form_valid(form)
+        post = get_object_or_404(Post, pk=self.kwargs['pk'])
+        user = self.request.user
+        if user.id == post.author.id or user.is_superuser:
+            messages.success(self.request,
+                             f'Successfully edited post: \
+                             "{form.instance.title}"')
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, "You can only edit your own posts")
+            return redirect(reverse('posts'))
 
     def get_success_url(self):
         post_id = self.kwargs['pk']
