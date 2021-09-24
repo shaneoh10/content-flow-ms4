@@ -10,8 +10,8 @@
                 <form method="POST" action="/accounts/logout/">
                     {% csrf_token %}
                     <div class="mb-3 text-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                        <button type="button" class="btn btn-outline-secondary m-2" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger m-2">Delete</a>
                     </div>
                 </form>
             </div>

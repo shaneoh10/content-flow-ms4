@@ -10,8 +10,8 @@
                 <form method="POST" action="{% url 'delete_account' user.username %}">
                     {% csrf_token %}
                     <div class="mb-3 text-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Delete Account</a>
+                        <button type="button" class="btn btn-outline-secondary m-2" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger m-2">Delete Account</a>
                     </div>
                 </form>
             </div>
