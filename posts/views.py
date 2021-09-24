@@ -7,9 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from profiles.models import UserProfile
 from .models import Post, Comment, Category
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.urls import reverse, reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .forms import AddPostForm, EditPostForm, AddCommentForm, AddCategoryForm
 
 
@@ -50,9 +50,10 @@ class PostView(ListView):
 
             if 'sort' in self.request.GET:
                 sortkey = self.request.GET['sort']
-                sortkey = f'-{sortkey}'
-                object_list = object_list.order_by(sortkey)
-
+                if sortkey == 'likes':
+                    object_list = object_list.annotate(
+                        like_count=Count('likes')).order_by(
+                            '-like_count', '-post_date')
             return object_list
         else:
             return object_list.order_by('-post_date')
@@ -200,7 +201,8 @@ def custom_feed_view(request):
     custom = []
     for category in categories_followed:
         if Post.objects.filter(category__category_name=category):
-            custom.append(Post.objects.filter(category__category_name=category))
+            custom.append(Post.objects.filter(
+                          category__category_name=category))
 
     user_posts = []
     for author in users_followed:
@@ -209,14 +211,14 @@ def custom_feed_view(request):
 
     for post in user_posts:
         custom.append(post)
-    
+
     custom_feed = []
     for posts in custom:
         for post in posts:
             if post not in custom_feed:
                 custom_feed.append(post)
     custom_feed.sort(key=lambda x: x.post_date, reverse=True)
-    
+
     context = {
         'custom_feed': custom_feed
     }
