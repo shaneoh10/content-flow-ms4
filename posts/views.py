@@ -215,6 +215,7 @@ def custom_feed_view(request):
         for post in posts:
             if post not in custom_feed:
                 custom_feed.append(post)
+    custom_feed.sort(key=lambda x: x.post_date, reverse=True)
     
     context = {
         'custom_feed': custom_feed
