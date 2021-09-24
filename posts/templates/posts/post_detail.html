@@ -97,9 +97,10 @@
                 <div class="d-none d-md-block col-12 col-md-4">
                     <div class="card">
                         {% if post.author.userprofile.image %}
-                            <img src="{{ post.author.userprofile.image.url }}" class="card-img-top" />
+                            <img src="{{ post.author.userprofile.image.url }}" class="card-img-top" alt="profile pic">
                         {% else %}
-                            <img src="https://img.icons8.com/pastel-glyph/300/000000/person-male--v1.png" class="card-img-top" />
+                            <img src="https://img.icons8.com/pastel-glyph/300/000000/person-male--v1.png"
+                                class="card-img-top" alt="no image">
                         {% endif %}
                         <div class="card-body">
                             <p class="card-text"><a href="{% url 'user_profile' post.author %}">{{ post.author }}</a></p>

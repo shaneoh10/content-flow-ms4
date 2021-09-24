@@ -9,7 +9,7 @@
         {% if post.image %}
             <div class="col-12">
                 <a href="{% url 'post_detail' post.pk %}">
-                    <img src="{{ post.image.url }}" class="img-fluid p-3" />
+                    <img src="{{ post.image.url }}" class="img-fluid p-3" alt="{{ post.title }}">
                 </a>
             </div>
         {% endif %}

@@ -23,9 +23,11 @@
                                 <hr>
                                 <p>
                                     {% if user.userprofile.image %}
-                                        <img class="img-fluid" src=" {{ user.userprofile.image.url }}">
+                                        <img class="img-fluid" src="{{ user.userprofile.image.url }}" alt="profile pic">
                                     {% else %}
-                                        <img class="img-fluid" src="https://img.icons8.com/pastel-glyph/300/000000/person-male--v1.png">
+                                        <img class="img-fluid"
+                                            src="https://img.icons8.com/pastel-glyph/300/000000/person-male--v1.png"
+                                            alt="no image">
                                     {% endif %}
                                 </p>
                             </div>
