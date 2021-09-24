@@ -5,6 +5,7 @@ from django.views.generic import (
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from profiles.models import UserProfile
 from .models import Post, Comment, Category
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
@@ -185,6 +186,40 @@ def category_view(request, cat):
         }
 
     return render(request, 'posts/categories.html', context)
+
+
+@login_required
+def custom_feed_view(request):
+    """
+    Displays user's custom feed. Shows only posts in categories followed
+    by current user and posts written by users followed by current user
+    """
+    users_followed = UserProfile.objects.filter(followers=request.user.id)
+    categories_followed = Category.objects.filter(followers=request.user.id)
+
+    custom = []
+    for category in categories_followed:
+        if Post.objects.filter(category__category_name=category):
+            custom.append(Post.objects.filter(category__category_name=category))
+
+    user_posts = []
+    for author in users_followed:
+        if Post.objects.filter(author=author.id):
+            user_posts.append(Post.objects.filter(author=author.id))
+
+    for post in user_posts:
+        custom.append(post)
+    
+    custom_feed = []
+    for posts in custom:
+        for post in posts:
+            if post not in custom_feed:
+                custom_feed.append(post)
+    
+    context = {
+        'custom_feed': custom_feed
+    }
+    return render(request, 'posts/custom_feed.html', context)
 
 
 @login_required

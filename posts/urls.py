@@ -11,6 +11,7 @@ urlpatterns = [
     path('delete_post/<int:post_id>', views.delete_post, name='delete_post'),
     path('category/<str:cat>/', views.category_view, name='category'),
     path('like_post/<int:pk>', views.like_post_view, name='like_post'),
+    path('my_feed', views.custom_feed_view, name='my_feed'),
     path('like_comment/<int:pk>', views.like_comment_view,
          name='like_comment'),
     path('<int:pk>/add_comment', views.AddCommentView.as_view(),

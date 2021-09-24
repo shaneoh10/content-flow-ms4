@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
+{% endblock %}
+
+{% block extratitle %}
+| My Feed
+{% endblock %}
+
+{% block content %}
+    <section id="main-content">
+        <div class="container">
+            {% if query %}
+                <h1 class="head-margin">Search results for <em>"{{ query }}"</em></h1>
+                <a href="{% url 'posts' %}">Clear search</a>
+            {% else %}
+                <h1 class="head-margin">My Feed</h1>
+            {% endif %}
+            <hr>
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    {% if custom_feed %}
+                        {% for post in custom_feed %}
+                                {% include 'includes/divs/post-card.html' %}
+                        {% endfor %}
+                    {% else %}
+                        <h4 class="mt-4" id="no-posts">No posts found.</h4>
+                    {% endif %}
+                </div>
+                <div class="d-none d-md-block col-12 col-md-4">
+                    <div class="card content-flow-card">
+                        <div class="card-body">
+                            <h3 class="card-text">Content Flow</h3>
+                        </div>
+                    </div>
+                    {% include 'includes/divs/category-menu.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block postload_js %}
+    <script src="{% static 'posts/js/posts.js' %}"></script>
+{% endblock %}
