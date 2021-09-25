@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -25,7 +26,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     image = models.ImageField(null=True, blank=True, upload_to="post_images/")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField()
+    body = RichTextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     post_date = models.DateTimeField(default=datetime.now)
     likes = models.ManyToManyField(User, related_name="post_likes", blank=True)

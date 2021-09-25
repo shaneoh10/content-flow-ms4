@@ -8,6 +8,12 @@
     background-color: #e6e6e6 !important;
 }
 
+.django-ckeditor-widget {
+    width: 100%;
+}
+
+/*------------------------- Media Queries */
+
 @media screen and (max-width: 992px) {
     .sort-btn {
         width: 6rem !important;
