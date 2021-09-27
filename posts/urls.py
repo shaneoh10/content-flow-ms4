@@ -18,4 +18,6 @@ urlpatterns = [
          name='add_comment'),
     path('follow_category/<str:cat>', views.follow_category,
          name='follow_category'),
+    path('delete_comment/<int:comment_id>', views.delete_comment,
+         name='delete_comment'),
 ]

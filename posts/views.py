@@ -10,6 +10,7 @@ from .models import Post, Comment, Category
 from django.db.models import Q, Count
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
+from annoying.utils import HttpResponseReload
 from .forms import AddPostForm, EditPostForm, AddCommentForm, AddCategoryForm
 
 
@@ -244,6 +245,22 @@ def delete_post(request, post_id):
     else:
         messages.error(request, 'Error: You can only delete your own posts')
         return redirect(reverse('posts'))
+
+
+@login_required
+def delete_comment(request, comment_id):
+    """
+    View to delete comments, comments can be deleted by the
+    user who wrote it or a superuser
+    """
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if request.user.id == comment.author.id or request.user.is_superuser:
+        comment.delete()
+        messages.success(request, 'Successfully deleted comment')
+        return HttpResponseReload(request)
+    else:
+        messages.error(request, 'Error: You can only delete your own comments')
+        return HttpResponseReload(request)
 
 
 @login_required

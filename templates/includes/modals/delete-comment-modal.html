@@ -1,0 +1,19 @@
+<div class="modal fade" id="DeleteComment{{ comment.id }}" tabindex="-1" aria-labelledby="DeleteComment{{ comment.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DeleteComment{{ comment.id }}">Are you sure you want to delete this comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/accounts/logout/">
+                    {% csrf_token %}
+                    <div class="mb-3 text-center">
+                        <button type="button" class="btn btn-outline-secondary m-2" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger m-2">Delete</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

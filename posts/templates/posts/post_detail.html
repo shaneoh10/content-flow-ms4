@@ -38,7 +38,7 @@
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal" class="text-danger p-1 hover">Delete</a>
                                 {% endif %}
                             {% endif %}
-                            <span class="float-end mx-2 p-1 border-primary">{{ total_likes }} Likes</span>
+                            <span class="float-end mx-2 p-1 border-primary"><i class="far fa-thumbs-up like-icon"></i> {{ total_likes }}</span>
                             {% if user.is_authenticated %}
                                 {% if user.id != post.author.id %}
                                     <span class="float-middle">
@@ -82,15 +82,28 @@
                                         </div>
                                         <p class="my-4 p-2">{{ comment.body }}</p>
                                         <form action="{% url 'like_comment' comment.pk %}" method="POST">
-                                            <span class="mx-2 mb-2 float-end pt-1">{{ comment.like_count }}</span>
+                                            {% if user.is_superuser or user.id == comment.author.id %}
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteComment{{ comment.id }}"
+                                                    class="text-danger p-1 hover">Delete</a>
+                                            {% endif %}
+                                            <span class="mx-2 mb-2 float-end pt-1"><i class="far fa-thumbs-up like-icon"></i>{{ comment.like_count }}</span>
                                             {% csrf_token %}
                                             {% if user.is_authenticated %}
-                                                <button type="submit" name="comment_id" value="{{ comment.id }}"class="btn-primary rounded-pill float-end">
-                                                    Like
-                                                </button>
+                                                {% if user in comment.likes.all %}
+                                                    <button type="submit" name="comment_id" value="{{ comment.id }}"
+                                                        class="btn-outline-primary rounded-pill float-end">
+                                                        Unlike
+                                                    </button>
+                                                {% else %}
+                                                    <button type="submit" name="comment_id" value="{{ comment.id }}"
+                                                        class="btn-primary rounded-pill float-end">
+                                                        Like
+                                                    </button>
+                                                {% endif %}
                                             {% endif %}
                                         </form>
                                     </div>
+                                    {% include 'includes/modals/delete-comment-modal.html' %}
                                 {% endfor %}
                             </div>
                         {% else %}
