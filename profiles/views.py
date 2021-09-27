@@ -78,7 +78,7 @@ def delete_account(request, username):
         messages.success(request, 'Account deleted')
         return redirect(reverse('home'))
     else:
-        messages.error(request, 'Error: You can only delete your own account')
+        messages.error(request, 'You can only delete your own account')
         return HttpResponseReload(request)
 
 
@@ -98,7 +98,7 @@ def follow_user(request, username):
             user_followed = True
             messages.success(request, f'You are now following "{username}"')
     else:
-        messages.success(request, 'You can not follow your own profile.')
+        messages.error(request, 'You can not follow your own profile.')
 
     if request.GET:
         if 'next' in request.GET:

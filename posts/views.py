@@ -9,7 +9,7 @@ from profiles.models import UserProfile
 from .models import Post, Comment, Category
 from django.db.models import Q, Count
 from django.urls import reverse, reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from annoying.utils import HttpResponseReload
 from .forms import AddPostForm, EditPostForm, AddCommentForm, AddCategoryForm
 
@@ -140,7 +140,7 @@ class EditPostView(LoginRequiredMixin, UpdateView):
             return super().form_valid(form)
         else:
             messages.error(self.request, "You can only edit your own posts")
-            return redirect(reverse('posts'))
+            return HttpResponseReload(self.request)
 
     def get_success_url(self):
         post_id = self.kwargs['pk']
@@ -246,7 +246,7 @@ def delete_post(request, post_id):
         messages.success(request, f'Successfully deleted post: "{post.title}"')
         return redirect(reverse('posts'))
     else:
-        messages.error(request, 'Error: You can only delete your own posts')
+        messages.error(request, 'You can only delete your own posts')
         return redirect(reverse('posts'))
 
 
@@ -262,7 +262,7 @@ def delete_comment(request, comment_id):
         messages.success(request, 'Successfully deleted comment')
         return HttpResponseReload(request)
     else:
-        messages.error(request, 'Error: You can only delete your own comments')
+        messages.error(request, 'You can only delete your own comments')
         return HttpResponseReload(request)
 
 

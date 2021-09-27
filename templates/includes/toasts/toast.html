@@ -1,10 +1,15 @@
 <!-- Bootstrap toast  -->
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header bg-primary">
-        <strong class="me-auto text-light large">Notification</strong>
+    {% if message.level == 40 %}
+        <div class="toast-header bg-danger">
+            <strong class="me-auto text-dark large">Error</strong>
+    {% else %}
+        <div class="toast-header bg-primary">
+            <strong class="me-auto text-light large">Notification</strong>
+    {% endif %}
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body">
+    <div class="toast-body bg-light">
         {{ message }}
     </div>
 </div>
