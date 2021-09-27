@@ -81,10 +81,13 @@ class PostDetailView(DetailView):
                             id=self.request.user.id).exists():
             user_followed = True
 
+        comments = current_post.comments.all().order_by('-comment_date')
+
         context['user_followers'] = user_followers
         context['user_followed'] = user_followed
         context['post_liked'] = post_liked
         context['total_likes'] = total_likes
+        context['comments'] = comments
         return context
 
 

@@ -72,9 +72,9 @@
                                 {% endif %}
                             </h4>
                         </div>
-                        {% if post.comments.all %}
+                        {% if comments %}
                             <div class="list-group">
-                                {% for comment in post.comments.all %}
+                                {% for comment in comments %}
                                     <div class="list-group-item">
                                         <div class="d-flex w-100 justify-content-between mt-2">
                                             <h5><a href="{% url 'user_profile' comment.author %}" class="p-1 hover">{{ comment.author }}</a></h5>
