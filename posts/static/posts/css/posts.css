@@ -18,9 +18,17 @@
 }
 
 /*------------------------- Media Queries */
-
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 380px) {
+    .sort-btn i {
+        display: none;
+    }
     .sort-btn {
-        width: 6rem !important;
+        width: 5.8rem !important;
+    }
+  }
+
+@media screen and (min-width: 380px) and (max-width: 992px) {
+    .sort-btn {
+        width: 7.1rem !important;
     }
   }

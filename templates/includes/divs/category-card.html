@@ -13,9 +13,13 @@
             <form action="{% url 'follow_category' cat %}" method="POST">
                 {% csrf_token %}
                 {% if category_followed %}
-                    <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-outline-primary btn-sm">Unfollow</button>
+                    <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-minus-circle"></i> Unfollow
+                    </button>
                 {% else %}
-                    <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">Follow!</button>
+                    <button type="submit" name="category_name" value="{{ cat }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus-circle"></i> Follow!
+                    </button>
                 {% endif %}
             </form>
         </div>                                    

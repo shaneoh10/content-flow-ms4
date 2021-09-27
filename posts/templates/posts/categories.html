@@ -24,9 +24,15 @@
                     <div class="col-12 col-md-8">
                         <div class="card mb-3 sort-btn-card">
                             <div class="card-body mx-auto">
-                                <a href="{% url 'category' category %}" class="btn btn-light new-btn sort-btn hover">New</a>
-                                <a href="{% url 'category' category %}?sort=likes" class="btn btn-light top-btn sort-btn hover">Top</a>
-                                <a href="{% url 'add_post' %}" class="btn btn-primary sort-btn">Add Post</a>
+                                <a href="{% url 'category' category %}" class="btn btn-light new-btn sort-btn hover">
+                                    <i class="far fa-calendar"></i> New
+                                </a>
+                                <a href="{% url 'category' category %}?sort=likes" class="btn btn-light top-btn sort-btn hover">
+                                    <i class="fab fa-hotjar"></i> Top
+                                </a>
+                                <a href="{% url 'add_post' %}" class="btn btn-primary sort-btn">
+                                    <i class="fas fa-edit"></i> Add Post
+                                </a>
                             </div>
                         </div>
                         {% for post in posts_in_category %}
