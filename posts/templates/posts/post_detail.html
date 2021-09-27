@@ -63,33 +63,37 @@
                         </div>
                     </div>
                     <div class="card mb-3">
-                        <h4 class="m-4">
-                            Comments
-                            {% if user.is_authenticated %}
-                                <span class="float-end"><a href="{% url 'add_comment' post.pk %}" class="small">Add a comment...</a></span>
-                            {% endif %}
-                        </h4>
+                        <div class="card-header p-0">
+                            <h4 class="m-4">
+                                Comments
+                                {% if user.is_authenticated %}
+                                    <span class="float-end small"><a href="{% url 'add_comment' post.pk %}"
+                                            class="p-1 hover small text-muted">Add a comment...</a></span>
+                                {% endif %}
+                            </h4>
+                        </div>
                         {% if post.comments.all %}
                             <div class="list-group">
                                 {% for comment in post.comments.all %}
                                     <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5><a href="{% url 'user_profile' comment.author %}" class="mb-1">{{ comment.author }}</a></h5>
+                                        <div class="d-flex w-100 justify-content-between mt-2">
+                                            <h5><a href="{% url 'user_profile' comment.author %}" class="p-1 hover">{{ comment.author }}</a></h5>
                                             <small class="text-muted">{{ comment.comment_date }}</small>
                                         </div>
-                                        <p class="my-4">{{ comment.body }}</p>
+                                        <p class="my-4 p-2">{{ comment.body }}</p>
                                         <form action="{% url 'like_comment' comment.pk %}" method="POST">
+                                            <span class="mx-2 mb-2 float-end pt-1">{{ comment.like_count }}</span>
                                             {% csrf_token %}
                                             {% if user.is_authenticated %}
-                                                <button type="submit" name="comment_id" value="{{ comment.id }}" class="btn-primary rounded-pill">Like</button>
+                                                <button type="submit" name="comment_id" value="{{ comment.id }}"class="btn-primary rounded-pill float-end">
+                                                    Like
+                                                </button>
                                             {% endif %}
-                                            <span class="mx-2">{{ comment.like_count }} Likes</span>
                                         </form>
                                     </div>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            <hr>
                             <h5 class="m-4">No comments yet....</h5>
                         {% endif %}
                     </div>

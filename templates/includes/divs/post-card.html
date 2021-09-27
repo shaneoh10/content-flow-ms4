@@ -1,9 +1,9 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="card-header">
-            <h5 class="card-title">
+            <h5 class="card-title my-2">
                 <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none text-dark">{{ post.title }}</a> 
-                <span class="float-end">{{ post.like_count }} Likes</span>
+                <span class="float-end"><i class="far fa-thumbs-up like-icon"></i> {{ post.like_count }}</span>
             </h5>
         </div>
         {% if post.image %}
@@ -19,7 +19,7 @@
                     class="text-decoration-none hover p-1">{{ post.author }}</a> |
                 <a href="{% url 'category' post.category %}"
                     class="text-decoration-none hover p-1">{{ post.category }}</a>
-                <span class="float-end"><small class="text-muted">{{ post.post_date }}</small></span>
+                <span class="float-end"><small class="text-muted">{{ post.post_date.date }}</small></span>
                 {% if post.body|length < 150 %}
                     <p class="card-text mt-4 px-2">{{ post.body|safe }}</p>
                 {% else %}
