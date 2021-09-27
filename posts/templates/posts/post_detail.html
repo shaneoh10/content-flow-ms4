@@ -131,7 +131,9 @@
                             {% if user.is_authenticated %}
                                 <div class="text-center">
                                     {% if user.id == post.author.id %}
-                                        <a href="{% url 'user_settings' user.username %}" class="btn btn-primary">Settings</a>
+                                        <a href="{% url 'user_settings' user.username %}" class="btn btn-primary">
+                                            <i class="fas fa-cog"></i> Settings
+                                        </a>
                                     {% else %}
                                         <form action="{% url 'follow_user' post.author.username %}?next={{ request.path }}" method="POST">
                                             {% csrf_token %}
