@@ -6,6 +6,5 @@ urlpatterns = [
     path('success', views.order_success, name='order_success'),
     path('cancel', views.order_cancel, name='order_cancel'),
     path('send_reward/<str:receiver>', views.send_reward, name='send_reward'),
-    path('create_checkout_session/<pk>', views.CreateCheckoutSession.as_view(),
-         name='create_checkout_session'),
+    path('checkout/<int:pk>', views.checkout, name='checkout'),
 ]

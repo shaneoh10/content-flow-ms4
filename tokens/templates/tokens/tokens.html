@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <section id="post-content">
+    <section id="tokens">
         <div class="container">
             <h1 class="head-margin text-center">Buy Tokens</h1>
             <hr>
@@ -27,10 +27,8 @@
                             <div class="card-body">
                                 <img src="{{ product.icon_url }}" alt="{{ product.name }}"/>
                                 <h5 class="card-title mb-4">{{ product.name }}</h5>
-                                <form action="create_checkout_session/{{ product.id }}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-primary mb-3" id="checkout-button">&euro;{{ product.display_price }}</button>
-                                </form>
+                                <a href="{% url 'checkout' product.id %}" class="btn btn-primary mb-3"
+                                    id="checkout-button">&euro;{{ product.display_price }}</a>
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
 {% block content %}
 
     <div class="container">
-        <h1 class="head-margin text-center">{% trans "Confirm E-mail Address" %}</h1>
+        <h1 class="head-margin">{% trans "Confirm E-mail Address" %}</h1>
         <hr class="mb-5">
 
         {% if confirmation %}
@@ -22,7 +22,7 @@
 
             <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
             {% csrf_token %}
-                <button type="submit btn-btn-primary">{% trans 'Confirm' %}</button>
+                <button type="submit btn btn-primary">{% trans 'Confirm' %}</button>
             </form>
 
         {% else %}

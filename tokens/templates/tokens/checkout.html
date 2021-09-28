@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
+    <link rel="stylesheet" href="{% static 'tokens/css/checkout.css' %}">
+{% endblock %}
+
+{% block extratitle %}
+| Checkout
+{% endblock %}
+
+{% block content %}
+    <section id="checkout">
+        <div class="container">
+            <h1 class="head-margin">Checkout</h1>
+            <hr>
+            <div class="row">
+                <div class="col-12 col-lg-6 mx-auto align-self-center text-center p-4">
+                    <div class="card p-3 text-center">
+                        <div>
+                            <img src="{{ product.icon_url }}" alt="{{ product.name }}"/>
+                            <h5 class="card-title mb-4">{{ product.name }}</h5>
+                            <p>Total cost: &euro;{{ product.display_price }}</p>
+                        </div>
+                        <form action="">
+                            <div class="m-2 checkout-input form-floating w-100 mx-auto">
+                                <input type="card_name" name="card_name" class="form-control" required id="card_name" placeholder="Name on card">
+                                <label for="card_name">Name on card</label>
+                            </div>
+                            <div class="m-2 checkout-input form-floating w-100 mx-auto">
+                                <input type="email" name="email" class="form-control" required id="id_email" placeholder="Email">
+                                <label for="id_email">Email</label>
+                            </div>
+                            <div class="form-control m-2 mx-auto" id="card-element">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block postload_js %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'tokens/js/checkout.js' %}"></script>
+{% endblock %}
