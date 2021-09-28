@@ -30,3 +30,7 @@
 .checkout-input label {
     color: #AAB7C4;
 }
+
+#errors {
+    color: #DC3545;
+}

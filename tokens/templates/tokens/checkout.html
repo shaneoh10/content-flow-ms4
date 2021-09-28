@@ -23,7 +23,8 @@
                             <h5 class="card-title mb-4">{{ product.name }}</h5>
                             <p>Total cost: &euro;{{ product.display_price }}</p>
                         </div>
-                        <form action="">
+                        <form action="{% url 'checkout' product.id %}" id="checkout-form" method="POST">
+                            {% csrf_token %}
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
                                 <input type="card_name" name="card_name" class="form-control" required id="card_name" placeholder="Name on card">
                                 <label for="card_name">Name on card</label>
@@ -33,6 +34,10 @@
                                 <label for="id_email">Email</label>
                             </div>
                             <div class="form-control m-2 mx-auto" id="card-element"></div>
+                            <div class="m-2 " id="errors"></div>
+                            <div class="m-4 text-center" id="submit-button">
+                                <button type="submit" class="btn btn-primary">Pay now!</button>
+                            </div>
                         </form>
                     </div>
                 </div>
