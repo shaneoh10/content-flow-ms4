@@ -10,12 +10,26 @@ from annoying.utils import HttpResponseReload
 
 @login_required
 def checkout(request, pk):
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+
     product = get_object_or_404(Product, id=pk)
+    total_price = product.price
+
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=total_price,
+        currency=settings.STRIPE_CURRENCY,
+    )
+
+    if not stripe_public_key:
+        messages.error(request, 'Stripe public key not set.')
 
     context = {
         'product': product,
-        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-        'client_secret': 'test client secret'
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+        'total_price': total_price,
     }
     return render(request, 'tokens/checkout.html', context)
 
