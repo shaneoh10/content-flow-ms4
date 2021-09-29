@@ -40,11 +40,10 @@ def checkout(request, pk):
             amount=total_price,
             currency=settings.STRIPE_CURRENCY,
             metadata={
-                'user': request.user.username,
+                'username': request.user.username,
                 'tokens': product.tokens,
             }
         )
-
     if not stripe_public_key:
         messages.error(request, 'Stripe public key not set.')
 
