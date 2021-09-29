@@ -39,6 +39,10 @@ def checkout(request, pk):
         intent = stripe.PaymentIntent.create(
             amount=total_price,
             currency=settings.STRIPE_CURRENCY,
+            metadata={
+                'user': request.user.username,
+                'tokens': product.tokens,
+            }
         )
 
     if not stripe_public_key:
