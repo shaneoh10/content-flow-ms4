@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 
+# https://stripe.com/docs/webhooks & Code Institute Boutique Ado project
+
 
 class StripeWebhookHandler():
     """ Class for handling stripe webhooks """
