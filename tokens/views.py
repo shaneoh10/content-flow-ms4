@@ -55,7 +55,7 @@ def checkout(request, pk):
     }
     return render(request, 'tokens/checkout.html', context)
 
-
+@login_required
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order complete, {order.tokens} tokens \
@@ -65,6 +65,13 @@ def checkout_success(request, order_number):
         'order': order,
     }
     return render(request, 'tokens/success.html', context)
+
+
+@login_required
+def withdrawal(request):
+    """ Display token withdrawal page """
+
+    return render(request, 'tokens/withdrawal.html')
 
 
 @login_required

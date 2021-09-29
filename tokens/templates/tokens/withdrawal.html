@@ -7,36 +7,41 @@
 {% endblock %}
 
 {% block extratitle %}
-| Checkout
+| Withdrawal
 {% endblock %}
 
 {% block content %}
     <section id="checkout">
         <div class="container">
-            <h1 class="head-margin text-center">Checkout</h1>
+            <h1 class="head-margin text-center">Withdrawal</h1>
             <hr>
             <div class="row">
                 <div class="col-12 col-lg-6 mx-auto align-self-center text-center p-4">
                     <div class="card p-3 text-center">
-                        <div>
-                            <img src="{{ product.icon_url }}" alt="{{ product.name }}"/>
-                            <h4 class="card-title mb-4">{{ product.name }}</h4>
-                            <h5><strong>Total cost: &euro;{{ product.display_price }}</strong></h5>
-                        </div>
-                        <form action="{% url 'checkout' product.id %}" id="checkout-form" method="POST">
+                        <form action="" id="checkout-form" method="POST">
+                            <div class="h5 mb-4">Current Balance: {{ user.userprofile.tokens_balance }} tokens</div>
                             {% csrf_token %}
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
+                                <input type="number" name="tokens" class="form-control" required id="tokens"
+                                    placeholder="Tokens" min="1000" max="{{ user.userprofile.tokens_balance }}">
+                                <label for="Tokens">Token amount</label>
+                            </div>
+                            <div class="m-2 checkout-input form-floating w-100 mx-auto">
+                                <input type="text" name="bank_account" class="form-control" required
+                                    id="bank_account" placeholder="Bank IBAN" value="IE12 BOFI 9000 0112 3456 78" readonly>
+                                <label for="bank_account">Bank Account IBAN</label>
+                            </div>
+                            <div class="m-2 checkout-input form-floating w-100 mx-auto">
                                 <input type="text" name="card_name" class="form-control" required id="card_name" placeholder="Name on card">
-                                <label for="card_name">Name on card</label>
+                                <label for="card_name">Name on account</label>
                             </div>
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
                                 <input type="email" name="email" class="form-control" required id="id_email" placeholder="Email">
                                 <label for="id_email">Email</label>
                             </div>
-                            <div class="form-control m-2 mx-auto" id="card-element"></div>
-                            <div class="m-2 " id="errors"></div>
+                            <div class="h5 my-3">Cash amount: &euro;<span id="cash">0</span></div>
                             <div class="m-4 text-center" id="submit-button">
-                                <button type="submit" class="btn btn-primary">Pay now!</button>
+                                <button type="submit" class="btn btn-primary">Withdraw</button>
                             </div>
                         </form>
                     </div>
@@ -54,8 +59,5 @@
 {% endblock %}
 
 {% block postload_js %}
-    {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'tokens/js/checkout.js' %}"></script>
+    <script src="{% static 'tokens/js/withdrawal.js' %}"></script>
 {% endblock %}
