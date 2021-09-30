@@ -47,7 +47,7 @@
                                         </button>
                                     </span>
                                 {% endif %}
-                                <span class="float-end ml-4">
+                                <div class="float-end ml-4">
                                     <form action="{% url 'like_post' post.pk %}" method="POST">
                                         {% csrf_token %}
                                         {% if post_liked %}
@@ -58,7 +58,7 @@
                                                 class="btn-primary rounded-pill">Like</button>
                                         {% endif %}
                                     </form>
-                                </span>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
