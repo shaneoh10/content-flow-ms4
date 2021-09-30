@@ -3,8 +3,8 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Product, Order
-from .forms import OrderForm
+from .models import Product, Order, Withdrawal
+from .forms import OrderForm, WithdrawalForm
 from django.contrib import messages
 from annoying.utils import HttpResponseReload
 
@@ -55,6 +55,7 @@ def checkout(request, pk):
     }
     return render(request, 'tokens/checkout.html', context)
 
+
 @login_required
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
@@ -69,9 +70,46 @@ def checkout_success(request, order_number):
 
 @login_required
 def withdrawal(request):
-    """ Display token withdrawal page """
+    """
+    Display token withdrawal page and creates new withdrawal
+    in database when requested by user
+    """
+
+    if request.method == 'POST':
+        form_data = {
+            'account_name': request.POST['account_name'],
+            'iban': request.POST['iban'],
+            'username': request.user.username,
+            'email': request.POST['email'],
+            'tokens': request.POST['tokens'],
+            'withdrawal_total': float(request.POST['withdrawal_total']),
+        }
+        withdrawal_form = WithdrawalForm(form_data)
+        user_profile = request.user.userprofile
+
+        if withdrawal_form.is_valid():
+            withdrawal = withdrawal_form.save(commit=False)
+            withdrawal.save()
+            user_profile.tokens_balance -= int(request.POST['tokens'])
+            user_profile.save()
+            return redirect(reverse('withdrawal_success', args=[withdrawal]))
+        else:
+            messages.error(request, 'There was an error with your form, \
+                please check the form and try again')
 
     return render(request, 'tokens/withdrawal.html')
+
+
+@login_required
+def withdrawal_success(request, order_number):
+    withdrawal = get_object_or_404(Withdrawal, order_number=order_number)
+    messages.success(request, 'Withdrawal complete, the money should arrive \
+        in the account provided within 3 business days.')
+
+    context = {
+        'withdrawal': withdrawal,
+    }
+    return render(request, 'tokens/withdrawal_success.html', context)
 
 
 @login_required

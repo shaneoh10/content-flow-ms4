@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order
+from .models import Order, Withdrawal
 
 
 class OrderForm(forms.ModelForm):
@@ -7,3 +7,10 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ('card_name', 'username', 'email',
                   'tokens', 'order_total')
+
+
+class WithdrawalForm(forms.ModelForm):
+    class Meta:
+        model = Withdrawal
+        fields = ('account_name', 'iban', 'username',
+                  'email', 'tokens', 'withdrawal_total')

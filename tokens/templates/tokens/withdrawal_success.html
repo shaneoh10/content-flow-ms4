@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
+{% endblock %}
+
+{% block extratitle %}
+| Withdrawal Success
+{% endblock %}
+
+{% block content %}
+    <section id="checkout-success">
+        <div class="container">
+            <h1 class="head-margin">Payment Success</h1>
+            <hr>
+            <div class="row">
+                <p class="my-2">
+                    Withdrawal success. A confirmation email will be sent to <strong>{{ withdrawal.email }}</strong>.
+                    Funds should arrive in the account provided within 3 business days.
+                </p>
+                <div class="col-12 col-lg-6">
+                    <div class="card mt-4">
+                        <div class="card-header">
+                          Withdrawal Order Number: <br>
+                          {{ withdrawal.order_number }}
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>User:</td>
+                                        <td>{{ withdrawal.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Account name:</td>
+                                        <td>{{ withdrawal.account_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IBAN</td>
+                                        <td>{{ withdrawal.iban }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>{{ withdrawal.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tokens:</td>
+                                        <td>{{ withdrawal.tokens }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td>&euro;{{ withdrawal.withdrawal_total }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

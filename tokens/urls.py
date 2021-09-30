@@ -10,4 +10,6 @@ urlpatterns = [
          name='checkout_success'),
     path('wh/', webhook, name="webhook"),
     path('withdrawal', views.withdrawal, name='withdrawal'),
+    path('withdrawal_success/<str:order_number>', views.withdrawal_success,
+         name='withdrawal_success'),
 ]

@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 mx-auto align-self-center text-center p-4">
                     <div class="card p-3 text-center">
-                        <form action="" id="checkout-form" method="POST">
+                        <form action="{% url 'withdrawal' %}" id="withdrawal-form" method="POST">
                             <div class="h5 mb-4">Current Balance: {{ user.userprofile.tokens_balance }} tokens</div>
                             {% csrf_token %}
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
@@ -27,17 +27,22 @@
                                 <label for="tokens">Token amount</label>
                             </div>
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
-                                <input type="text" name="bank_account" class="form-control" required
-                                    id="bank_account" placeholder="Bank IBAN" value="IE12 BOFI 9000 0112 3456 78" readonly>
-                                <label for="bank_account">Bank Account IBAN</label>
+                                <input type="text" name="iban" class="form-control" required
+                                    id="iban" placeholder="Bank IBAN" value="IE12 BOFI 9000 0112 3456 78" readonly>
+                                <label for="iban">Bank Account IBAN</label>
                             </div>
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
-                                <input type="text" name="card_name" class="form-control" required id="card_name" placeholder="Name on card">
-                                <label for="card_name">Name on account</label>
+                                <input type="text" name="account_name" class="form-control" required id="account_name"
+                                    placeholder="Name on card">
+                                <label for="account_name">Name on account</label>
                             </div>
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
-                                <input type="email" name="email" class="form-control" required id="id_email" placeholder="Email">
-                                <label for="id_email">Email</label>
+                                <input type="email" name="email" class="form-control" required id="email" placeholder="Email">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="m-2 checkout-input form-floating w-100 mx-auto">
+                                <input type="text" name="withdrawal_total" class="form-control" required
+                                    id="withdrawal_total" hidden>
                             </div>
                             <div class="h5 my-3">Cash amount: &euro;<span id="cash">0</span></div>
                             <div class="m-4 text-center" id="submit-button">
