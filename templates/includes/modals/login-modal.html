@@ -3,21 +3,21 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="LoginModal">Log In</h5>
+                <h5 class="modal-title">Log In</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="/accounts/login/">
                     {% csrf_token %}
                     <div class="mb-3 form-floating">
-                        <input type="text" name="login" class="form-control" id="id_login"
+                        <input type="text" name="login" class="form-control" id="login"
                             placeholder="Userame or Email" required>
-                        <label for="id_login">Username or Email</label>
+                        <label for="login">Username or Email</label>
                     </div>
                     <div class="mb-3 form-floating">
-                        <input type="password" name="password" class="form-control" id="id_password"
+                        <input type="password" name="password" class="form-control" id="password"
                             placeholder="Password" required>
-                        <label for="id_password">Password</label>
+                        <label for="password">Password</label>
                         <a href="/accounts/password/reset/">Forgot Password?</a>
                     </div>
                     <div class="mb-3 form-check">

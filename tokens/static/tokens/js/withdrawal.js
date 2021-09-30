@@ -5,4 +5,4 @@ tokens.keyup(function() {
     let cashAmount = tokens.val() / 200;
     cashAmount = cashAmount.toFixed(2);
     $('#cash').text(cashAmount);
-})
+});

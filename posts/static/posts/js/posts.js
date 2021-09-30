@@ -10,4 +10,4 @@ $('document').ready(function() {
     if( urlParams.has('q')) {
         $('#no-posts').text('Please enter search criteria.');
     }
-})
+});

@@ -28,7 +28,7 @@
                                 <img src="{{ product.icon_url }}" alt="{{ product.name }}"/>
                                 <h5 class="card-title mb-4">{{ product.name }}</h5>
                                 <a href="{% url 'checkout' product.id %}" class="btn btn-primary mb-3"
-                                    id="checkout-button">&euro;{{ product.display_price }}</a>
+                                    id="checkout-button{{ product.id }}">&euro;{{ product.display_price }}</a>
                             </div>
                         </div>
                     </div>

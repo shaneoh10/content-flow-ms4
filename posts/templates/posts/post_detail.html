@@ -30,7 +30,7 @@
                                         class="text-decoration-none p-1 hover">{{ post.category }}</a>
                                 </span>
                             </h4>
-                            <p class="card-text my-4">{{ post.body|safe }}</p>
+                            <div class="card-text my-4">{{ post.body|safe }}</div>
                             <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
                             {% if user.is_authenticated %}
                                 {% if user.is_superuser or user.id == post.author.id %}
