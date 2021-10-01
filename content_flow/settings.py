@@ -99,7 +99,7 @@ SITE_ID = 1
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'contentflow@example.com'
+    DEFAULT_FROM_EMAIL = 'contentflow@contentflow.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True

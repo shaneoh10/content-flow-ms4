@@ -1,8 +1,11 @@
 import stripe
 from django.conf import settings
+from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.template import Context
+from django.template.loader import get_template
 from .models import Product, Order, Withdrawal
 from .forms import OrderForm, WithdrawalForm
 from django.contrib import messages
@@ -62,6 +65,18 @@ def checkout_success(request, order_number):
     messages.success(request, f'Order complete, {order.tokens} tokens \
         have been added to your account')
 
+    message = get_template("tokens/checkout_email.html").render({
+        'order': order
+    })
+
+    mail = EmailMessage(
+        "Order confirmation",
+        message,
+        'contentflow@contentflow.com',
+        [order.email],
+    )
+    mail.send()
+
     context = {
         'order': order,
     }
@@ -105,6 +120,18 @@ def withdrawal_success(request, order_number):
     withdrawal = get_object_or_404(Withdrawal, order_number=order_number)
     messages.success(request, 'Withdrawal complete, the money should arrive \
         in the account provided within 3 business days.')
+
+    message = get_template("tokens/withdrawal_email.html").render({
+        'withdrawal': withdrawal
+    })
+
+    mail = EmailMessage(
+        "Withdrawal confirmation",
+        message,
+        'contentflow@contentflow.com',
+        [withdrawal.email],
+    )
+    mail.send()
 
     context = {
         'withdrawal': withdrawal,

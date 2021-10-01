@@ -12,7 +12,7 @@
 {% block content %}
     <section id="checkout-success">
         <div class="container">
-            <h1 class="head-margin">Payment Success</h1>
+            <h1 class="head-margin">Withdrawal Success</h1>
             <hr>
             <div class="row">
                 <p class="my-2">
@@ -28,6 +28,10 @@
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <tbody>
+                                    <tr>
+                                        <td>Date:</td>
+                                        <td>{{ withdrawal.date }}</td>
+                                    </tr>
                                     <tr>
                                         <td>User:</td>
                                         <td>{{ withdrawal.username }}</td>
@@ -55,7 +59,7 @@
                                 </tbody>
                             </table>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
