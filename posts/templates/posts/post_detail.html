@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
@@ -31,7 +32,7 @@
                                 </span>
                             </h4>
                             <div class="card-text my-4">{{ post.body|safe }}</div>
-                            <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
+                            <p class="card-text"><small class="text-muted">{{ post.post_date|naturaltime }}</small></p>
                             {% if user.is_authenticated %}
                                 {% if user.is_superuser or user.id == post.author.id %}
                                     <a href="{% url 'edit_post' post.pk %}" class="p-1 hover">Edit</a> |
@@ -78,7 +79,7 @@
                                     <div class="list-group-item">
                                         <div class="d-flex w-100 justify-content-between mt-2">
                                             <h5><a href="{% url 'user_profile' comment.author %}" class="p-1 hover">{{ comment.author }}</a></h5>
-                                            <small class="text-muted">{{ comment.comment_date }}</small>
+                                            <small class="text-muted">{{ comment.comment_date|naturaltime }}</small>
                                         </div>
                                         <p class="my-4 p-2">{{ comment.body }}</p>
                                         <form action="{% url 'like_comment' comment.pk %}" method="POST">
