@@ -70,11 +70,12 @@ def checkout_success(request, order_number):
     })
 
     mail = EmailMessage(
-        "Order confirmation",
+        "Content Flow Order confirmation",
         message,
         'contentflow@contentflow.com',
         [order.email],
     )
+    mail.content_subtype = 'html'
     mail.send()
 
     context = {
@@ -126,11 +127,12 @@ def withdrawal_success(request, order_number):
     })
 
     mail = EmailMessage(
-        "Withdrawal confirmation",
+        "Content Flow Withdrawal confirmation",
         message,
         'contentflow@contentflow.com',
         [withdrawal.email],
     )
+    mail.content_subtype = 'html'
     mail.send()
 
     context = {
