@@ -176,8 +176,10 @@ def category_view(request, cat):
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
-            sortkey = f'-{sortkey}'
-        posts_in_category = posts_in_category.order_by(sortkey)
+            if sortkey == 'likes':
+                posts_in_category = posts_in_category.annotate(
+                    like_count=Count('likes')).order_by(
+                        '-like_count', '-post_date')
 
     category_followed = False
     if category.followers.filter(id=request.user.id).exists():
@@ -187,9 +189,8 @@ def category_view(request, cat):
         'category_followed': category_followed,
         'posts_in_category': posts_in_category,
         'cat': cat,
-        'category': category
+        'category': category,
         }
-
     return render(request, 'posts/categories.html', context)
 
 
