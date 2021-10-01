@@ -17,6 +17,11 @@
     font-size: 1.4rem;
 }
 
+.profile-pic {
+    max-height: 400px !important;
+    border-radius: 10px;
+}
+
 /*------------------------- Media Queries */
 @media screen and (max-width: 380px) {
     .sort-btn i {

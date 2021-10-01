@@ -1,8 +1,6 @@
 import os
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
@@ -46,8 +44,6 @@ def user_settings(request, username):
                 if request.FILES.get('image'):
                     if 'USE_AWS' in os.environ:
                         profile.image.delete(save=False)
-                    else:
-                        os.remove(profile.image.path)
                     profile.image = request.FILES['image']
                 form.save()
                 messages.success(request, 'Profile updated successfully')
