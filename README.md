@@ -97,3 +97,93 @@ I decided to use a neutral colour palette for the website so as not to distract 
 #### Typography
 
 I chose 'Arial' as the main font for the project as it is clean and easy to read, making it a good choice for a website where users will be spending a great deal of time reading through content.
+
+## Database Schema
+
+The project uses a PostgreSQL relational database consisting of the django allauth User model and 7 models created by myself.
+
+### Database Structure
+
+#### Category
+
+Name              |Field Type                                                
+------------------|---------------
+category_name     |SlugField                                              
+description       |CharField                                    
+image             |ImageField                                    
+followers         |ManyToManyField(User)
+
+#### Post
+
+Name              |Field Type                                                
+------------------|---------------
+title             |SlugField                                              
+image             |ImageField                                    
+author            |ForegnKey(User)                                    
+body              |RichTextField
+category          |ForeignKey(Category)
+post_date         |DateTimeField
+likes             |ManyToManyField(User)
+
+#### Comment
+
+Name              |Field Type                                                
+------------------|---------------
+post              |ForeignKey(User)                                              
+author            |ForeignKey(User)                                    
+body              |TextField(User)                                    
+comment_date      |DateTimeField
+likes             |ManyToManyField(User)
+
+
+#### UserProfile
+
+Name              |Field Type                                                
+------------------|---------------
+user              |AutoOneToOneField(User)                                              
+bio               |TextField                                   
+image             |ImageField                                    
+followers         |ManyToManyField(User)
+tokens_score      |IntegerField
+tokens_balance    |IntegerField
+
+#### Product
+
+Name              |Field Type                                                
+------------------|---------------
+name              |CharField                                             
+icon_url          |CharField                                   
+tokens            |IntegerField                                    
+price             |IntegerField
+display_price     |FloatField
+
+#### Order
+
+Name              |Field Type                                                
+------------------|---------------
+order_number      |CharField                                             
+card_name         |CharField                                   
+username          |CharField                                    
+email             |EmailField
+date              |DateTimeField
+tokens            |IntegerField
+order_total       |DecimalField
+
+#### Withdrawal
+
+Name              |Field Type                                                
+------------------|---------------
+order_number      |CharField                                             
+account_name      |CharField                                   
+iban              |CharField                                   
+username          |CharField                                    
+email             |EmailField
+date              |DateTimeField
+tokens            |IntegerField
+withdrawal_total  |DecimalField
+
+### Database Relationships
+
+The image below represents all the database models and the relationships they share.
+
+![DB relationships](assets/images/content-flow-db-schema.jpg)
