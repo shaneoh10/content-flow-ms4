@@ -203,25 +203,29 @@ def custom_feed_view(request):
     users_followed = UserProfile.objects.filter(followers=request.user.id)
     categories_followed = Category.objects.filter(followers=request.user.id)
 
-    custom = []
+    cat_posts = []
     for category in categories_followed:
         if Post.objects.filter(category__category_name=category):
-            custom.append(Post.objects.filter(
+            cat_posts.append(Post.objects.filter(
                           category__category_name=category))
 
     user_posts = []
     for author in users_followed:
-        if Post.objects.filter(author=author.id):
-            user_posts.append(Post.objects.filter(author=author.id))
-
-    for post in user_posts:
-        custom.append(post)
+        if Post.objects.filter(author__userprofile=author.id):
+            user_posts.append(Post.objects.filter(
+                              author__userprofile=author.id))
 
     custom_feed = []
-    for posts in custom:
+    for posts in cat_posts:
         for post in posts:
             if post not in custom_feed:
                 custom_feed.append(post)
+
+    for posts in user_posts:
+        for post in posts:
+            if post not in custom_feed:
+                custom_feed.append(post)
+
     custom_feed.sort(key=lambda x: x.post_date, reverse=True)
 
     context = {
