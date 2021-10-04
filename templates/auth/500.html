@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'posts/css/posts.css' %}">
+{% endblock %}
+
+{% block extratitle %}
+| 500
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="head-margin pt-4">Oops! Internal server error.</h2>
+                <a href="{% url 'home' %}" class="btn btn-primary mt-3">Return Home</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
