@@ -1,5 +1,7 @@
 # Website for Content Flow
 
+![Content Flow Mockup](assets/images/content-flow-mockup.png)
+
 ## Code Institute Milestone Project 4 : Full Stack Frameworks with Django
 
 Content Flow is an online community where users can view and share content in a variety of different categories. Registered users will be able to follow categories and other users of their choice and they will also be able to reward each other with tokens, via their posts. The website will allow users to purchase tokens using the Stripe Authentication Software and users will also be able to convert and withdraw their tokens as cash for financial gain.
@@ -187,3 +189,7 @@ withdrawal_total  |DecimalField
 The image below represents all the database models and the relationships they share.
 
 ![DB relationships](assets/images/content-flow-db-schema.jpg)
+
+## Features
+
+The website features a landing page which provides a description of the website and its features, prompting users to sign up. Users also have the option to view the content without signing up but they are limited to only viewing posts and profiles. After users have signed up to the website, they will have full access to the features of Content Flow (add posts/comments, like posts/comment, follow users/categories, send/receive rewards, buy tokens, custom profile). All new accounts will be set up with standard level access which limits the users to only editing or deleting posts or comments created by their own account. This is to ensure that users do not interfere with content that they do not own. Superuser accounts have the ability to edit or delete all posts/comments on the website to ensure the any inappropriate content or misinformation can be edited or deleted by website moderators/admins. User accounts can be upgraded to superuser via the django admin dashboard.
