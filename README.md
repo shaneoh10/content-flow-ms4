@@ -81,3 +81,19 @@ I have structured the website with:
 ### Skeleton 
 
 I designed wireframes for desktop, tablet and mobile using Balsamiq. These wireframes can be viewed [here.](https://github.com/shaneoh10/content-flow-ms4/tree/main/assets/wireframes)
+
+### Surface
+
+#### Colours
+
+I decided to use a neutral colour palette for the website so as not to distract users from the main content and to keep the user interface clean. For the user interaction buttons, I decided to use the blue bootstrap primary colour for positive interactions (add post, sign in, follow etc.) and the red bootstrap danger colour for negative interactions (delete etc.). This makes it easier for users to distinguish between which type of action they are trying to take and it provides a good contrast from the neutral colour palette so the buttons stand out well.
+
+- #FAFAFA - Cultured (Off-white)
+- #DBDFF0 - Lavendar Web
+- #E6F2FF - Alice Blue
+- #007BFF - Azure (Bootstrap primary)
+- #DC3546 - Rusty Red (Bootstrap danger)
+
+#### Typography
+
+I chose 'Arial' as the main font for the project as it is clean and easy to read, making it a good choice for a website where users will be spending a great deal of time reading through content.
