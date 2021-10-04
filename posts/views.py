@@ -195,7 +195,7 @@ def category_view(request, cat):
 
 
 @login_required
-def custom_feed_view(request, exception):
+def custom_feed_view(request):
     """
     Displays user's custom feed. Shows only posts in categories followed
     by current user and posts written by users followed by current user
