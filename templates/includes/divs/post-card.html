@@ -4,7 +4,19 @@
         <div class="card-header">
             <h5 class="card-title my-2">
                 <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none text-dark">{{ post.title }}</a> 
-                <span class="float-end"><i class="far fa-thumbs-up like-icon"></i> {{ post.like_count }}</span>
+                <div class="float-end">
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'like_post' post.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="post_id" value="{{ post.id }}" class="like-button">
+                                <i class="far fa-thumbs-up like-icon"></i>
+                            </button>
+                            {{ post.like_count }}
+                        </form>
+                    {% else %}
+                        <i class="far fa-thumbs-up like-icon"></i> {{ post.like_count }}
+                    {% endif %}
+                </div>
             </h5>
         </div>
         {% if post.image %}

@@ -17,6 +17,11 @@
     font-size: 1.4rem;
 }
 
+.like-button {
+    border: 0;
+    background: none;
+}
+
 .profile-pic {
     max-height: 400px !important;
     border-radius: 10px;

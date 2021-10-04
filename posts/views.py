@@ -284,7 +284,7 @@ def like_post_view(request, pk):
         post.likes.add(request.user)
         post_liked = True
 
-    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
+    return HttpResponseReload(request)
 
 
 @login_required
