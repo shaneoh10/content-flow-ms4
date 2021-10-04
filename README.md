@@ -193,3 +193,23 @@ The image below represents all the database models and the relationships they sh
 ## Features
 
 The website features a landing page which provides a description of the website and its features, prompting users to sign up. Users also have the option to view the content without signing up but they are limited to only viewing posts and profiles. After users have signed up to the website, they will have full access to the features of Content Flow (add posts/comments, like posts/comment, follow users/categories, send/receive rewards, buy tokens, custom profile). All new accounts will be set up with standard level access which limits the users to only editing or deleting posts or comments created by their own account. This is to ensure that users do not interfere with content that they do not own. Superuser accounts have the ability to edit or delete all posts/comments on the website to ensure the any inappropriate content or misinformation can be edited or deleted by website moderators/admins. User accounts can be upgraded to superuser via the django admin dashboard.
+
+### Across all pages:
+- The navbar is visible at the top of the page across all pages of the website. The navbar has the Content Flow logo on the left and there are navigation items on the left and right hand side of the navbar. The navigation items displayed can change and are dependant on whether the user is logged in or not. The navbar collapses into a hamburger icon on smaller screens.
+- There is also a search bar in the navbar which allows users to enter a search query and returns results based on the query.
+
+### Home Page:
+
+#### Header
+- There is a high quality image of people sitting at a table using laptops and phones, which makes it apparent to users that the website has a social aspect to it.
+- A main heading and logo quickly draws the user's attention to the center of the page and provides them with a brief description of the website
+- There are two buttons below the heading, Sign up and Learn More. These buttons encourage users to either sign up immediatedly or read more about the website before choosing to sign up.
+- There is a smaller link for to log in below these buttons if the user already has an account. This is smaller in size so as not to distract potential new users from the main content.
+
+#### About Section
+- This section contains colourful icons and a description of how the website works to encourage users to sign up. The descriptions are brief but contain sufficient information to allow users to understand how the website works.
+- Below the descriptions there are buttons that allow users to either sign up or view the content posted to Content Flow.
+
+#### Footer
+- Located at the bottom of the page, this contains links to sign up, view all posts, log in and go back to the top. It also contains a copyright notice.
+- The footer is only displayed on the home page as it could be distracting to users while browsing content and there are enough links available to users in the navbar so they should not feel lost while browsing.
