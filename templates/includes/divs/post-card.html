@@ -2,8 +2,8 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="card-header">
-            <h5 class="card-title my-2">
-                <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none text-dark">{{ post.title }}</a> 
+            <div class="card-title my-2">
+                <a href="{% url 'post_detail' post.pk %}" class="post-card-title text-decoration-none text-dark">{{ post.title }}</a> 
                 <div class="float-end">
                     {% if user.is_authenticated %}
                         <form action="{% url 'like_post' post.pk %}" method="POST">
@@ -17,7 +17,7 @@
                         <i class="far fa-thumbs-up like-icon"></i> {{ post.like_count }}
                     {% endif %}
                 </div>
-            </h5>
+            </div>
         </div>
         {% if post.image %}
             <div class="col-12">

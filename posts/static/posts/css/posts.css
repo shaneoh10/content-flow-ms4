@@ -27,6 +27,10 @@
     border-radius: 10px;
 }
 
+.post-card-title {
+    font-size: 1.25rem;
+}
+
 /*------------------------- Media Queries */
 @media screen and (max-width: 380px) {
     .sort-btn i {

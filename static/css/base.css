@@ -43,3 +43,9 @@ a.navbar-brand,
     top: 2rem;
     z-index: 9999999999;
 }
+
+@media screen and (max-width: 992px) {
+    .tokens-btn {
+        margin-top: 0.6rem;
+    }
+  }

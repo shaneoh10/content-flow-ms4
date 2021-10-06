@@ -64,13 +64,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <form class="d-flex d-lg-none mx-auto my-2" method="GET" action="{% url 'posts' %}">
+                    <input class="form-control me-2" type="text" name="q" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown nav-hover">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Categories
                         </a>
                         <ul class="dropdown-menu" style="max-height: 200px; overflow-y: scroll;">
+                            {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'add_category' %}"><i class="fas fa-plus-circle"></i> Add Category</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
                             <li><a class="dropdown-item" href="{% url 'posts' %}">All Posts</a></li>
                             {% for category in categories %}
                             <li><a class="dropdown-item"
@@ -85,7 +93,7 @@
                         </li>
                     {% endif %}
                 </ul>
-                <form class="d-flex mx-auto" method="GET" action="{% url 'posts' %}">
+                <form class=" d-none d-lg-flex mx-auto" method="GET" action="{% url 'posts' %}">
                     <input class="form-control me-2" type="text" name="q" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
@@ -121,7 +129,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'tokens' %}" class="btn btn-outline-warning text-dark">
+                            <a href="{% url 'tokens' %}" class="btn btn-outline-warning text-dark tokens-btn">
                                 <img src="https://img.icons8.com/emoji/24/000000/coin-emoji.png" alt="tokens"/>
                                     Buy Tokens
                             </a>
