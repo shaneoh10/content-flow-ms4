@@ -13,6 +13,12 @@ A link to the live website can be found [here.](https://content-flow-ms4.herokua
 ## Table of Contents
 
 - [User Experience (UX)](#ux)
+- [Database Schema](#database-schema)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
 
 ## UX
 
@@ -292,3 +298,155 @@ The website features a landing page which provides a description of the website 
 - [Font Awesome](https://fontawesome.com/) - Used to import icons
 - [Techsini](https://techsini.com/) - Used this website to generate the multi-device website mockup
 - [dbdiagram.io](https://dbdiagram.io/home)- Used to generate the database schema and relationships drawing
+
+## Testing
+Information on testing can be found in [TESTING.md](TESTING.md)
+
+## Deployment
+
+### Github Setup 
+
+I first set up the Content Flow repository on GitHub using the following steps:
+1. To set up the initial repository I used the [Code Institute Template.](https://github.com/Code-Institute-Org/gitpod-full-template) I clicked on "use this template" and entered content-flow-ms4 as the repository name and set it to public.
+2. In the new Content Flow repository I clicked on the GitPod button to open the project up as a new GitPod workspace.
+3. Throughout the project I saved all my code to Git by typing `git add .` into the terminal in the GitPod workspace.
+4. To commit the code to git I used the command  `git commit -m "<add comment here>" `
+5. Using Git I then used the command `git push` to push all the committed code to my GitHub repository at [https://github.com/shaneoh10/content-flow-ms4](https://github.com/shaneoh10/content-flow-ms4)
+
+#### Cloning the repository
+
+The project can be downloaded as a .zip file by clicking on the "Code" button in the project repository and then clicking "Download ZIP". 
+
+Alternatively the project can be cloned by entering `git clone git@github.com:shaneoh10/content-flow-ms4.git` in the terminal. 
+
+More information on cloning the project can be found [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+
+#### Running the project locally 
+
+Once the project has been cloned you can run it locally using the following steps:
+1. From the root directory enter the following prompt into the terminal to install the project requirements: 
+```
+pip3 install -r requirements.txt
+```
+2. Launch the django project using the following command in the terminal:
+```
+python3 manage.py runserver
+```
+3. The project server should now be running on port 8000, running the server should also create a new SQLite3 database file: db.sqlite3
+4. Create an `env.py` file with the following variables or if using Gitpod, you can enter these variables into the environment variables section in the Gitpod settings.
+    ```
+    DEVELOPMENT = True
+    SECRET_KEY = <your_secret_key>
+    STRIPE_PUBLIC_KEY = <your_stripe_public_key>
+    STRIPE_SECRET_KEY = <your_stripe_secret_key>
+    STRIPE_WH_SECRET = <your_stripe_wh_key>
+    ```
+    - The URL for your stripe webhooks endpoint will be as follows: `https://<your_host_url>/tokens/wh/`
+
+5. You will need to make migrations to set up the local database using the following commands in the terminal:
+```
+python3 manage.py makemigrations
+```
+```
+python3 manage.py migrate
+```
+6. The project should now run locally in your development environment.
+
+#### Heroku Deployment
+
+1. Before deploying to Heroku, ensure that you have both a `Procfile` and `requirements.txt` in your local repository or the application will fail to run.
+    - You can enter the following commands in the terminal to ensure your `Procfile` and `requirements.txt` both contain the relevant setup info required by Heroku to run the app:
+```
+echo web: gunicorn content_flow.wsgi:application > Procfile
+```
+```
+pip freeze > requirements.txt
+```
+2. When this is complete you can log in to Heroku and create a new application with the following steps:
+    - Click on the new button and choose "Create New App"
+    - Choose a name for the application
+    - Choose the relevant region
+    - Click on the Create App button
+
+3. Now that the new app has been created you can connect it to your GitHub repository with the following steps:
+    - Click on the Deploy tab and then choose GitHub as the deployment method
+    - Enter your GitHub repository name and click search
+    - You can then click connect when the project has been found. Your project is now connected to your GitHub repository.
+    - To allow automatic deployment each time your GitHub repository is updated click on "Enable Automatic Deploys"
+
+4. To set up the database, enter the 'Resources' tab and search for 'Heroku Postgres'. Add this to your app and select 'Hobby' level for free access.
+5. You must now rebuild the migrations on the new database using the following commands in the terminals:
+    - First you need to log in to Heroku:
+    ```
+    heroku login -i
+    ```
+    - After logging in, run the following command to run the migrations:
+    ```
+    heroku run python3 manage.py migrate
+    ```
+6. To set up AWS for static and media files hosting take the following steps:
+    - Sign up for a free AWS account or log in.
+    - Search in services for the S3 section and create a new bucket.
+    - Select the region closest to you and uncheck 'Block all public access' when creating the bucket 
+    - Configure the bucket by selecting the 'Properties' tab and turning on 'Static website hosting' 
+    - In the 'Permissions' tab, update the CORS configuration by adding the following code
+        ```
+        [
+            {
+                "AllowedHeaders": [
+                    "Authorization"
+                ],
+                "AllowedMethods": [
+                    "GET"
+                ],
+                "AllowedOrigins": [
+                    "*"
+                ],
+                "ExposeHeaders": []
+            }
+        ]
+        ```
+    - Under 'Bucket Policy' select 'Policy Generator' to create a new policy for the bucket.
+        - Select 'S3 Bucket Policy' as type
+        - Enter '*' for Principal to allow all principals
+        - Set action to 'GetObject'
+        - Paste in 'ARN' found in Bucket Policy tab
+        - Click 'Add Statement' and then 'Generate Policy'
+        - Copy policy and paste into Bucket policy editor
+        - Add `/*` to the end of the resource key and click 'Save'
+    - In the 'Access Control List' tab set 'Public Access' to 'Everyone'
+
+7. Now that the AWS S3 bucket is set up, you need to create a user to access it:
+    - In the AWS services menu select 'IAM'
+    - Under 'User Groups' create a new group
+    - Create a new group policy by selecting 'Policies' and then 'Create Policy'
+        - In the JSON tab select 'Import Managed Policy'
+        - Select 'AmazonS3FullAccess'
+        - To restrict access to the bucket replace the 'Resource' value with the bucket 'ARN'
+        - Click review policy, add a name and description and click 'Create Policy'
+    - Attach the policy to the group by selecting the group name under 'User Groups' and selecting 'Attach Policy'
+    - Under 'Users' create a new user and add them to the group. On the final step of creating a user, download the .csv file to access the user's secret keys
+
+8. The last step is to update the config vars in the 'settings' tab of your heroku app.
+
+    Name | Value
+    -----|------
+    AWS_ACCESS_KEY_ID|'your_aws_access_key_id'
+    AWS_SECRET_ACCESS_KEY|'your_aws_secret_access_key'
+    DATABASE_URL|'your_database_url'
+    EMAIL_HOST_PASS|'your_email_host_password'
+    EMAIL_HOST_USER|'your_email_address'
+    SECRET_KEY|'your_secret_key'
+    STRIPE_PUBLIC_KEY|'your_stripe_public_key'
+    STRIPE_SECRET_KEY|'your_stripe_secret_key'
+    STRIPE_WH_SECRET|'your_stripe_wh_key'
+    USE_AWS|True
+
+    The SECRET_KEY, STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY should be the same as your development environment.
+
+    The AWS access and secret keys can be found in the .CSV file you downloaded when creating the AWS user.
+
+    You will need to create a new Stripe WH key using the Heroku deployment URL: `https://<your_heroku_url>/tokens/wh/`
+
+9. The project should now be deployed on Heroku and you can view it by clicking on the 'Open app' button at the top of the page.
+
