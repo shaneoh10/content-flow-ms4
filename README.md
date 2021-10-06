@@ -213,3 +213,59 @@ The website features a landing page which provides a description of the website 
 #### Footer
 - Located at the bottom of the page, this contains links to sign up, view all posts, log in and go back to the top. It also contains a copyright notice.
 - The footer is only displayed on the home page as it could be distracting to users while browsing content and there are enough links available to users in the navbar so they should not feel lost while browsing.
+
+### Sign Up:
+- This page contains a sign up form for new users to create an account. The user registration is handled by the django allauth app, which checks all the user inputs from the form and either creates a new account if the information is valid or alerts the user to any errors they have made in the form (username already exists, password does not meet criteria etc.). Upon successful registration users will be redirected to an email verification page, prompting the user to check their email for a verification link. When the user succesfully verifies their email, their account is then activated and they are redirected to a log in page.
+- Below the sign up form is a link to log in for users that already have an account and may have accidentally clicked on the sign up page.
+
+### Log In:
+- The log in links around the website will bring up a log in modal for users to enter their credentials to log in. The log in credentials are handled by django allauth, and if the credentials are correct the user will be redirected to the All Posts page and notified with a toast that they are logged in. If the credentials are incorrect, the user will be redirected to another log in page which will notify the user of the log in error (username/password incorrect etc.). The user can now attempt to log in again from this login page.
+- On both the log in page and log in modal, there are links for a password reset page if the user has forgot their password and there is a link to the sign up page if the user does not have an account and wants to create one.
+
+### Log Out:
+- When users click the log out button, a modal will open prompting the user to confirm the log out. When the log out is confirmed, the form is handled by django allauth which will redirect the user back to the home page and notify them with a toast that they have been logged out.
+
+### Account Settings:
+- The account settings page can be accessed by users with a verified account. This page shows the user's current profile image, token balance, and contains a form for users to update their proifile image and their user bio. Users can select a new image to upload and change the text in their bio and these changes will be updated when the update account button is pressed, providing the form is valid.
+- Below the update account form there are three buttons: withdraw tokens, change password, delete account. The withdraw tokens button redirects users to the withdraw tokens page. The change password button redirects to a change password page which is handled by django allauth. The delete account button opens a modal, which asks users to verify that they want to delete their account and if this is confirmed their account will be deleted from the database.
+
+### User Profile:
+- Each verified user will have thier own user profile page and this page can be viewed by users with or without an account. This page displays any posts created by the user who's profile you are viewing and it also displays their profile image and user bio on a card to the side. Logged in users will have access to a follow button if the profile is not their own, and that follow button is replaced with a settings button if it is the user's own profile.
+- The follow button allows users to 'follow' another user which will add any posts created by that user to the current user's custom feed page. If the current user is already following the user the button is replaced by an unfollow button which performs the reverse of the follow button.
+
+### All Posts:
+- This page displays all the posts that have been uploaded to the database and can be viewed by users with or without an account. Each posts is displayed on a card displaying the posts title, body, author, category, number of likes and the time since posted. The body of the post is sliced to a max of 150 characters to save screen space and if the post contains an image that is also dispyed on the card.
+- At the top of the page there are buttons to filter the posts by New(most recently posted) and Top(highest number of likes). Logged in users will also have access to the Add Post button which redirects them to the Add Post page.
+
+### Categories:
+- Each category on the website has its own page which has the same layout as the all posts page but only posts within that category are displayed. For example, if a user adds a new post with News selected as the category, that post will appear on the News category page. All users with or without an account can view the category pages. Logged in users will have access to a follow button which will add any posts in the selected category to their custom feed.
+- Logged in users can add a new category to the website via the Add Category page. This page contains a form which requires a unique category name, an optional image, and a description. If the form is valid the new category will be uploaded to the database and it will be automatically added to the list of categories to choose from when adding a post or choosing a category page to view.
+
+### Add Post:
+- This page contains a form to upload a new post to the website and is only accessible by logged in users. The user must choose a title, select a category, and add text to the textfield. The user also has the option to upload an image with the post but that is not a requirement for the form to be valid. Their is a text editor built in to the textfield so that the user can add some basic editing and formatting to their post to make it more legible to other users.
+- When a new post is added, the post appears on the all posts page, the category page for the specified category of the post and on the profile page of the user who created the post.
+
+### Edit Post:
+- This page contains a form to edit an existing post and is only accessible by logged in users. The form is pre filled with the existing post data and the user has the option to edit the title, category and body of the post.
+- If a user tries to edit a post that they did not create, they will be notified with an error message that they can only edit their own posts and the changes will not be saved to the database. This does not apply to superusers as they have the authority to edit and delete any post on the website.
+
+### Post Detail:
+- This page contains a full detail view of an individual post and can be viewed by users with or without an account. It displays the post title at the top of the page and on a card below it displays the author, category, body, and post likes. Logged in users will have access to a like button and if it is their own post or they are a superuser they will have access to edit and delete buttons. If the post was created by a user other than themselves a send reward button will be abailable.
+- There is a comment section below the post card which displays any comments and the user who posted the comment. Logged in users will have access to the add comment button and a like button for each comment. Users can delete their own comments and superusers can delete any comment.
+- When a user clicks the add comment button they are redirected to the add comment page. This page contains a form with a single textfield input for the body of the comment. When the form is submitted the commented is added to the comments section on the post detail page of the post they chose to comment on.
+
+### My Feed:
+- Logged in users will have access to the custom feed page. This page displays posts to users based on the categories and users they are following. All posts from the categories and users that the current user is following will be displayed on this page for a customised experience. If the user decides to unfollow a category/user, the relevant posts will be removed from the feed and vice versa if they choose to follow more categories/users.
+
+### Send Reward:
+- Logged in users will have access to this feature. When viewing a post created by another user, the current user can send a token reward to that user. The send reward button opens up a modal where the user can decide how many tokens they want to send to the author of the post. If the current user has a sufficient balance they can submit the form and the tokens will be deducted from their own balance and added to the post authors balance. If the user does not have any tokens available in their account balance, they will be prompted to redirect to the Buy Tokens page.
+
+### Buy Tokens:
+- Logged in users will have access to this feature. There are three available options for the amount of tokens a user can purchase and when an option is chosen, the user is redirected to the checkout page. The checkout page displays the order details to the user and has a form requesting the user's card name, email and card number for payment. The payment is handled by Stripe and if successful the user is redirected to an order confirmation page containing their order details and an email with the same order details is sent to the email provided by the user. Any form or card errors will be displayed on screen to the user.
+- When Stripe sends a webhook to confirm succesful payment, the tokens are then added to the users token balance on their user profile.
+
+### Withdraw Tokens:
+- Logged in users will have access to this feature. This allows users to withdraw any tokens they have in their tokens balance to their bank account as cash, provided they have the minimum withdrawal amount of 1000 Tokens. The withdrawal form asks users for the amount of tokens they want to withdraw, their bank IBAN, the account name and an email. For the purpose of the project the IBAN field of the form is set to a sample IBAN and set to readonly. When the user enters the amount of tokens they want to withdraw, the cash amount of the withdrawal is displayed at the bottom of the form so users can see the value of their withdrawal before submitting.
+- When the withdrawal form is submitted, the user is redirected to a withdrawal success page which displays the withdrawal details to the user and an email with the same withdrawal details is sent to the email provided by the user. The token amount from the withdrawal is then deducted from the user's token balance.
+
+
