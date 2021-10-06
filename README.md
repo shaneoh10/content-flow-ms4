@@ -450,3 +450,24 @@ pip freeze > requirements.txt
 
 9. The project should now be deployed on Heroku and you can view it by clicking on the 'Open app' button at the top of the page.
 
+## Credits
+
+### Code:
+- Throughout the project I used multiple templates from [Bootstrap](https://getbootstrap.com/) (navbar, cards etc.). The documentation was also of great assistance when building the project.
+- The [Django documentation](https://docs.djangoproject.com/en/3.2/) was of great assistance when setting up the project and fixing problems I encountered
+- I relied on the [Stripe documentation](https://stripe.com/docs) and guidance from the Code Institute Boutique Ado project when setting up Stripe Payments and Webhooks
+- I referenced [this article](https://www.javascripttutorial.net/javascript-bom/javascript-get-query-string/) to get help with checking query string paramaters with JavaScript.
+- I used the code from [this article](https://stackoverflow.com/questions/39183479/django-all-auth-form-errors-not-displaying) on Stack Overflow to display error messages on Django allauth forms that I customised
+- When setting up django-annoying I used [this documentation](https://github.com/skorokithakis/django-annoying) on GitHub
+- When setting up the CKEditor and RichTextField I referenced [this documentation](https://github.com/django-ckeditor/django-ckeditor) on GitHub
+- [Stack Overflow](https://stackoverflow.com/) - There are many helpful posts on stack overflow that helped me with solving problems that I encountered during the development of the project.
+
+### Images:
+The main image on the home page was sourced from [Unsplash](https://unsplash.com/)
+- [Marvin Meyer @marvelous](https://unsplash.com/photos/SYTO3xs06fU)
+
+I also sourced coloured icons which are used across the website from [icons8](https://icons8.com/)
+
+### Acknowledgements 
+
+I would like to thank my mentor Spencer Barriball for his help and guidance throughout the project. I would also like to thank Code Institute and the Slack community for providing me with knowledge, ideas and inspiration on to how to approach this project.
