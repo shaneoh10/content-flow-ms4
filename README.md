@@ -269,3 +269,26 @@ The website features a landing page which provides a description of the website 
 - When the withdrawal form is submitted, the user is redirected to a withdrawal success page which displays the withdrawal details to the user and an email with the same withdrawal details is sent to the email provided by the user. The token amount from the withdrawal is then deducted from the user's token balance.
 
 
+## Technologies Used
+
+- HTML5 - This is the main language of the website templates and content
+- CSS3 - This is used to style the web pages
+- Python 3 - The main applications to run the website and use CRUD functionality are written in python
+- JavaScript, jQuery - Used for visual effects, interactivity, DOM manipulation, Stripe Payments
+- [Bootstrap 5.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - Bootstrap elements used for structure, design and responsive layout
+- [Django](https://www.djangoproject.com/) - Web framework used to provide tools, libraries and technologies for rapid deployment and clean, pragmatic design
+- [PostgreSQL](https://www.postgresql.org/) - Relational database used for deployed site
+- [Stripe](https://stripe.com/docs) - Used to process payments in the project
+- [CKEditor](https://ckeditor.com/) - Used for the RichTextField text editor input fields
+- [django-annoying](https://pypi.org/project/django-annoying/) - Used for AutoOneToOne field and HTTPResponseReload
+- GitHub - Used to store the code, linked to Heroku for automatic deployment
+- Heroku - Platform used to deploy the web application
+- Amazon Web Services (AWS) - Used to store static and media files for deployed site
+- Gitpod - This is the IDE I used for the project
+- Git - Used within Gitpod as the version control system
+- Chrome Developer Tools - Used within Google Chrome to inspect the web pages. This is helpful when designing responsive features and troubleshooting bugs.
+- Balsamiq - I created the project wireframes with this software
+- Google Fonts - Used to import the fonts for the project
+- [Font Awesome](https://fontawesome.com/) - Used to import icons
+- [Techsini](https://techsini.com/) - Used this website to generate the multi-device website mockup
+- [dbdiagram.io](https://dbdiagram.io/home)- Used to generate the database schema and relationships drawing
