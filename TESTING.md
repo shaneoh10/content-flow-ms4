@@ -4,7 +4,7 @@
 
 ## Chrome Developer Tools
 
-I used Chrome Developer Tools throughout the development of the project to assist with the design and layout of each page. This is a great tool to use when implementing or making changes to HTML and CSS code as it allows you to test various font sizes, margin, padding etc. before committing any changes to the project. I also found it very useful to help me find exactly which elements needed to be targeted in the DOM when making visual changes to the pages (JQuery effects, media queries etc.) and when getting input values from forms. I am satisfied with how the website turned out and I think it is clear and easy to read on mobile, tablet and desktop. Overall, I think the best experience is on desktop as there is no content hidden to save screen space but I believe the mobile experience is great for someone on the go as it contains all the most important content and is easy to read, navigate and interact with the website.
+I used Chrome Developer Tools throughout the development of the project to assist with the design and layout of each page. This is a great tool to use when implementing or making changes to HTML and CSS code as it allows you to test various font sizes, margin, padding etc. before committing any changes to the project. I also found it very useful to help me find exactly which elements needed to be targeted in the DOM when making visual changes to the pages (JQuery effects, media queries etc.) and when getting input values from forms. I am satisfied with how the website turned out and I think it is clear and easy to read on mobile, tablet and desktop. On smaller mobile devices some elements can get cramped and move down to the next line which takes away from the visual appeal, however, this is only an issue with very small devices like the iPhone 5 which are not commonly used today and the majority of users will not have this issue. Overall, I think the best experience is on desktop as there is no content hidden to save screen space but I believe the mobile experience is great for someone on the go as it contains all the most important content and is easy to read, navigate and interact with the website.
 
 ### Lighthouse
 
@@ -39,6 +39,31 @@ I ran all the JavaSript files through JSHint and I found a few warnings which we
 - There were multiple counts of 'missing semicolon' throughout the files which was an easy fix
 - There are multiple warnings which remain present in the files about the use of `let` and `const` in JS version ES6 as follows: `let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).` I found an article on stack overflow [here](https://stackoverflow.com/questions/27441803/why-does-jshint-throw-a-warning-if-i-am-using-const) that advises by adding `/*jshint esversion: 6 */ ` at the top of the javascript files it would clear this error. I implemented this solution while testing in JSHint and the warnings were no longer present.
 
+## Web Browser and Device Testing
+
+I tested the functionality of the website across a number of browsers and devices to verify that the website is responsive and the code is supported across different browsers.
+
+- Browsers tested:
+    - Google Chrome
+    - Brave
+    - Firefox
+    - Microsoft Edge
+
+- Devices Tested:
+    - Laptop
+    - Desktop
+    - Samsung Galaxy S20
+    - iPhone 11
+
+When carrying out device testing with my Samsung Galaxy S20 mobile, I found that on the pages that displayed a list of posts (All Posts, Category pages, User Profile, My Feed), the post date element was sometimes spilling over to the line below it depending on the length of the post date element itself. 
+
+![JSHint Results](assets/images/testing/post-date-error.png)
+
+To fix this issue, I added a new post date element that is positioned below the author and category links as opposed to a span element on the same line, which is only displayed on smaller screen sizes and reverts back to the original span element for larger screens.
+
+![JSHint Results](assets/images/testing/post-date-fixed.png)
+
+All website features are working across all browsers and devices tested and the website is responsive on all devices.
 
 
 
