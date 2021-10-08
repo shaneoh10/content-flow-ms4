@@ -8,9 +8,9 @@ class AddPostForm(forms.ModelForm):
         fields = ('title', 'category', 'image', 'body')
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-control'}),
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'category': forms.Select(attrs={'class': 'form-control mb-3'}),
+            'image': forms.FileInput(attrs={'class': 'form-control mb-3'}),
         }
 
 
@@ -20,8 +20,8 @@ class EditPostForm(forms.ModelForm):
         fields = ('title', 'category', 'body')
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control mb-3'}),
+            'category': forms.Select(attrs={'class': 'form-control mb-3'}),
         }
 
 
