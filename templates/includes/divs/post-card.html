@@ -32,7 +32,8 @@
                     class="text-decoration-none hover p-1">{{ post.author }}</a> |
                 <a href="{% url 'category' post.category %}"
                     class="text-decoration-none hover p-1">{{ post.category }}</a>
-                <span class="float-end"><small class="text-muted">{{ post.post_date|naturaltime }}</small></span>
+                <span class="float-end d-none d-sm-block"><small class="text-muted">{{ post.post_date|naturaltime }}</small></span>
+                <p class="d-sm-none p-1"><small class="text-muted">{{ post.post_date|naturaltime }}</small></p>
                 {% if post.body|length < 150 %}
                     <div class="card-text mt-4 px-2">{{ post.body|safe }}</div>
                 {% else %}
