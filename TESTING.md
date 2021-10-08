@@ -32,12 +32,16 @@ I tested all my own CSS files by direct input to avoid picking up any errors tha
 
 ### JSHint
 
-I ran all the JavaSript files through JSHint and I found a few warnings which were easy to resolve:
+I ran all the JavaSript files through [JSHint](https://jshint.com/) and I found a few warnings which were easy to resolve:
 
 ![JSHint Results](assets/images/testing/jshint-results.png)
 
 - There were multiple counts of 'missing semicolon' throughout the files which was an easy fix
 - There are multiple warnings which remain present in the files about the use of `let` and `const` in JS version ES6 as follows: `let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).` I found an article on stack overflow [here](https://stackoverflow.com/questions/27441803/why-does-jshint-throw-a-warning-if-i-am-using-const) that advises by adding `/*jshint esversion: 6 */ ` at the top of the javascript files it would clear this error. I implemented this solution while testing in JSHint and the warnings were no longer present.
+
+### PEP8 Online
+
+Throughtout the development of the project, I was regularly checking all my own Python code for PEP8 compliance with the [PEP8 online](http://pep8online.com/) checker before committing to GitHub. This tool was great for finding common errors like 'trailing whitespace', indent errors, line too long, blank line errors etc. After checking all the files again there are were no errors found.
 
 ## Web Browser and Device Testing
 
