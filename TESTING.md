@@ -81,4 +81,65 @@ All website features are working across all browsers and devices tested and the 
 
 ## Testing User Stories
 
+User Story No. | As a User | I want to be able to | So that I can | Complete
+---------------|-----------|----------------------|---------------|--------------
+1|First Time User|immediately recognise the purpose of the site|decide if I am interested in using the site or not| :heavy_check_mark:
+2|General User|easily navigate the website on various devices|browse the website without feeling lost or confused| :heavy_check_mark:
+3|General User|view a list of post categories|choose which categories I am interested in| :heavy_check_mark:
+4|General User|view all posts in a specific category|view the posts I am interested in| :heavy_check_mark:
+5|General User|view individual posts|see all post details (comments, author, likes and date posted)| :heavy_check_mark:
+6|General User|sort posts by date / popularity|view most recent or most popular posts| :heavy_check_mark:
+7|General User|search the website|find and view specific posts, categories and users| :heavy_check_mark:
+8|General User|easily register a new account|have the full website experience and contribute to the community| :heavy_check_mark:
+9|Logged In User|easily log in / log out|access my own personal account| :heavy_check_mark:
+10|Logged In User|create a new post|share content with other users and receive rewards| :heavy_check_mark:
+11|Logged In User|comment on a post|personally respond to a post| :heavy_check_mark:
+12|Logged In User|like a post|express that I like the content of the post| :heavy_check_mark:
+13|Logged In User|follow users/categories|view content that I am interested in on my own personal feed| :heavy_check_mark:
+14|Logged In User|send rewards to users for their posts|reward a user for posting good quality content| :heavy_check_mark:
+15|Logged In User|receive rewards from users for my posts|be rewarded by other users for posting good quality content| :heavy_check_mark:
+16|Logged In User|buy tokens with credit/debit card|add tokens to my account balance| :heavy_check_mark:
+17|Logged In User|withdraw tokens as cash|convert my tokens to cash and withdraw to my bank account| :heavy_check_mark:
+18|Logged In User|view order details when buying or withdrawing tokens|review my purchase/withdrawal| :heavy_check_mark:
+19|Logged In User|receive email confirmation for purchases/withdrawals|keep record of successful transactions| :heavy_check_mark:
+20|Logged In User|have a personal profile|view and customise my personal profile and account details| :heavy_check_mark:
+21|Logged In User|edit/delete my own posts|edit any errors or remove my post completely| :heavy_check_mark:
+22|Logged In User|reset password|access my account if I forget my password| :heavy_check_mark:
+23|Logged In User|delete my account|delete my account if I no longer wish to use the website| :heavy_check_mark:
+24|Administrator|edit/delete any posts|moderate the website / remove inappropriate content| :heavy_check_mark:
+
+#### 1. As a first time user I want to immediately recognise the purpose of the site
+- The home page displays a large hero image which shows a group of people socialising with their mobile phones and laptops and there is a heading which makes it clear that the website is used for sharing content
+- If the user scrolls down the page or clicks on the learn more button, they are brought to an about section which gives the users a description of how the website works
+
+![User Story 1](assets/images/user-stories/user-story-1.png)
+
+#### 2. As a general user I want to easily navigate the website on various devices
+- The project uses the Bootstrap framework which is directed at responsive web development. On smaller screens, some of the page elements are hidden from view to save space and provide a pleasant experience.
+- The navbar collapses into a small hamburger icon on smaller screens which expands when clicked so that users have access to all the navigation links on large and small screens.
+- The navbar is fixed to the top of the window on all device sizes so that users will always have access to navigation links without having to scroll back to the top of the page.
+
+![User Story 2](assets/images/user-stories/user-story-2.png)
+
+
+#### 3. As a general user I want to view a list of post categories
+- There is a dropdown menu with a list of all post categories in the navbar. Each menu item is a link to the category page for that specific category.
+- On larger screens, the category menu is also displayed to the right hand side of the main content for easy access.
+
+![User Story 3](assets/images/user-stories/user-story-3.png)
+
+
+#### 4. As a general user I want to view all posts in a specific category
+- When the user clicks on a category from the category menu, they are brought to that category page where only posts in that specific category are displayed.
+
+![User Story 4](assets/images/user-stories/user-story-4.png)
+
+#### 5. As a general user I want to view individual posts
+- When viewing a list of posts in the all posts page, my feed page or a specific category page, the user can click on the post title or the post image to view the individual post on its own page.
+- On this page, users can view the full post, including any comments and on larger screens there is a card with the post author's details to the right of the main post.
+
+![User Story 5](assets/images/user-stories/user-story-5.png)
+
+
+
 

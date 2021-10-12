@@ -31,7 +31,7 @@ Users will be able to intuitively navigate around the website and view content i
 As there is no specific demographic of users - a user is anyone who wants to view or post content online - the user stories are split into first time user, general user, logged-in user and administrator.
 
 User Story No. | As a User | I want to be able to | So that I can | Complete
---------------|-----------|----------------------|---------------|--------------
+---------------|-----------|----------------------|---------------|--------------
 1|First Time User|immediately recognise the purpose of the site|decide if I am interested in using the site or not| :heavy_check_mark:
 2|General User|easily navigate the website on various devices|browse the website without feeling lost or confused| :heavy_check_mark:
 3|General User|view a list of post categories|choose which categories I am interested in| :heavy_check_mark:
