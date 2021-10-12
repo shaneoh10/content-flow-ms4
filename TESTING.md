@@ -140,6 +140,65 @@ User Story No. | As a User | I want to be able to | So that I can | Complete
 
 ![User Story 5](assets/images/user-stories/user-story-5.png)
 
+#### 6. As a general user I want to sort posts by date/popularity
+- The default sorting for posts is set to `('-post_date')` which shows the most recent posts first on the list. On the category pages and all posts page, users can change the sorting between new and top, where new orders posts by newest post first and top orders the posts by the highest number of likes descending, showing the most popular posts first.
+- The corresponding button for whatever sorting is active will be highlited in blue so that users are aware of which post sorting they are currently using.
+
+![User Story 6](assets/images/user-stories/user-story-6.png)
+
+#### 7. As a general user I want to search the website
+- A search bar is present in the navbar which gives users the ability to run a query through all of the posts on the website
+- The query is run against post title, body, category and author username to maximise the chance that the user will find what they are looking for
+
+![User Story 7](assets/images/user-stories/user-story-7.png)
+
+#### 8. As a general user I want to easily register a new account
+- There are multiple links to the sign up page on the home page and in the navbar. The sign up page has a simple layout and the user will be prompted of any input errors in the form so they can be easily rectified
+- The user registration is handled by django-allauth
+
+![User Story 8](assets/images/user-stories/user-story-8.png)
+
+#### 9. As a logged in user I want to easily log in/out
+- There are multiple links to log in on the home page and in the navbar. These links open up a login modal where the user can enter their credentials to log in to the website. If there are any errors logging in, the user is redirected to the log in page where errors in the form will be displayed.
+- When a user is logged in, they can log out by pressing the log out button on the profile dropdown menu.
+- The user log in/out functionality is all handled by django-allauth
+
+![User Story 9](assets/images/user-stories/user-story-9.png)
+
+#### 10. As a logged in user I want to create a new post
+- Logged in users can add a post by clicking the add post button at the top of the all posts page or category pages or the add post button in the profile menu on the navbar.
+- This opens up the add post page which consists of a form that must fill out to add a new post to the website. They must choose a title, category and add content to the post body. There is also an optional image field in the form if users want to upload an image with their post.
+- If a user that is not logged in tries to access the add post page they will be redirected to the login page
+
+![User Story 10](assets/images/user-stories/user-story-10.png)
+
+#### 11. As a logged in user I want to comment on a post
+- When a user is on the post detail page for an individual post, they will see a comment section below the main post. Logged in users will see an 'add a comment' link which will bring the user to the Add Comment form. After the user has submitted the form their comment will appear in the comment section below the post they chose to comment on.
+- If a user that is not logged in tries to access the add comment page they will be redirected to the login page
+
+![User Story 11](assets/images/user-stories/user-story-11.png)
+
+#### 12. As a logged in user I want to like a post
+- When a logged in user is on the post detail page for an individual post, they will see a like button on the card with all the post details. To like the post the user just clicks the like button and the page will refresh with the button being changed to an unlike button, which lets the user know they have liked the post.
+- If the user presses the unlike button their 'like' is then removed from the post
+- A post can also be liked by clicking on the thumbs up icon on the post card when viewing posts as a list. (All posts page, category pages etc.)
+
+![User Story 12a](assets/images/user-stories/user-story-12a.png)
+![User Story 12b](assets/images/user-stories/user-story-12b.png)
+
+#### 13. As a logged in user I want to follow users/categories
+- When viewing a category page, a card will be displayed with the category name, description and a follow button. This follow button allows the user to 'follow' that category, which adds all posts in that specific category to the users custom feed. The user can also 'unfollow' a category that they are currently following which will remove posts from that category from their custom feed.
+- When viewing a specific post or user profile, a card will be displayed with the user's username, bio and a follow button. This follow button allows the user to 'follow' that user, which adds all posts created by that specific user to the users custom feed. The user can also 'unfollow' a user that they are currently following which will remove posts by that user from their custom feed.
+- The list of posts for the user's custom feed is checked for repeat posts before the page is rendered which means a post will only be displayed once in the feed. This eliminates repeat posts if the user is following a category and also the author of a post within that category.
+
+![User Story 13](assets/images/user-stories/user-story-13.png)
+
+
+
+
+
+
+
 
 
 
