@@ -14,7 +14,7 @@ I ran tests across all pages with lighthouse for both mobile and desktop. Below 
 
 These errors were due to having no website meta description and there were image elements missing "alt" attributes. There was also an issue with contrast between foreground and background colours found. These errors were easily rectified and after running the tests again I got the following results:
 
-![Lighthouse Errors](assets/images/testing/lighthouse-results.png)
+![Lighthouse Results](assets/images/testing/lighthouse-results.png)
 
 Across all of the website pages, the lighthouse results for desktop were very good, mostly similar to the results in the image above. There was, however, an issue with the results for the mobile tests. The mobile results consistently fell down for "Performance", with scores ranging from 65 up to 91. I found that the use of CDN's as well as the use of a lot of user uploaded images across the website which have not been optimized for web use was causing this performance issue. A combination of slower internet speed and a large amount of data to be loaded can increase loading times on mobile devices which can have an impact on user experience. As the website still functions correctly, and performance issues I found in physical device testing were minimal, I decided to take no further action but this is definitely something that needs to be considered if this website was ever to be launched to the public where the number of users could be a lot higher than it is now and real issues could occur.
 
@@ -23,6 +23,16 @@ Across all of the website pages, the lighthouse results for desktop were very go
 ### W3C Validator
 
 #### HTML
+
+I ran HTML validation tests with the W3C validator throughout the development of the project. See below some of the errors that were caught.
+
+![W3C HTML 1](assets/images/testing/w3c-html-1.png)
+
+I investigated and refactored the code to fix these errors and after testing again these errors are no longer present. I also encountered another error that was present on the Add Post and Edit Post pages:
+
+![W3C HTML 2](assets/images/testing/w3c-html-2.png)
+
+After investigating this error, I found that the 'p' element causing the issue was created when rendering the RichTextField of the form to the page. To fix this error I used [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/) to render the form. I followed the setup instructions and replaced `{{ form.as_p }}` with `{{ form|crispy }}` on the html templates and after running the validator tests again the error is no longer present.
 
 #### CSS
 
@@ -61,13 +71,14 @@ I tested the functionality of the website across a number of browsers and device
 
 When carrying out device testing with my Samsung Galaxy S20 mobile, I found that on the pages that displayed a list of posts (All Posts, Category pages, User Profile, My Feed), the post date element was sometimes spilling over to the line below it depending on the length of the post date element itself. 
 
-![JSHint Results](assets/images/testing/post-date-error.png)
+![Post Date Error](assets/images/testing/post-date-error.png)
 
 To fix this issue, I added a new post date element that is positioned below the author and category links as opposed to a span element on the same line, which is only displayed on smaller screen sizes and reverts back to the original span element for larger screens.
 
-![JSHint Results](assets/images/testing/post-date-fixed.png)
+![Post Date Fixed](assets/images/testing/post-date-fixed.png)
 
 All website features are working across all browsers and devices tested and the website is responsive on all devices.
 
+## Testing User Stories
 
 
