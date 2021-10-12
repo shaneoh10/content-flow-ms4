@@ -193,6 +193,16 @@ User Story No. | As a User | I want to be able to | So that I can | Complete
 
 ![User Story 13](assets/images/user-stories/user-story-13.png)
 
+#### 14. As a logged in user I want to send rewards to users for their posts
+- When viewing a specific post, logged in users will see a 'send reward' button on the post detail card. This button opens up a modal with a form that prompts the user to decide how many tokens they want to send to the post author as a reward. If the user has no tokens in their balance, they will be prompted to go to the tokens page to buy tokens.
+- The form has validation built in to stop users trying to send more tokens than they have in their balance. When the form is submitted, the tokens will be deducted from the sending user's token balance and added to the receiving user's token balance and token score. A user's token score can only increase when they receive tokens as a reward, whereas their token balance can increase by receiving rewards and buying tokens. This process of transferring tokens has been validated by sending rewards between accounts and checking the token balances and scores via the django admin dashboard.
+
+![User Story 14](assets/images/user-stories/user-story-14.png)
+
+#### 15. As a logged in user I want to receive rewards from users for my posts
+- Any user who creates a post is eligible to receive a reward. To increase the chances of receiving a reward the user should post good quality content. As explained above for user story 14, the sending and receiving of rewards between accounts has been tested and validated.
+
+
 
 
 
