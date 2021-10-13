@@ -274,6 +274,10 @@ The website features a landing page which provides a description of the website 
 - Logged in users will have access to this feature. This allows users to withdraw any tokens they have in their tokens balance to their bank account as cash, provided they have the minimum withdrawal amount of 1000 Tokens. The withdrawal form asks users for the amount of tokens they want to withdraw, their bank IBAN, the account name and an email. For the purpose of the project the IBAN field of the form is set to a sample IBAN and set to readonly. When the user enters the amount of tokens they want to withdraw, the cash amount of the withdrawal is displayed at the bottom of the form so users can see the value of their withdrawal before submitting.
 - When the withdrawal form is submitted, the user is redirected to a withdrawal success page which displays the withdrawal details to the user and an email with the same withdrawal details is sent to the email provided by the user. The token amount from the withdrawal is then deducted from the user's token balance.
 
+### Future Implementations
+I will list below a few features that I would like to add to the project in the future. These ideas came to me upon completion of the project and some are outside the scope of the project requirements so I chose not to implement them due to the project being for academic purposes as opposed to an official website.
+- A notification feature where users will receive a notification if they receive a reward, someone likes/comments on their post etc. It would also be a nice addition to be able to set up notifications for when a certain user adds a new post.
+- An instant messaging feature where registered users can contact each other directly via private messages. This would be a nice feature for users to be able to connect and converse with each other privately.
 
 ## Technologies Used
 
