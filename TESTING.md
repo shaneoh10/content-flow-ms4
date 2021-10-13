@@ -202,6 +202,73 @@ User Story No. | As a User | I want to be able to | So that I can | Complete
 #### 15. As a logged in user I want to receive rewards from users for my posts
 - Any user who creates a post is eligible to receive a reward. To increase the chances of receiving a reward the user should post good quality content. As explained above for user story 14, the sending and receiving of rewards between accounts has been tested and validated.
 
+#### 16. As a logged in user I want to buy tokens with credit/debit card
+- Any logged in user can view the tokens page by clicking the 'buy tokens' button in the navbar. From this page the user can choose from three set amounts, how many tokens they want to purchase. When the user selects how many tokens they want, a Stripe payment intent is created and they are redirected to the checkout page.
+- From the checkout page the user can then fill in their details to complete the order. Stripe handles the payment authentication and the project is currently set up to use Stripe test cards only, so the card details entered must be from the stripe preset card list. During testing I used the basic test card of card number 4242 4242 4242 4242 and to test with card authentication required I used card number 4000 0027 6000 3184.
+- Any errors with billing details or card details are displayed on the form to notify users of ther error so they can rectify it.
+- When a purchase is successful, the user is redirected to the checkout success page which shows their order details and the user's token balance will increase by the amount of tokens they choose on their order. This is performed by using stripe webhooks which adds the tokens when stripe confirms receipt of payment.
+
+![User Story 16](assets/images/user-stories/user-story-16.png)
+
+#### 17. As a logged in user I want to withdraw tokens as cash
+- On the account settings page, there is a 'withdraw tokens' button which brings the user to the token withdrawal page. This page contains a from requesting informtaion from the user to make a withdrawal. For the purpose of the project and to protect users the 'Bank IBAN' field of the form is set to readonly with a sample IBAN.
+- The user must choose how many tokens they want to withdraw and a cash amount is diplayed below the form to notify users how much money they will receive for their withdrawal. The form has validation built in to only allow a minimum token input of 1000 and a max of whatever the user's token balance is so they can not withdraw more than their token balance.
+- When the user submits the form, they are redirected to the withdrawal success page which displays their withdrawal details. The token amount of the order is then deducted from the user's token balance.
+
+![User Story 17](assets/images/user-stories/user-story-17.png)
+
+#### 18. As a logged in user I want to view order details when buying or withdrawing tokens
+- When a user is buying tokens as explained and tested for user story 16, their order details are available to them on the form before the order is submitted. As the user can only purchase one product at a time, and it is clearly displayed on the form, there should be no confusion as to what product they are purchasing.
+- When a user is withdrawing tokens as explained and tested for user story 17, their withdrawal details are available to them on the form before the withdrawal is submitted. As the user enters their own token amount and the cash value is clearly displayed on the form, there should be no confusion as to the value of the user's withdrawal.
+
+#### 19. As a logged in user I want to receive email confirmation for purchases/withdrawals
+- As part of the order and withdrawal procedures as explained in user stories 16 and 17, the user will also receive an email containing their order or withdrawal details. This confirmation email is sent to the email provided on the order/withdrawal forms and has been tested and is working correctly for both purchases and withdrawals.
+
+![User Story 19](assets/images/user-stories/user-story-19.png)
+
+#### 20. As a logged in user I want to have a personal profile
+- All registered users of the website have their own personal profile page which they can customise. The profile page displays all posts created by that user and it also contains a card with the user's profile picture and their user bio.
+- The profile page can be customised by clicking in to the Settings page on the Profile dropdown menu. From here, users can change their profile picture and update their bio. When the update account button is pressed, the updated information is saved to the database and visible on the user's profile page.
+
+![User Story 20](assets/images/user-stories/user-story-20.png)
+
+#### 21. As a logged in user I want to edit/delete my own posts
+- When a user is on the post detail page for a post that they created, they will see an 'edit' and 'delete' links below the post pody. These buttons are not visible when viewing a post you did not create.
+- The 'edit' link brings the user to and edit post page which contains a form that allows the user to make any changes to that specific post.
+- The 'delete' link opens up a modal which prompts the user to confirm if they want to delete that specific post. If confirmed, the post is deleted from the database.
+- If a user tries to edit or delete posts they did not create they will be prompted with a message that they are unable to do so.
+
+![User Story 21](assets/images/user-stories/user-story-21.png)
+
+#### 22. As a logged in user I want to reset my password
+- Users can reset their password in two ways. They can use the 'forgot password' link on the log in page or while logged in they can use the 'change password' button on the account settings page. 
+- The 'forgot password' link will ask for the user's email address and send a password reset link to that email address, if that email address is attached to a user account on the database. The user can then reset their password via the link on the email.
+- The 'change password' button will open up a password reset page where the user is prompted to enter their current password and a new password and they can submit the form to change their password.
+- Password resets are handled by django-allauth
+
+![User Story 22](assets/images/user-stories/user-story-22.png)
+
+#### 23. As a logged in user I want to delete my account
+- Users can delete their account from the account settings page when they are logged in. There is a 'delete account' button at the bottom of the page.
+- This button opens up a modal prompting the user to confirm if they wish to delete their account and warning them that the action can not be reversed. When a user confirms to delete their account, their User account is deleted from the database which also deletes their UserProfile and any posts and comments they wrote.
+- Users can only delete their own account and if a user tries to delete someone else's account a message will notify them that they are unable to do so.
+
+![User Story 23](assets/images/user-stories/user-story-23.png)
+
+#### 24. As an Administrator I want to edit/delete any posts
+- Administrators/Superusers have access to the 'edit' and 'delete' links for all posts on the website as eplained for user story 21, which means they have the ability to edit or delete any post on the website.
+- Alternatively, administrators can log in to the django admin dashboard where they have full access to the database and CRUD functionality. This allows administators to moderate all content posted to the website.
+
+![User Story 24](assets/images/user-stories/user-story-24.png)
+
+
+
+
+
+
+
+
+
 
 
 
