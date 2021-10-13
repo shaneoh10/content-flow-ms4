@@ -261,7 +261,51 @@ User Story No. | As a User | I want to be able to | So that I can | Complete
 
 ![User Story 24](assets/images/user-stories/user-story-24.png)
 
+## Bugs Encountered
 
+### Error sorting posts by likes
+- When trying to sort posts by the number of likes I encountered an issue with the sorted list that was returned in the view. Each post was added to the list again for each like it received so if a post had 3 likes it appeared on the page 3 times.
+- After a bit of googling I found that as the likes were a One To One relationship between posts and users, the code I was using would just return the post each time a new One To One relationship was created. See the below code where sortkey is 'likes':
+```
+sortkey = f'-{sortkey}'
+object_list = object_list.order_by(sortkey)
+```
+- After reading the django documentation and [this article](https://able.bio/dfernsby/django-queryset-annotations-with-conditions--19d4cb4b), I found that to order the posts by the number of likes I had to use `annotate()` to add a like count to each post, as shown in my current code below:
+```
+if sortkey == 'likes':
+    object_list = object_list.annotate(
+        like_count=Count('likes')).order_by(
+            '-like_count', '-post_date')
+```
+- This aboove code resolved the issue and the bug is no longer present in the project
+
+### Context clashing with django authentication
+- When creating the user_profile view I encountered an issue with displaying the view context on the html templates on the website. The code I was using was sending the user to which the profile belonged to as 'user' in the context which was causing confusion with the django user context when trying to render templates.
+- Django uses 'user' to refer to the current user when writing template language so the fact that my code was also sending another 'user' as context to the template was causing some unexpected results when displaying data on the screen.
+```
+def user_profile(request, user):
+    user = get_object_or_404(User, username=user)
+    user_posts = Post.objects.filter(author=user)
+    user_posts = user_posts.order_by('-post_date')
+
+    context = {
+        'user': user,
+        'user_posts': user_posts
+    }
+```
+- To fix this issue, I changed 'user' to 'author' so as to easily distinguish between the current user ('user') and the user who's profile page is being displayed ('author') 
+```
+def user_profile(request, user):
+    author = get_object_or_404(User, username=user)
+    user_posts = Post.objects.filter(author=author)
+    user_posts = user_posts.order_by('-post_date')
+
+    context = {
+        'author': author,
+        'user_posts': user_posts
+    }
+```
+- There were no more unexpected results after making this change and this bug is no longer present in the project
 
 
 
