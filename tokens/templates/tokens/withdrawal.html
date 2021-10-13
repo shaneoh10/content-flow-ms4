@@ -21,6 +21,7 @@
                         <form action="{% url 'withdrawal' %}" id="withdrawal-form" method="POST">
                             <div class="h5 mb-4">Current Balance: {{ user.userprofile.tokens_balance }} tokens</div>
                             {% csrf_token %}
+                            <p class="small text-muted">Minimum withdrawal: 1000 tokens</p>
                             <div class="m-2 checkout-input form-floating w-100 mx-auto">
                                 <input type="number" name="tokens" class="form-control" required id="tokens"
                                     placeholder="Tokens" min="1000" max="{{ user.userprofile.tokens_balance }}">
