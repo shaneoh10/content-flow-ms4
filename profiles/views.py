@@ -34,7 +34,10 @@ def user_profile(request, user):
 
 @login_required
 def user_settings(request, username):
-    """ Display the user's account settings page. """
+    """
+    Display the user's account settings page. User can update
+    their profile image and bio from this page.
+    """
     profile = get_object_or_404(UserProfile, user__username=username)
 
     if request.user.username == username:

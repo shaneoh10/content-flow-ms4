@@ -14,6 +14,10 @@ from annoying.utils import HttpResponseReload
 
 @login_required
 def checkout(request, pk):
+    """
+    Displays checkout page and creates payment intent for stripe.
+    Adds new order to database and stripe processes payment.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     product = get_object_or_404(Product, id=pk)
@@ -61,6 +65,10 @@ def checkout(request, pk):
 
 @login_required
 def checkout_success(request, order_number):
+    """
+    Displays order details if user checkout was successful.
+    Sends email to user with order details.
+    """
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order complete, {order.tokens} tokens \
         have been added to your account')
@@ -88,7 +96,7 @@ def checkout_success(request, order_number):
 def withdrawal(request):
     """
     Display token withdrawal page and creates new withdrawal
-    in database when requested by user
+    in database when user submits withdrawal form
     """
 
     if request.method == 'POST':
@@ -118,6 +126,10 @@ def withdrawal(request):
 
 @login_required
 def withdrawal_success(request, order_number):
+    """
+    Displays withdrawal details if user withdrawal was successful.
+    Sends email to user with withdrawal details.
+    """
     withdrawal = get_object_or_404(Withdrawal, order_number=order_number)
     messages.success(request, 'Withdrawal complete, the money should arrive \
         in the account provided within 3 business days.')
