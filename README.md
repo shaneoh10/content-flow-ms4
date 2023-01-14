@@ -8,7 +8,7 @@ Content Flow is an online community where users can view and share content in a 
 
 The website will feature a landing page with information about the community and how it works, encouraging users to sign up. Users will be able to view the main website and content without signing up, however, they will need a registered account to access the full experience. (post content, comment, likes, send/receive rewards etc.) The website will make use of HTML, CSS and JavaScript for the front end and Python with the Django Framework for the backend. It will also incorporate a PostgreSQL relational database system with full CRUD functionality.
 
-A link to the live website can be found [here.](https://content-flow-ms4.herokuapp.com/)
+A link to the live website can be found [here.](https://content-flow-ms4.onrender.com/)
 
 ## Table of Contents
 
