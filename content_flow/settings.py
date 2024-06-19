@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     # OTHER
     'storages',
     'ckeditor',
-    'crispy_forms'
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -68,9 +69,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'content_flow.urls'
+
+# Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -209,7 +215,7 @@ if 'USE_AWS' in os.environ:
 
 
 # Following settings only make sense on production and may break development environments.
-if not 'DEVELOPMENT' in os.environ:    
+if not 'DEVELOPMENT' in os.environ:
     # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
