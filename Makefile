@@ -12,7 +12,7 @@ makemigrations:
 migrate:
 	. $(VENV)/bin/activate && python3 manage.py migrate
 
-runserver:
+serve:
 	. $(VENV)/bin/activate && python3 manage.py runserver
 
 test:
