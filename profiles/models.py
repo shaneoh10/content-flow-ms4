@@ -8,10 +8,8 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):
     user = AutoOneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True, default="")
-    image = models.ImageField(null=True, blank=True,
-                              upload_to="profile_images/")
-    followers = models.ManyToManyField(User, related_name="user_followers",
-                                       blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to="profile_images/")
+    followers = models.ManyToManyField(User, related_name="user_followers", blank=True)
     tokens_score = models.IntegerField(null=False, blank=False, default=0)
     tokens_balance = models.IntegerField(null=False, blank=False, default=0)
 

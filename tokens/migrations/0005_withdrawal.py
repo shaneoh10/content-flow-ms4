@@ -6,22 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tokens', '0004_order'),
+        ("tokens", "0004_order"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Withdrawal',
+            name="Withdrawal",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order_number', models.CharField(editable=False, max_length=32)),
-                ('account_name', models.CharField(max_length=50)),
-                ('iban', models.CharField(max_length=50)),
-                ('username', models.CharField(max_length=150)),
-                ('email', models.EmailField(max_length=254)),
-                ('date', models.DateTimeField(auto_now_add=True)),
-                ('tokens', models.IntegerField(default=0)),
-                ('withdrawal_total', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("order_number", models.CharField(editable=False, max_length=32)),
+                ("account_name", models.CharField(max_length=50)),
+                ("iban", models.CharField(max_length=50)),
+                ("username", models.CharField(max_length=150)),
+                ("email", models.EmailField(max_length=254)),
+                ("date", models.DateTimeField(auto_now_add=True)),
+                ("tokens", models.IntegerField(default=0)),
+                (
+                    "withdrawal_total",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=10),
+                ),
             ],
         ),
     ]

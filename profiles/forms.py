@@ -5,9 +5,9 @@ from .models import UserProfile
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('image', 'bio')
+        fields = ("image", "bio")
 
         widgets = {
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
-            'bio': forms.Textarea(attrs={'class': 'form-control'}),
+            "image": forms.FileInput(attrs={"class": "form-control"}),
+            "bio": forms.Textarea(attrs={"class": "form-control"}),
         }
