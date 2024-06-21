@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0003_userprofile_followers'),
+        ("profiles", "0003_userprofile_followers"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userprofile',
-            name='tokens_balance',
+            model_name="userprofile",
+            name="tokens_balance",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='tokens_score',
+            model_name="userprofile",
+            name="tokens_score",
             field=models.IntegerField(default=0),
         ),
     ]

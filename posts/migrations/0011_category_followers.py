@@ -8,13 +8,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('posts', '0010_remove_category_followers'),
+        ("posts", "0010_remove_category_followers"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='category',
-            name='followers',
-            field=models.ManyToManyField(blank=True, related_name='category_followers', to=settings.AUTH_USER_MODEL),
+            model_name="category",
+            name="followers",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="category_followers",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
