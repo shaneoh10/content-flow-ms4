@@ -84,7 +84,7 @@ I have structured the website with:
 - Landing page, register, login and content pages accessible by all users of the website
 - User account settings, user profile, create post, purchase token pages only accessible to logged in users. Unauthorized users trying to access will be prompted to log in.
 
-### Skeleton 
+### Skeleton
 
 I designed wireframes for desktop, tablet and mobile using Balsamiq. These wireframes can be viewed [here.](https://github.com/shaneoh10/content-flow-ms4/tree/main/assets/wireframes)
 
@@ -112,20 +112,20 @@ The project uses a PostgreSQL relational database consisting of the django allau
 
 #### Category
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-category_name     |SlugField                                              
-description       |CharField                                    
-image             |ImageField                                    
+category_name     |SlugField
+description       |CharField
+image             |ImageField
 followers         |ManyToManyField(User)
 
 #### Post
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-title             |SlugField                                              
-image             |ImageField                                    
-author            |ForegnKey(User)                                    
+title             |SlugField
+image             |ImageField
+author            |ForegnKey(User)
 body              |RichTextField
 category          |ForeignKey(Category)
 post_date         |DateTimeField
@@ -133,43 +133,43 @@ likes             |ManyToManyField(User)
 
 #### Comment
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-post              |ForeignKey(User)                                              
-author            |ForeignKey(User)                                    
-body              |TextField(User)                                    
+post              |ForeignKey(User)
+author            |ForeignKey(User)
+body              |TextField(User)
 comment_date      |DateTimeField
 likes             |ManyToManyField(User)
 
 
 #### UserProfile
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-user              |AutoOneToOneField(User)                                              
-bio               |TextField                                   
-image             |ImageField                                    
+user              |AutoOneToOneField(User)
+bio               |TextField
+image             |ImageField
 followers         |ManyToManyField(User)
 tokens_score      |IntegerField
 tokens_balance    |IntegerField
 
 #### Product
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-name              |CharField                                             
-icon_url          |CharField                                   
-tokens            |IntegerField                                    
+name              |CharField
+icon_url          |CharField
+tokens            |IntegerField
 price             |IntegerField
 display_price     |FloatField
 
 #### Order
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-order_number      |CharField                                             
-card_name         |CharField                                   
-username          |CharField                                    
+order_number      |CharField
+card_name         |CharField
+username          |CharField
 email             |EmailField
 date              |DateTimeField
 tokens            |IntegerField
@@ -177,12 +177,12 @@ order_total       |DecimalField
 
 #### Withdrawal
 
-Name              |Field Type                                                
+Name              |Field Type
 ------------------|---------------
-order_number      |CharField                                             
-account_name      |CharField                                   
-iban              |CharField                                   
-username          |CharField                                    
+order_number      |CharField
+account_name      |CharField
+iban              |CharField
+username          |CharField
 email             |EmailField
 date              |DateTimeField
 tokens            |IntegerField
@@ -306,7 +306,7 @@ Information on testing can be found in [TESTING.md](TESTING.md)
 
 ## Deployment
 
-### Github Setup 
+### Github Setup
 
 I first set up the Content Flow repository on GitHub using the following steps:
 1. To set up the initial repository I used the [Code Institute Template.](https://github.com/Code-Institute-Org/gitpod-full-template) I clicked on "use this template" and entered content-flow-ms4 as the repository name and set it to public.
@@ -317,16 +317,16 @@ I first set up the Content Flow repository on GitHub using the following steps:
 
 #### Cloning the repository
 
-The project can be downloaded as a .zip file by clicking on the "Code" button in the project repository and then clicking "Download ZIP". 
+The project can be downloaded as a .zip file by clicking on the "Code" button in the project repository and then clicking "Download ZIP".
 
-Alternatively the project can be cloned by entering `git clone git@github.com:shaneoh10/content-flow-ms4.git` in the terminal. 
+Alternatively the project can be cloned by entering `git clone git@github.com:shaneoh10/content-flow-ms4.git` in the terminal.
 
 More information on cloning the project can be found [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 
-#### Running the project locally 
+#### Running the project locally
 
 Once the project has been cloned you can run it locally using the following steps:
-1. From the root directory enter the following prompt into the terminal to install the project requirements: 
+1. From the root directory enter the following prompt into the terminal to install the project requirements:
 ```
 pip3 install -r requirements.txt
 ```
@@ -389,8 +389,8 @@ pip freeze > requirements.txt
 6. To set up AWS for static and media files hosting take the following steps:
     - Sign up for a free AWS account or log in.
     - Search in services for the S3 section and create a new bucket.
-    - Select the region closest to you and uncheck 'Block all public access' when creating the bucket 
-    - Configure the bucket by selecting the 'Properties' tab and turning on 'Static website hosting' 
+    - Select the region closest to you and uncheck 'Block all public access' when creating the bucket
+    - Configure the bucket by selecting the 'Properties' tab and turning on 'Static website hosting'
     - In the 'Permissions' tab, update the CORS configuration by adding the following code
         ```
         [
@@ -470,6 +470,6 @@ The main image on the home page was sourced from [Unsplash](https://unsplash.com
 
 I also sourced coloured icons which are used across the website from [icons8](https://icons8.com/)
 
-### Acknowledgements 
+### Acknowledgements
 
 I would like to thank my mentor Spencer Barriball for his help and guidance throughout the project. I would also like to thank Code Institute and the Slack community for providing me with knowledge, ideas and inspiration on to how to approach this project.

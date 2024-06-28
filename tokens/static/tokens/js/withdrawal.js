@@ -1,4 +1,4 @@
-// Set cash amount of withdrawal based on token amount 
+// Set cash amount of withdrawal based on token amount
 var tokens = $('#tokens');
 
 tokens.keyup(function() {

@@ -23,7 +23,7 @@ var style = {
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
-// Display card errors 
+// Display card errors
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('errors');
     if (event.error) {

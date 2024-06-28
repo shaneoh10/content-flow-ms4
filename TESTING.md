@@ -69,7 +69,7 @@ I tested the functionality of the website across a number of browsers and device
     - Samsung Galaxy S20
     - iPhone 11
 
-When carrying out device testing with my Samsung Galaxy S20 mobile, I found that on the pages that displayed a list of posts (All Posts, Category pages, User Profile, My Feed), the post date element was sometimes spilling over to the line below it depending on the length of the post date element itself. 
+When carrying out device testing with my Samsung Galaxy S20 mobile, I found that on the pages that displayed a list of posts (All Posts, Category pages, User Profile, My Feed), the post date element was sometimes spilling over to the line below it depending on the length of the post date element itself.
 
 ![Post Date Error](assets/images/testing/post-date-error.png)
 
@@ -241,7 +241,7 @@ User Story No. | As a User | I want to be able to | So that I can | Complete
 ![User Story 21](assets/images/user-stories/user-story-21.png)
 
 #### 22. As a logged in user I want to reset my password
-- Users can reset their password in two ways. They can use the 'forgot password' link on the log in page or while logged in they can use the 'change password' button on the account settings page. 
+- Users can reset their password in two ways. They can use the 'forgot password' link on the log in page or while logged in they can use the 'change password' button on the account settings page.
 - The 'forgot password' link will ask for the user's email address and send a password reset link to that email address, if that email address is attached to a user account on the database. The user can then reset their password via the link on the email.
 - The 'change password' button will open up a password reset page where the user is prompted to enter their current password and a new password and they can submit the form to change their password.
 - Password resets are handled by django-allauth
@@ -293,7 +293,7 @@ def user_profile(request, user):
         'user_posts': user_posts
     }
 ```
-- To fix this issue, I changed 'user' to 'author' so as to easily distinguish between the current user ('user') and the user who's profile page is being displayed ('author') 
+- To fix this issue, I changed 'user' to 'author' so as to easily distinguish between the current user ('user') and the user who's profile page is being displayed ('author')
 ```
 def user_profile(request, user):
     author = get_object_or_404(User, username=user)
@@ -306,20 +306,3 @@ def user_profile(request, user):
     }
 ```
 - There were no more unexpected results after making this change and this bug is no longer present in the project
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
